@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center mi-card">
+                    <span class="titulo"> Ingreso  (Sing In)</span>
+                    <form [formGroup]="credenciales" (ngSubmit)="signin()">
+                        <div class="form-group text-start">
+                            <label class="ms-1">Correo</label>
+                            <input type="email" class="form-control" placeholder="email@domain.tld" formControlName="email">
+                            <div class="span-invalid ms-4 me-4" *ngIf="email?.invalid && email?.touched">
+                                <span> Debes poner un email que sea válido</span>
+                            </div>
+                        </div>
+                        <div class="form-group text-start">
+                            <label class="ms-1">Clave</label>
+                            <input type="password" class="form-control" placeholder="Clave/Password" 
+                            formControlName="clave">
+                            <div class="span-invalid ms-4 me-4" *ngIf="clave?.invalid && clave?.touched">
+                                <span> Debes completar la calve</span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button class="btn btn-primary me-2" [disabled]="credenciales.invalid">Ingresar</button>
+                            <button class="btn btn-secondary" routerLink="/">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

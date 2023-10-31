@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center mi-card">
+                    <span class="titulo"> Registro (Sing Up)</span>
+                    <form [formGroup]="formUsuario" (ngSubmit)="agregarUsuario()">
+                        <div class="form-group text-start">
+                            <label class="ms-1">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Nombre/Name"
+                            formControlName="nombre" >
+                            <div class="span-invalid ms-4 me-4" *ngIf="nombre?.invalid && nombre?.touched">
+                                <span> Debes completar con tu nombre</span>
+                            </div>
+                        </div>
+                        <div class="form-group text-start">
+                            <label class="ms-1">Apellido</label>
+                            <input type="text" class="form-control" placeholder="Apellido/Lastname" formControlName="apellido">
+                            <div class="span-invalid ms-4 me-4" *ngIf="apellido?.invalid && apellido?.touched">
+                                <span> Debes completar con tu apellido</span>
+                            </div>
+                        </div>
+                        <div class="form-group text-start">
+                            <label class="ms-1">Correo</label>
+                            <input type="email" class="form-control" placeholder="email@domain.tld" formControlName="email">
+                            <div class="span-invalid ms-4 me-4" *ngIf="email?.invalid && email?.touched;else spanValid">
+                                <span> Debes poner un email que sea válido</span>
+                            </div>
+                            <ng-template #spanValid>
+                            <div class="span-valid" >
+                                <small class="form-text text-muted ms-3">No te preocpes, no compartiremos tu información.</small>
+                            </div>
+                            </ng-template>
+                            
+                        </div>
+                        <div class="form-group text-start">
+                            <label class="ms-1">Clave</label>
+                            <input type="password" class="form-control" placeholder="Clave/Password" formControlName="clave">
+                            <div class="span-invalid ms-4 me-4" *ngIf="clave?.invalid && clave?.touched">
+                                <span> Debes completar con una calve al menos 8 caracteres</span>
+                            </div>
+                        </div>
+                        <div class="form-group text-start">
+                            <label class="ms-1">Confirma Clave</label>
+                            <input type="password" class="form-control" placeholder="Confirma Clave/Confirm Password" formControlName="clave2">
+                            <div class="span-invalid ms-4 me-4" *ngIf="clave2?.touched && clave?.value != clave2?.value">
+                                <span> Debes confirmar la clave con el mismo valor</span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button class="btn btn-primary me-2" [disabled]="formUsuario.invalid ||clave!.value != clave2!.value">Registrar</button>
+                            <button class="btn btn-secondary" routerLink="/">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.titulo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 21px;
+    background: #d2eebc;
+    padding-left: 42px;
+    padding-right: 42px;
+    border-radius: 5px;
+}
+.mi-label{
+    margin-inline-start: -1px, !important;
+}
+
+.mi-card{
+    background: #e4f3d8;
+}
+
+.span-valid{
+    color:black;
+}
+.span-invalid{
+    color: red;
+    background: #cecf8a;
+}

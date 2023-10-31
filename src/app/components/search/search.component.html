@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center mi-card">
+                    <span class="titulo"> Encuentra</span>
+                    <form >
+                        <div class="form-group text-start">
+                            <label class="ms-1">Provincias</label>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pcia" [(ngModel)]="pcia">
+                                <option selected value="0">Seleccione una provincia</option>
+                                <option value="1">Córdoba</option>
+                                <option value="2">Neuquén</option>
+                                <option value="3">Mendoza</option>
+                              </select>    
+                        </div>
+                        <div class="form-group text-start">
+                            <label class="ms-1">Travesía</label>
+                            <input type="text" class="form-control" placeholder="Ingrese palabra clave" name="travesia" [(ngModel)]="travesia" (keyup)="buscar_travesia()">
+                        </div>
+                        <div class="form-group mt-3" *ngIf="pcia != '0'">
+                           <p *ngFor="let traves of cordoba">{{traves}}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
