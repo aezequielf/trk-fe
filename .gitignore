@@ -11,8 +11,8 @@
 npm-debug.log
 yarn-error.log
 # no me ignores bootstrap ni ngx-toastr
-!/node_modules/bootstrap
-!node_modules/ngx-toastr
+/node_modules/bootstrap
+node_modules/ngx-toastr
 
 
 
