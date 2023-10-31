@@ -8,11 +8,12 @@
 
 # Node
 /node_modules
+# no me ignores bootstrap ni ngx-toastr
+!/node_modules/bootstrap
+!/node_modules/ngx-toastr
 npm-debug.log
 yarn-error.log
-# no me ignores bootstrap ni ngx-toastr
-/node_modules/bootstrap
-node_modules/ngx-toastr
+
 
 
 
