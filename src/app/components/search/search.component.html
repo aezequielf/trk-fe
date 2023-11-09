@@ -7,19 +7,19 @@
                     <form >
                         <div class="form-group text-start">
                             <label class="ms-1">Provincias</label>
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pcia" [(ngModel)]="pcia">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pcia" [(ngModel)]="pcia" (change)="selectProv()">
                                 <option selected value="0">Seleccione una provincia</option>
-                                <option value="1">Córdoba</option>
-                                <option value="2">Neuquén</option>
-                                <option value="3">Mendoza</option>
+                                <option value="cordoba">Córdoba</option>
+                                <option value="neuquen">Neuquén</option>
+                                <option value="mendoza">Mendoza</option>
                               </select>    
                         </div>
                         <div class="form-group text-start">
-                            <label class="ms-1">Travesía</label>
-                            <input type="text" class="form-control" placeholder="Ingrese palabra clave" name="travesia" [(ngModel)]="travesia" (keyup)="buscar_travesia()">
+                            <label class="ms-1">Destino</label>
+                            <input type="text" class="form-control" placeholder="Ingrese palabra clave" name="travesia" [(ngModel)]="travesia">
                         </div>
                         <div class="form-group mt-3" *ngIf="pcia != '0'">
-                           <p *ngFor="let traves of cordoba">{{traves}}</p>
+                           <p *ngFor="let traves of lista | destinos:travesia" >{{traves}}</p>
                         </div>
                     </form>
                 </div>

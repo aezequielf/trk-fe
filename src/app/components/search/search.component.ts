@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -6,17 +6,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  pcia: string = '';
   travesia : string = '';
-  pcia: string = '0';
-  cordoba : string[];
-  mendoza : string[];
-  neuquen : string[];
-
-  constructor(){
-    this.cordoba = ['travesia cordoba 1','travesia cordoba 2','travesia cordoba 3','travesia cordoba 4'];
-    this.neuquen = ['travesia neuquen 1','travesia neuquen 2','travesia neuquen 3','travesia neuquen 4'];
-    this.mendoza = ['travesia mendoza 1','travesia mendoza 2','travesia mendoza 3','travesia mendoza 4']
+  lista : string[] = [];
+  
+  travesias = {
+    "cordoba": ["lago cordoba", "cerro cordoba", "cascada cordoba", "montaña cordoba"],
+    "neuquen": ["lago neuquen", "cerro neuquen", "cascada neuquen", "montaña neuquen"],
+    "mendoza": ["lago mendoza", "cerro mendoza", "cascada mendoza", "montaña mendoza"]
   }
+  
+
+  selectProv(){ 
+    if (this.pcia == "cordoba"){
+      this.lista = this.travesias[this.pcia]
+      return
+    } 
+    if (this.pcia == "neuquen"){
+      this.lista = this.travesias[this.pcia]
+      return
+    } 
+    if (this.pcia == "mendoza"){
+      this.lista = this.travesias[this.pcia]
+      return
+    } 
+  }
+  
 
   buscar_travesia(){
     if (this.travesia.length > 3 && this.travesia.length < 9){
