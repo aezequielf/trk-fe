@@ -17,10 +17,16 @@
                         <div class="form-group text-start">
                             <label class="ms-1">Destino</label>
                             <input type="text" class="form-control" placeholder="Ingrese palabra clave" name="travesia" [(ngModel)]="travesia">
+
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-4 offset-lg-4 offset-sm-4 mt-3">
+                            <label class="me-1">Fecha</label>
+                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
                         </div>
                         <div class="form-group mt-3" *ngIf="pcia != '0'">
-                           <p *ngFor="let traves of lista | destinos:travesia" >{{traves}}</p>
+                           <p *ngFor="let traves of lista | destinos:travesia :fecha" >{{traves.lugar}} Fecha: {{traves.fecha}} <a href="#">Detalle</a></p>
                         </div>
+                        
                     </form>
                 </div>
             </div>

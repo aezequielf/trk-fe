@@ -5,11 +5,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DestinosPipe implements PipeTransform {
 
-  transform(value: string[], ...args: string[]): any {
+  transform(value: any[], ...args: string[]): any {
+    const [lugarfiltro, fecha] = args
+    const [anio, mes, dia] = fecha.split('-')
     const resultado = [];
-    if (args[0] === '' || args[0].length < 3) return value;
+    if (lugarfiltro === '' || lugarfiltro.length < 3) return value;
+    if (fecha == ''){
+      for (const destino of value){
+        if (destino.lugar.toLocaleLowerCase().indexOf(lugarfiltro.toLocaleLowerCase()) > -1 ){
+          resultado.push(destino);
+        }
+      }
+      return resultado
+    }
     for (const destino of value){
-      if (destino.toLocaleLowerCase().indexOf(args[0].toLocaleLowerCase()) > -1){
+      if (destino.lugar.toLocaleLowerCase().indexOf(lugarfiltro.toLocaleLowerCase()) > -1 && destino.fecha == dia+'-'+mes+'-'+anio){
         resultado.push(destino);
       }
     }
