@@ -11,6 +11,7 @@ export interface Lugar{
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  verform = true
   pcia: string = '';
   travesia: string = '';
   lista: object[] = [];
@@ -58,7 +59,9 @@ export class SearchComponent {
     }
     
   }
-
+  oculta(){
+    this.verform = !this.verform
+  }
 
   buscar_travesia() {
     if (this.travesia.length > 3 && this.travesia.length < 9) {

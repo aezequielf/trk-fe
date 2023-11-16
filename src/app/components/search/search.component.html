@@ -3,8 +3,8 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card">
                 <div class="card-body text-center mi-card">
-                    <span class="titulo"> Encuentra</span>
-                    <form >
+                    <form *ngIf="verform" >
+                        <span class="titulo" id="titulo"> Encuentra</span>
                         <div class="form-group text-start">
                             <label class="ms-1">Provincias</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pcia" [(ngModel)]="pcia" (change)="selectProv()">
@@ -14,20 +14,54 @@
                                 <option value="mendoza">Mendoza</option>
                               </select>    
                         </div>
+                        <div class="form-group text-start mt-3">
+                            <label class="ms-1">Fecha</label>
+                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
+                        </div>
                         <div class="form-group text-start">
                             <label class="ms-1">Destino</label>
                             <input type="text" class="form-control" placeholder="Ingrese palabra clave" name="travesia" [(ngModel)]="travesia">
 
                         </div>
-                        <div class="form-group col-lg-4 col-sm-4 offset-lg-4 offset-sm-4 mt-3">
-                            <label class="me-1">Fecha</label>
-                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
-                        </div>
-                        <div class="form-group mt-3" *ngIf="pcia != '0'">
-                           <p *ngFor="let traves of lista | destinos:travesia :fecha" >{{traves.lugar}} Fecha: {{traves.fecha}} <a href="#">Detalle</a></p>
-                        </div>
-                        
+                        <table class="table table-striped mt-2" *ngIf="pcia != '0'" >
+                            <tbody>
+                              <tr *ngFor="let traves of lista | destinos:travesia :fecha">     
+                                <td>{{traves.lugar}}</td>
+                                <td>{{traves.fecha}}</td>
+                                <td><button class="btn btn-info" (click)="oculta()">Detalle</button></td>
+                              </tr>
+                            </tbody>
+                          </table>
                     </form>
+                    <div class="form-group text-start" *ngIf="!verform">
+                        <table class="table table-striped  mt-2">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="3">
+                                        <span class="titulo" id="titulo"> guías de este destino</span>
+                                    </th>
+                                </tr>                          
+                            </thead>
+                            <tbody>
+                              <tr>     
+                                <td>guia1</td>
+                                <td>datos1</td>
+                                <td><button class="btn btn-info" >Servicio</button></td>
+                              </tr>
+                              <tr>     
+                                <td>guia2</td>
+                                <td>datos2</td>
+                                <td><button class="btn btn-info" >Servicio</button></td>
+                              </tr>
+                              <tr>     
+                                <td>guia3</td>
+                                <td>datos3</td>
+                                <td><button class="btn btn-info" >Servicio</button></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        <button class="btn btn-secondary" (click)="oculta()">Volver</button>
+                    </div>
                 </div>
             </div>
         </div>
