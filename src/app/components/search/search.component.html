@@ -3,11 +3,11 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card">
                 <div class="card-body text-center mi-card">
-                    <form *ngIf="verform" >
+                    <div *ngIf="verform" >
                         <span class="titulo" id="titulo"> Encuentra</span>
                         <div class="form-group text-start">
-                            <label class="ms-1">Provincias</label>
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pcia" [(ngModel)]="pcia" (change)="selectProv()">
+                            <label for="pcia" class="ms-1">Provincias</label>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" [(ngModel)]="pcia" (change)="selectProv()">
                                 <option selected value="0">Seleccione una provincia</option>
                                 <option value="cordoba">Córdoba</option>
                                 <option value="neuquen">Neuquén</option>
@@ -15,12 +15,12 @@
                               </select>    
                         </div>
                         <div class="form-group text-start mt-3">
-                            <label class="ms-1">Fecha</label>
-                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
+                            <label for="fecha" class="ms-1">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="fecha" />
                         </div>
                         <div class="form-group text-start">
-                            <label class="ms-1">Destino</label>
-                            <input type="text" class="form-control" placeholder="Ingrese palabra clave" name="travesia" [(ngModel)]="travesia">
+                            <label for="travesia" class="ms-1">Destino</label>
+                            <input type="text" class="form-control" placeholder="Ingrese palabra clave" id="travesia" name="travesia" [(ngModel)]="travesia">
 
                         </div>
                         <table class="table table-striped mt-2" *ngIf="pcia != '0'" >
@@ -30,9 +30,12 @@
                                 <td>{{traves.fecha}}</td>
                                 <td><button class="btn btn-info" (click)="oculta()">Detalle</button></td>
                               </tr>
+                              <tr>
+
+                              </tr>
                             </tbody>
                           </table>
-                    </form>
+                    </div>
                     <div class="form-group text-start" *ngIf="!verform">
                         <table class="table table-striped  mt-2">
                             <thead>
@@ -58,9 +61,12 @@
                                 <td>datos3</td>
                                 <td><button class="btn btn-info" >Servicio</button></td>
                               </tr>
+                              <tr class="text-center">     
+                                <td colspan="3"><button class="btn btn-secondary" (click)="oculta()">Volver</button></td>
+                              </tr>
                             </tbody>
                           </table>
-                        <button class="btn btn-secondary" (click)="oculta()">Volver</button>
+                        
                     </div>
                 </div>
             </div>
