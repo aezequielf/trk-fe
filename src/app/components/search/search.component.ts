@@ -11,8 +11,12 @@ export interface Lugar{
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  verform = true
-  pcia: string = '';
+  verform = true;
+  verlista = false;
+  verdeta = false;
+  mensajeModal = '';
+  tituloModal = '';
+  pcia: string = '0';
   travesia: string = '';
   lista: object[] = [];
   fechafull: Date = new Date()
@@ -59,9 +63,31 @@ export class SearchComponent {
     }
     
   }
-  oculta(){
+  toggle_form_lista(){
+    this.verform = !this.verform
+    this.verlista = !this.verlista
+  }
+
+  toggle_lista_deta(){
+    this.verlista = !this.verlista
+    this.verdeta =  !this.verdeta
+  }
+
+  toggle_inico(){
+    this.verdeta =  !this.verdeta
     this.verform = !this.verform
   }
+
+  ir_guia(){
+    this.mensajeModal = 'Para poder ver los datos del guía, debes estar registrado como usuario válido ...'
+    this.tituloModal = 'Debes ingresar al Sistema !'
+  }
+
+  apuntar(){
+    this.mensajeModal = 'Para poder apuntarte, debes estar registrado como usuario válido ...'
+    this.tituloModal = 'Debes ser autorizado !'
+  }
+
 
   buscar_travesia() {
     if (this.travesia.length > 3 && this.travesia.length < 9) {

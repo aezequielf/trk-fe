@@ -1,4 +1,23 @@
 <div class="container mt-5">
+<!-- Modal  de mensajes confirm-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content mi-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{tituloModal}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{mensajeModal}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin de modal -->
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <div class="card">
@@ -28,7 +47,7 @@
                               <tr *ngFor="let traves of lista | destinos:travesia :fecha">     
                                 <td>{{traves.lugar}}</td>
                                 <td>{{traves.fecha}}</td>
-                                <td><button class="btn btn-info" (click)="oculta()">Detalle</button></td>
+                                <td><button class="btn btn-info" (click)="toggle_form_lista()">Detalle</button></td>
                               </tr>
                               <tr>
 
@@ -36,12 +55,12 @@
                             </tbody>
                           </table>
                     </div>
-                    <div class="form-group text-start" *ngIf="!verform">
+                    <div class="form-group text-start" *ngIf="verlista">
                         <table class="table table-striped  mt-2">
                             <thead>
                                 <tr>
                                     <th class="text-center" colspan="3">
-                                        <span class="titulo" id="titulo"> guías de este destino</span>
+                                        <span class="titulo" id="titulo"> Guías de este destino</span>
                                     </th>
                                 </tr>                          
                             </thead>
@@ -49,25 +68,66 @@
                               <tr>     
                                 <td>guia1</td>
                                 <td>datos1</td>
-                                <td><button class="btn btn-info" >Servicio</button></td>
+                                <td><button class="btn btn-info" (click)="toggle_lista_deta()">Servicio</button></td>
                               </tr>
                               <tr>     
                                 <td>guia2</td>
                                 <td>datos2</td>
-                                <td><button class="btn btn-info" >Servicio</button></td>
+                                <td><button class="btn btn-info" (click)="toggle_lista_deta()">Servicio</button></td>
                               </tr>
                               <tr>     
                                 <td>guia3</td>
                                 <td>datos3</td>
-                                <td><button class="btn btn-info" >Servicio</button></td>
+                                <td><button class="btn btn-info" (click)="toggle_lista_deta()">Servicio</button></td>
                               </tr>
                               <tr class="text-center">     
-                                <td colspan="3"><button class="btn btn-secondary" (click)="oculta()">Volver</button></td>
+                                <td colspan="3"><button class="btn btn-secondary" (click)="toggle_form_lista()">Volver</button></td>
                               </tr>
                             </tbody>
                           </table>
                         
                     </div>
+                    <div class="form-group text-start" *ngIf="verdeta">
+                      <table class="table table-striped  mt-2">
+                          <thead>
+                              <tr>
+                                  <th class="text-center" colspan="3">
+                                      <span class="titulo" id="titulo"> Detalle Servicio </span>
+                                  </th>
+                              </tr>                          
+                          </thead>
+                          <tbody>
+                            <tr>     
+                              <td>Nombre</td>
+                              <td>Gia 1</td>
+                            </tr>
+                            <tr>     
+                              <td>fecha</td>
+                              <td>22-11-2023</td>
+                            </tr>
+                            <tr>     
+                              <td>Recorrido</td>
+                              <td>recorrdido 1</td>
+                            </tr>
+                            <tr class="text-center">     
+                              <td colspan="2">Detalle de Servicio</td>
+                              
+                            </tr>
+                            <tr class="text-justify">     
+                              <td colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi provident aspernatur, libero labore tenetur nulla totam nemo assumenda illum sequi impedit animi est. Autem odio perferendis obcaecati iure dolores animi!</td>
+                            </tr>
+                            <tr class="text-center">     
+                              <td colspan="2">
+                                <button class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="ir_guia()">Ir al Guía</button>
+                                <button class="btn btn-secondary ms-2" (click)="toggle_lista_deta()">Volver</button>
+                                <button class="btn btn-secondary ms-2" (click)="toggle_inico()">Inicio</button>
+                                <button class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  (click)="apuntar()">Apuntarme</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      
+                  </div>
                 </div>
             </div>
         </div>
