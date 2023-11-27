@@ -1,7 +1,7 @@
 <div class="container mt-5">
 <!-- Modal  de mensajes confirm-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content mi-modal">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{tituloModal}}</h5>
@@ -118,10 +118,10 @@
                             </tr>
                             <tr class="text-center">     
                               <td colspan="2">
-                                <button class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="ir_guia()">Ir al Guía</button>
-                                <button class="btn btn-secondary ms-2" (click)="toggle_lista_deta()">Volver</button>
-                                <button class="btn btn-secondary ms-2" (click)="toggle_inico()">Inicio</button>
-                                <button class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  (click)="apuntar()">Apuntarme</button>
+                                <button class="btn btn-secondary mt-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="ir_guia()">Ir al Guía</button>
+                                <button class="btn btn-secondary ms-1 mt-1" (click)="toggle_lista_deta()">Volver</button>
+                                <button class="btn btn-secondary ms-1 mt-1" (click)="toggle_inico()">Inicio</button>
+                                <button class="btn btn-secondary ms-1 mt-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  (click)="apuntar()">Anotarme</button>
                               </td>
                             </tr>
                           </tbody>
