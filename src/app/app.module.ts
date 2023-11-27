@@ -14,6 +14,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CuentaComponent } from './components/perfil/cuenta/cuenta.component';
 import { GuiaComponent } from './components/perfil/guia/guia.component';
 import { DestinosPipe } from './pipes/destinos.pipe';
+import { RecorridoComponent } from './components/recorrido/recorrido.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DestinosPipe } from './pipes/destinos.pipe';
     SearchComponent,
     CuentaComponent,
     GuiaComponent,
-    DestinosPipe
+    DestinosPipe,
+    RecorridoComponent
   ],
   imports: [
     BrowserModule,

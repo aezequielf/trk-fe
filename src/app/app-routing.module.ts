@@ -5,6 +5,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { CuentaComponent } from './components/perfil/cuenta/cuenta.component';
+import { GuiaComponent } from './components/guia/guia.component';
+import { RecorridoComponent } from './components/recorrido/recorrido.component';
 
 const routes: Routes = [
   {path : '', component: HomeComponent},
@@ -12,6 +14,8 @@ const routes: Routes = [
   {path : 'register', component: RegisterComponent},
   {path : 'search', component: SearchComponent},
   {path : 'perfil', component: CuentaComponent},
+  {path : 'guia', component: GuiaComponent},
+  {path : 'recorrido', component: RecorridoComponent},
   {path : '**', redirectTo: '',  pathMatch: 'full'}
 ];
 

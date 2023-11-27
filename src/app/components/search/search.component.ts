@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
 
 export interface Lugar{
   lugar : string[],
@@ -11,6 +12,10 @@ export interface Lugar{
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  constructor ( private ServicioLoginNext : ServicioLoginNextService){
+
+  }
+
   verform = true;
   verlista = false;
   verdeta = false;
@@ -79,13 +84,15 @@ export class SearchComponent {
   }
 
   ir_guia(){
-    this.mensajeModal = 'Para poder ver los datos del guía, debes estar registrado como usuario válido ...'
-    this.tituloModal = 'Debes ingresar al Sistema !'
+    this.mensajeModal = 'Para poder ver los datos del guía, debes estar registrado como usuario válido ...';
+    this.tituloModal = 'Debes ingresar al Sistema !';
+    this.ServicioLoginNext.enviarSiguienteLogin('guia');
   }
 
   apuntar(){
     this.mensajeModal = 'Para poder apuntarte, debes estar registrado como usuario válido ...'
     this.tituloModal = 'Debes ser autorizado !'
+    this.ServicioLoginNext.enviarSiguienteLogin('recorrido');
   }
 
 
