@@ -24,3 +24,10 @@
 .mi-modal{
     background: #abcfbd;
 }
+
+.mi-link{
+    text-decoration: none;
+}
+.mi-link:visited{
+    text-decoration: underline;
+}

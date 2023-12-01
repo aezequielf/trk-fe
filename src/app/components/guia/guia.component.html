@@ -23,15 +23,15 @@
                                 <tr class="text-justify">     
                                   <td colspan="2">
                                     <ul class="list-group">
-                                        <li class="list-group-item">Cerro algo</li>
-                                        <li class="list-group-item">Cascada algo</li>
-                                        <li class="list-group-item">Salto del tigre algo</li>
+                                        <li class="list-group-item"><a routerLink="/recorrido" component="RecorridoComponent" routerLinkActive="active" class="mi-link">Cerro algo</a> </li>
+                                        <li class="list-group-item"><a routerLink="/recorrido" component="RecorridoComponent"  routerLinkActive="active" class="mi-link">Cascada algo</a></li>
+                                        <li class="list-group-item"><a routerLink="/recorrido"  component="RecorridoComponent" routerLinkActive="active" class="mi-link">Salto del tigre algo</a></li>
                                     </ul>
                                   </td>
                                 </tr>
                                 <tr class="text-center">     
                                   <td colspan="2">
-                                    <button class="btn btn-secondary ms-1 mt-1" >Volver</button>
+                                    <button class="btn btn-secondary ms-1 mt-1"  onclick="javascript:history.go(-2)" >Volver</button>
                                     <button class="btn btn-secondary ms-1 mt-1">Inicio</button>
                                   </td>
                                 </tr>
@@ -44,6 +44,8 @@
             </div>
         </div>
     </div>
+<router-outlet></router-outlet>
+
     
     
     
