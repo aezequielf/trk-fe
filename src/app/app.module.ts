@@ -16,6 +16,7 @@ import { GuiaComponent } from './components/perfil/guia/guia.component';
 import { DestinosPipe } from './pipes/destinos.pipe';
 import { RecorridoComponent } from './components/recorrido/recorrido.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pcia } from 'src/app/models/pcia';
+import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
 import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
 
 export interface Lugar{
@@ -11,11 +13,15 @@ export interface Lugar{
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
-  constructor ( private ServicioLoginNext : ServicioLoginNextService){
+export class SearchComponent implements OnInit {
+  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService){
 
   }
+  ngOnInit(): void {
+    this.obtenerPcias();
+  }
 
+  listaPcia : Pcia[] = [];
   verform = true;
   verlista = false;
   verdeta = false;
@@ -28,6 +34,14 @@ export class SearchComponent {
   //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
   fecha: string = ''
   
+  obtenerPcias(){
+    this.servicioPcia.getPcias().subscribe({
+      next: rta => { this.listaPcia = rta},
+      error: err => {console.log(err)},
+      complete: () => {}
+    });
+  }
+
   travesias = {
     cordoba: [
       { lugar: "Valle de los lisos, Los Gigantes", fecha: "17-11-2023" },
