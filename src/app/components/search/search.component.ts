@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pcia } from 'src/app/models/pcia';
 import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
+import { ServicioDestinosService } from 'src/app/services/servicio-destinos.service';
 import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
 
 export interface Lugar{
@@ -14,7 +15,7 @@ export interface Lugar{
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService){
+  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioDestino : ServicioDestinosService){
 
   }
   ngOnInit(): void {
@@ -41,6 +42,9 @@ export class SearchComponent implements OnInit {
       complete: () => {}
     });
   }
+  alertar(msj: string){
+    console.log(this.fecha)
+  }
 
   travesias = {
     cordoba: [
@@ -66,6 +70,12 @@ export class SearchComponent implements OnInit {
 
 
   selectProv() {
+    console.log(this.pcia);
+    this.ServicioDestino.getdestinos(this.pcia).subscribe({
+      next : rta => console.log(rta),
+      error: err => console.log(err),
+      complete: () => {}
+    })
     this.travesia = ''
     this.fecha = ''
     if (this.pcia == "cordoba") {
