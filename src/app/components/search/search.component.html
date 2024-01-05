@@ -26,25 +26,28 @@
                         <span class="titulo" id="titulo"> Encuentra</span>
                         <div class="form-group text-start">
                             <label for="pcia" class="ms-1">Provincias</label>
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" [(ngModel)]="pcia" (change)="selectProv()">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" [(ngModel)]="pcia" (change)="resetLista()" >
                                 <option selected value="0">Seleccione una provincia</option>
                                 <option *ngFor="let unapcia of listaPcia " value={{unapcia.id}}>{{unapcia.nombre}}</option>
                               </select>    
                         </div>
                         <div class="form-group text-start mt-3">
                             <label for="fecha" class="ms-1">Fecha</label>
-                            <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="fecha" (change)="alertar('selectatste')"/>
+                            <input type="date" class="form-control" id="fecha2" name="fecha2" [(ngModel)]="fecha2" (change)="obtenerDestinos()" />
                         </div>
                         <div class="form-group text-start">
                             <label for="travesia" class="ms-1">Destino</label>
                             <input type="text" class="form-control" placeholder="Ingrese palabra clave" id="travesia" name="travesia" [(ngModel)]="travesia">
 
                         </div>
-                        <table class="table table-striped mt-2" *ngIf="pcia != '0'" >
+                        <div class="alert alert-info text-center mt-2" *ngIf="lista.length == 0 && getcomp">
+                          No se encontraron resultados
+                        </div>
+                        <table class="table table-striped mt-2" *ngIf="lista.length > 0" >
                             <tbody>
                               <tr *ngFor="let traves of lista | destinos:travesia :fecha">     
                                 <td>{{traves.lugar}}</td>
-                                <td>{{traves.fecha}}</td>
+                                <td>fecha</td>
                                 <td><button class="btn btn-info" (click)="toggle_form_lista()">Detalle</button></td>
                               </tr>
                               <tr>

@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit {
   verform = true;
   verlista = false;
   verdeta = false;
+  getcomp = false;
   mensajeModal = '';
   tituloModal = '';
   pcia: string = '0';
@@ -33,7 +34,8 @@ export class SearchComponent implements OnInit {
   lista: object[] = [];
   fechafull: Date = new Date()
   //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
-  fecha: string = ''
+  fecha: string = '';
+  fecha2: string = '';
   
   obtenerPcias(){
     this.servicioPcia.getPcias().subscribe({
@@ -42,8 +44,25 @@ export class SearchComponent implements OnInit {
       complete: () => {}
     });
   }
-  alertar(msj: string){
-    console.log(this.fecha)
+  
+  obtenerDestinos(){
+    this.ServicioDestino.getdestinos(this.pcia).subscribe({
+      next : rta => this.lista = rta,
+      error: err => console.log(err),
+      complete: () => {this.getcomp = true;}
+    });
+    
+  }
+  
+  resetLista(){
+    this.lista = [];
+    if (this.fecha2 != ''){
+      this.ServicioDestino.getdestinos(this.pcia).subscribe({
+        next : rta => this.lista = rta,
+        error: err => console.log(err),
+        complete: () => {}
+      });
+    }
   }
 
   travesias = {
@@ -70,12 +89,7 @@ export class SearchComponent implements OnInit {
 
 
   selectProv() {
-    console.log(this.pcia);
-    this.ServicioDestino.getdestinos(this.pcia).subscribe({
-      next : rta => console.log(rta),
-      error: err => console.log(err),
-      complete: () => {}
-    })
+    
     this.travesia = ''
     this.fecha = ''
     if (this.pcia == "cordoba") {
