@@ -1,0 +1,128 @@
+[
+  {
+    "lugar" :  "Los Gigantes",
+    "area" : "los gigantes",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Quebrada del Condorito",
+    "area" : "quebrada del condor",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Cerro Uritorco",
+    "area" : "capilla del monte",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Pueblo Escondido",
+    "area" : "puebo escondido",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Dique de los Alzanes",
+    "area" : "los Alzanes",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Quebrada de Yatan",
+    "area" : "yatan",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Santuario del Yuspe",
+    "area" : "yuspe",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Colorados de Copacabana",
+    "area" : " Copacabana (cordoba)",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Salinas Grandes",
+    "area" : "salinas",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Ongamira",
+    "area" : "ongamira",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Volcanes de Pocho",
+    "area" : "Volcanes de Pocho",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Cerro Wonk",
+    "area" : "la cumbrecita",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Río Subterráneo",
+    "area" : "la cumbrecita",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Cerro Champaqui",
+    "area" : "champaqui",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Valle de los lisos, Los Gigantes",
+    "area" : "los gigantes",
+    "pcia" : "Cordoba",
+    "pcia_id" : "656e59c935a4cd190c93b4b7",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Lago nahuel Huapi",
+    "area" : "bariloche",
+    "pcia" : "Neuquen",
+    "pcia_id" : "656e599335a4cd190c93b4b6",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Cerro Otto",
+    "area" : "bariloche",
+    "pcia" : "Neuquen",
+    "pcia_id" : "656e599335a4cd190c93b4b6",
+    "detalles" :[]
+  },
+  {
+    "lugar" :  "Aconcagua",
+    "area" : "aconcagua",
+    "pcia" : "Mendoza",
+    "pcia_id" : "656e598935a4cd190c93b4b5",
+    "detalles" :[]
+  }
+]

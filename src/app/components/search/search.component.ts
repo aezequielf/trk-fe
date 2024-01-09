@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
   }
   
   obtenerDestinos(){
-    this.ServicioDestino.getdestinos(this.pcia).subscribe({
+    this.ServicioDestino.getdestinos(this.pcia,this.fecha2).subscribe({
       next : rta => this.lista = rta,
       error: err => console.log(err),
       complete: () => {this.getcomp = true;}
@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
   resetLista(){
     this.lista = [];
     if (this.fecha2 != ''){
-      this.ServicioDestino.getdestinos(this.pcia).subscribe({
+      this.ServicioDestino.getdestinos(this.pcia, this.fecha2).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {}

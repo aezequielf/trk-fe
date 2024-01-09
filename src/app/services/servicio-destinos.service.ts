@@ -9,7 +9,7 @@ export class ServicioDestinosService {
   url =  `${environment.apiUrl}destinos/pcia`
   constructor( private geturl: HttpClient) { }
 
-  getdestinos(id: string): Observable<any>{
-    return this.geturl.get(`${this.url}/${id}`);
+  getdestinos(id: string, fecha: string): Observable<any>{
+    return this.geturl.get(`${this.url}/${id}/${fecha}`);
   }
 }
