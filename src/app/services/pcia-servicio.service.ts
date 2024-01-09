@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 // import { Pcia } from '../models/pcia'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PciaServicioService {
-
-  url = "http://localhost:8000/pcias/";
+  url = `${environment.apiUrl}pcias/`;
   constructor( private curl : HttpClient) { }
 
   getPcias(): Observable<any> {
