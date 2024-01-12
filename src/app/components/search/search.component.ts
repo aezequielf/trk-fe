@@ -36,6 +36,7 @@ export class SearchComponent implements OnInit {
   //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
   fecha: string = '';
   fecha2: string = '';
+  fechasTodas = false;
   
   obtenerPcias(){
     this.servicioPcia.getPcias().subscribe({
@@ -55,12 +56,13 @@ export class SearchComponent implements OnInit {
   }
   
   resetLista(){
+    this.getcomp = false;
     this.lista = [];
     if (this.fecha2 != ''){
       this.ServicioDestino.getdestinos(this.pcia, this.fecha2).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
-        complete: () => {}
+        complete: () => {this.getcomp = true;}
       });
     }
   }
