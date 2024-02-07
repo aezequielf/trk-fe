@@ -54,8 +54,8 @@
                         <table class="table table-striped mt-2" *ngIf="lista.length > 0" >
                             <tbody>
                               <tr *ngFor="let traves of lista | destinos:travesia :fecha">     
-                                <td>{{traves.lugar}}</td>
-                                <td>fecha</td>
+                                <td>{{traves._id}}</td>
+                                <td>{{traves.destino_id}}</td>
                                 <td><button class="btn btn-info" (click)="toggle_form_lista()">Detalle</button></td>
                               </tr>
                               <tr>

@@ -3,126 +3,108 @@
     "lugar" :  "Los Gigantes",
     "area" : "los gigantes",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Quebrada del Condorito",
     "area" : "quebrada del condor",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Cerro Uritorco",
     "area" : "capilla del monte",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Pueblo Escondido",
     "area" : "puebo escondido",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Dique de los Alzanes",
     "area" : "los Alzanes",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Quebrada de Yatan",
     "area" : "yatan",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Santuario del Yuspe",
     "area" : "yuspe",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Colorados de Copacabana",
     "area" : " Copacabana (cordoba)",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Salinas Grandes",
     "area" : "salinas",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Ongamira",
     "area" : "ongamira",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Volcanes de Pocho",
     "area" : "Volcanes de Pocho",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Cerro Wonk",
     "area" : "la cumbrecita",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Río Subterráneo",
     "area" : "la cumbrecita",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Cerro Champaqui",
     "area" : "champaqui",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Valle de los lisos, Los Gigantes",
     "area" : "los gigantes",
     "pcia" : "Cordoba",
-    "pcia_id" : "656e59c935a4cd190c93b4b7",
-    "detalles" :[]
+    "pcia_id" : "656e59c935a4cd190c93b4b7"
   },
   {
     "lugar" :  "Lago nahuel Huapi",
     "area" : "bariloche",
     "pcia" : "Neuquen",
-    "pcia_id" : "656e599335a4cd190c93b4b6",
-    "detalles" :[]
+    "pcia_id" : "656e599335a4cd190c93b4b6"
   },
   {
     "lugar" :  "Cerro Otto",
     "area" : "bariloche",
     "pcia" : "Neuquen",
-    "pcia_id" : "656e599335a4cd190c93b4b6",
-    "detalles" :[]
+    "pcia_id" : "656e599335a4cd190c93b4b6"
   },
   {
     "lugar" :  "Aconcagua",
     "area" : "aconcagua",
     "pcia" : "Mendoza",
-    "pcia_id" : "656e598935a4cd190c93b4b5",
-    "detalles" :[]
+    "pcia_id" : "656e598935a4cd190c93b4b5"
   }
 ]

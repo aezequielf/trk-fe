@@ -12,7 +12,7 @@ export class DestinosPipe implements PipeTransform {
     if (fecha == ''){
       if (lugarfiltro === '' || lugarfiltro.length < 3) return value;
       for (const destino of value){
-        if (destino.lugar.toLocaleLowerCase().indexOf(lugarfiltro.toLocaleLowerCase()) > -1 ){
+        if (destino._id.toLocaleLowerCase().indexOf(lugarfiltro.toLocaleLowerCase()) > -1 ){
           resultado.push(destino);
         }
       }
