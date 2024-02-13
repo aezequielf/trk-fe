@@ -35,7 +35,7 @@
                             <label for="fecha" class="ms-1">Fecha</label>
                             <div class="row">
                               <div class="col col-sm-3 col-lg-5 text-center">Todas 
-                                <input type="checkbox" name="" id="">
+                                <input type="checkbox" name="todas" id="todas" [checked]="fechasTodas" (click)="todasFechas()">
                               </div>
                               <div class="col col-sm-4 col-md">
                                 <input type="date" class="form-control" id="fecha2" name="fecha2" [(ngModel)]="fecha2" (change)="obtenerDestinos()" />
@@ -55,8 +55,8 @@
                             <tbody>
                               <tr *ngFor="let traves of lista | destinos:travesia :fecha">     
                                 <td>{{traves._id}}</td>
-                                <td>{{traves.destino_id}}</td>
-                                <td><button class="btn btn-info" (click)="toggle_form_lista()">Detalle</button></td>
+                                
+                                <td><button class="btn btn-info" (click)="toggle_form_lista(traves.destino_id,traves._id)">Detalle</button></td>
                               </tr>
                               <tr>
 
@@ -69,28 +69,17 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" colspan="3">
-                                        <span class="titulo" id="titulo"> Guías de este destino</span>
+                                        <span class="titulo" id="titulo"> Guías para -{{nom_dest}} -</span>
                                     </th>
                                 </tr>                          
                             </thead>
                             <tbody>
+                              <tr class="text-center" *ngFor="let undeta of listaDetalles; index as indice">     
+                                <td>{{undeta.empresa}}</td>
+                                <td>{{undeta.fecha}}</td>
+                                <td class="text-end"><button class="btn btn-info" (click)="toggle_lista_deta(indice)">Servicio</button></td>
                               <tr class="text-center">     
-                                <td>guia1</td>
-                                <td>datos1</td>
-                                <td class="text-end"><button class="btn btn-info" (click)="toggle_lista_deta()">Servicio</button></td>
-                              </tr>
-                              <tr class="text-center">     
-                                <td>guia2</td>
-                                <td>datos2</td>
-                                <td class="text-end"><button class="btn btn-info" (click)="toggle_lista_deta()">Servicio</button></td>
-                              </tr>
-                              <tr class="text-center">     
-                                <td>guia3</td>
-                                <td>datos3</td>
-                                <td class="text-end"><button class="btn btn-info" (click)="toggle_lista_deta()">Servicio</button></td>
-                              </tr>
-                              <tr class="text-center">     
-                                <td colspan="3"><button class="btn btn-secondary" (click)="toggle_form_lista()">Volver</button></td>
+                                <td colspan="3"><button class="btn btn-secondary" (click)="toggle_form_lista('','')">Volver</button></td>
                               </tr>
                             </tbody>
                           </table>
@@ -108,27 +97,31 @@
                           <tbody>
                             <tr>     
                               <td>Nombre</td>
-                              <td>Gia 1</td>
+                              <td>{{muestraDetalle.empresa}}</td>
                             </tr>
                             <tr>     
-                              <td>fecha</td>
-                              <td>22-11-2023</td>
+                              <td>fecha de salida</td>
+                              <td>{{muestraDetalle.fecha}}</td>
+                            </tr>
+                            <tr>     
+                              <td>Hora de salida</td>
+                              <td>{{muestraDetalle.hora}}</td>
                             </tr>
                             <tr>     
                               <td>Recorrido</td>
-                              <td>recorrdido 1</td>
+                              <td>{{muestraDetalle.lugar}}</td>
                             </tr>
                             <tr class="text-center">     
                               <td colspan="2">Detalle de Servicio</td>
                               
                             </tr>
                             <tr class="text-justify">     
-                              <td colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi provident aspernatur, libero labore tenetur nulla totam nemo assumenda illum sequi impedit animi est. Autem odio perferendis obcaecati iure dolores animi!</td>
+                              <td colspan="2">{{muestraDetalle.desc}}</td>
                             </tr>
                             <tr class="text-center">     
                               <td colspan="2">
                                 <button class="btn btn-secondary mt-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="ir_guia()">Guía</button>
-                                <button class="btn btn-secondary ms-1 mt-1" (click)="toggle_lista_deta()">Volver</button>
+                                <button class="btn btn-secondary ms-1 mt-1" (click)="toggle_lista_deta(000)">Volver</button>
                                 <button class="btn btn-secondary ms-1 mt-1" (click)="toggle_inico()">Inicio</button>
                                 <button class="btn btn-secondary ms-1 mt-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  (click)="apuntar()">Ver</button>
                               </td>

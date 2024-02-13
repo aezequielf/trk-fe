@@ -9,3 +9,28 @@ export class Pcia{
     }
 
 }
+export class DetalleDetino{
+    id: string;
+    destino_id : string ;
+    lugar: string;
+    pcia: string;
+    pcia_id: string;
+    fecha: string;
+    hora: string;
+    guia_id: string;
+    empresa: string;
+    desc: string;
+
+    constructor(id: string, destino_id: string, empresa: string,lugar: string, pcia: string, pcia_id: string, fecha: string, hora: string, guia_id: string, desc: string){
+        this.id = id;
+        this.destino_id = destino_id;
+        this.lugar = lugar;
+        this.pcia = pcia;
+        this.pcia_id = pcia;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.guia_id = guia_id;
+        this.empresa = empresa;
+        this.desc = desc;
+    }
+}

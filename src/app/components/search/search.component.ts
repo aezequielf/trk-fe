@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pcia } from 'src/app/models/pcia';
+import { Pcia, DetalleDetino } from 'src/app/models/pcia';
 import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
 import { ServicioDestinosService } from 'src/app/services/servicio-destinos.service';
 import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
@@ -8,6 +8,7 @@ export interface Lugar{
   lugar : string[],
   fecha: string
 }
+
 
 @Component({
   selector: 'app-search',
@@ -32,11 +33,14 @@ export class SearchComponent implements OnInit {
   pcia: string = '0';
   travesia: string = '';
   lista: object[] = [];
+  listaDetalles: DetalleDetino[] = [];
+  muestraDetalle!: DetalleDetino;
   fechafull: Date = new Date()
   //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
   fecha: string = '';
   fecha2: string = '';
   fechasTodas = false;
+  nom_dest = '';
   
   obtenerPcias(){
     this.servicioPcia.getPcias().subscribe({
@@ -45,13 +49,34 @@ export class SearchComponent implements OnInit {
       complete: () => {}
     });
   }
+
+  todasFechas(){
+    if (this.fechasTodas){
+      this.fechasTodas = false;
+    }else{
+      this.fecha2 = '';
+      this.fechasTodas = true;
+      this.obtenerDestinos();
+    }
+  }
   
   obtenerDestinos(){
-    this.ServicioDestino.getdestinos(this.pcia,this.fecha2).subscribe({
-      next : rta => this.lista = rta,
-      error: err => console.log(err),
-      complete: () => {this.getcomp = true;}
-    });
+    if (this.fecha2 != ''){
+      this.fechasTodas = false;
+    }
+    if (this.fechasTodas){
+      this.ServicioDestino.getdestinostodos(this.pcia).subscribe({
+        next : rta => this.lista = rta,
+        error: err => console.log(err),
+        complete: () => {this.getcomp = true;}
+      });
+    }else{
+      this.ServicioDestino.getdestinos(this.pcia,this.fecha2).subscribe({
+        next : rta => this.lista = rta,
+        error: err => console.log(err),
+        complete: () => {this.getcomp = true;}
+      });
+    }
     
   }
   
@@ -60,6 +85,12 @@ export class SearchComponent implements OnInit {
     this.lista = [];
     if (this.fecha2 != ''){
       this.ServicioDestino.getdestinos(this.pcia, this.fecha2).subscribe({
+        next : rta => this.lista = rta,
+        error: err => console.log(err),
+        complete: () => {this.getcomp = true;}
+      });
+    }else if(this.fechasTodas){
+      this.ServicioDestino.getdestinostodos(this.pcia).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
@@ -108,14 +139,23 @@ export class SearchComponent implements OnInit {
     }
     
   }
-  toggle_form_lista(){
+  toggle_form_lista(destino_id : string, nombre_des : string){
     this.verform = !this.verform
     this.verlista = !this.verlista
+    if (destino_id != ''){
+      this.ServicioDestino.getdetallesdestino(destino_id).subscribe({
+        next : rta => {this.listaDetalles = rta; this.listaDetalles.forEach((elemento)=> {elemento.fecha = new Date(elemento.fecha).toLocaleDateString()})},
+        error: err => console.log(err),
+        complete: () => {this.getcomp = true;}
+      });
+      this.nom_dest = nombre_des;
+    }
   }
 
-  toggle_lista_deta(){
-    this.verlista = !this.verlista
-    this.verdeta =  !this.verdeta
+  toggle_lista_deta(id_deta: number){
+    this.verlista = !this.verlista;
+    this.verdeta =  !this.verdeta;
+    this.muestraDetalle = this.listaDetalles[id_deta];
   }
 
   toggle_inico(){
