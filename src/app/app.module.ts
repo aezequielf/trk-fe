@@ -17,6 +17,9 @@ import { DestinosPipe } from './pipes/destinos.pipe';
 import { RecorridoComponent } from './components/recorrido/recorrido.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     CuentaComponent,
     GuiaComponent,
     DestinosPipe,
-    RecorridoComponent
+    RecorridoComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    NgbdDatepickerI18n
   ],
   providers: [],
   bootstrap: [AppComponent]

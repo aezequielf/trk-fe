@@ -38,7 +38,8 @@
                                 <input type="checkbox" name="todas" id="todas" [checked]="fechasTodas" (click)="todasFechas()">
                               </div>
                               <div class="col col-sm-4 col-md">
-                                <input type="date" class="form-control" id="fecha2" name="fecha2" [(ngModel)]="fecha2" (change)="obtenerDestinos()" />
+                                <!-- <input type="date" class="form-control" id="fecha2" name="fecha2" [(ngModel)]="fecha2" (change)="obtenerDestinos()" /> -->
+                                <app-selec-fecha></app-selec-fecha>
                               </div>
                             </div>
                             
@@ -135,5 +136,3 @@
         </div>
     </div>
 </div>
-
-

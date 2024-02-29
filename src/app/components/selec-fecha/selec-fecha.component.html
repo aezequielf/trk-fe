@@ -1,0 +1,17 @@
+<form class="row row-cols-sm-auto">
+	<div class="col-12">
+		<div class="input-group">
+			<input
+				class="form-control"
+				placeholder="yyyy-mm-dd"
+				name="dp"
+				[(ngModel)]="model"
+				ngbDatepicker
+				#d="ngbDatepicker"
+				(ngModelChange)="logModelValue()"
+				[minDate]="desde"
+			/>
+			<button class="btn btn-outline-secondary" (click)="d.toggle()"  type="button"><i class="fa-regular fa-calendar-days"></i></button>
+		</div>
+	</div>
+</form>
