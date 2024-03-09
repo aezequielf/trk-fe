@@ -12,6 +12,9 @@ export class ServicioDestinosService {
   getdestinos(id: string, fecha: string): Observable<any>{
     return this.geturl.get(`${this.url}/pcia/${id}/${fecha}`);
   }
+  getdestinosfechas(id: string): Observable<any>{
+    return this.geturl.get(`${this.url}/pcia/${id}/fechas`);
+  }
   getdestinostodos(id: string): Observable<any>{
     return this.geturl.get(`${this.url}/pcia/${id}/todas`);
   }

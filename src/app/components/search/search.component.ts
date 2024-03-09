@@ -16,31 +16,31 @@ export interface Lugar{
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+    listaPcia : Pcia[] = [];
+    verform = true;
+    verlista = false;
+    verdeta = false;
+    getcomp = false;
+    mensajeModal = '';
+    tituloModal = '';
+    pcia: string = '0';
+    travesia: string = '';
+    lista: object[] = [];
+    listaDetalles: DetalleDetino[] = [];
+    muestraDetalle!: DetalleDetino;
+    fechafull: Date = new Date()
+    //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
+    fecha: string = '';
+    fecha2: string = '';
+    fechaTmp = '';
+    fechasTodas = false;
+    nom_dest = '';
+    
   constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioDestino : ServicioDestinosService){
-
   }
   ngOnInit(): void {
     this.obtenerPcias();
   }
-
-  listaPcia : Pcia[] = [];
-  verform = true;
-  verlista = false;
-  verdeta = false;
-  getcomp = false;
-  mensajeModal = '';
-  tituloModal = '';
-  pcia: string = '0';
-  travesia: string = '';
-  lista: object[] = [];
-  listaDetalles: DetalleDetino[] = [];
-  muestraDetalle!: DetalleDetino;
-  fechafull: Date = new Date()
-  //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
-  fecha: string = '';
-  fecha2: string = '';
-  fechasTodas = false;
-  nom_dest = '';
   
   obtenerPcias(){
     this.servicioPcia.getPcias().subscribe({
@@ -53,14 +53,22 @@ export class SearchComponent implements OnInit {
   todasFechas(){
     if (this.fechasTodas){
       this.fechasTodas = false;
+      this.fecha2 = this.fechaTmp;
+      this.obtenerDestinos();
     }else{
+      this.fechaTmp= this.fecha2;
       this.fecha2 = '';
       this.fechasTodas = true;
       this.obtenerDestinos();
     }
   }
   
-  obtenerDestinos(){
+
+  obtenerDestinos(fecha?: string){
+    if (fecha !== undefined){
+      this.fechasTodas = false;
+      this.fecha2 = fecha;
+    }
     if (this.fecha2 != ''){
       this.fechasTodas = false;
     }
