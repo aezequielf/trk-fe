@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder ,FormGroup, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Persona } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent {
   formUsuario : FormGroup;
 
-  constructor( private fb: FormBuilder, private msjToast: ToastrService, private enrutar: Router){
+  constructor( private fb: FormBuilder, private msjToast: ToastrService, private enrutar: Router, private servicioU: UsuarioService){
     this.formUsuario = this.fb.group({
       nombre : ['', Validators.required],
       apellido : ['', Validators.required],
@@ -46,8 +48,16 @@ export class RegisterComponent {
   }
 
   agregarUsuario(){
-    console.log(this.formUsuario);
-    this.msjToast.success('Te has registrdo correctamente, ahora ingresa al sistema',this.nombre!.value);
-    this.enrutar.navigate(['/login']);
+    const USUARIO : Persona = {
+      nombre : this.formUsuario.get('nombre')?.value,
+      apellido : this.formUsuario.get('apellido')?.value,
+      email : this.formUsuario.get('email')?.value,
+      clave : this.formUsuario.get('clave')?.value,
+    }
+    this.servicioU.agregoUsuario(USUARIO).subscribe({
+      next: rta => this.msjToast.success(`${rta} ${this.nombre!.value} ya puedes ingresar`,),
+      error: err => this.msjToast.error(err.error.detail),
+      complete: () => {this.enrutar.navigate(['/login']);}
+    })
   }
 }
