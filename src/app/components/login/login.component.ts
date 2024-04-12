@@ -38,8 +38,10 @@ export class LoginComponent {
       clave : this.credenciales.get('clave')?.value,
     }
     this.servicioU.validarUsuario(CREDENCIIALES).subscribe({
-      next: rta => this.msjtoast.info('Has ingresado correctamente',this.email?.value),
-      error: err => this.msjtoast.error(err.error.detail),
+      next: rta => {this.msjtoast.info('Has ingresado correctamente');
+                    localStorage.setItem('tpointT', rta.token);
+                    },
+      error: err => {this.msjtoast.error(err.error.detail);},
       complete: () => {this.next = this.ServicioLoginNext.siguiente;
                       if (this.next != null){
                         this.ServicioLoginNext.enviarSiguienteLogin(null);
