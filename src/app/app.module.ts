@@ -12,7 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { CuentaComponent } from './components/perfil/cuenta/cuenta.component';
-import { GuiaComponent } from './components/perfil/guia/guia.component';
+import { GuiaPerfilComponent } from './components/perfil/guia/guia.perfil.component';
 import { DestinosPipe } from './pipes/destinos.pipe';
 import { RecorridoComponent } from './components/recorrido/recorrido.component';
 import { RouterModule } from '@angular/router';
@@ -29,7 +29,7 @@ import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.compone
     HomeComponent,
     SearchComponent,
     CuentaComponent,
-    GuiaComponent,
+    GuiaPerfilComponent,
     DestinosPipe,
     RecorridoComponent,
   ],

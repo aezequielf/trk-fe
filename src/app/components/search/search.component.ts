@@ -72,12 +72,15 @@ export class SearchComponent implements OnInit {
     if (this.fecha2 != ''){
       this.fechasTodas = false;
     }
-    if (this.fechasTodas){
+    if (this.fechasTodas ){
       this.ServicioDestino.getdestinostodos(this.pcia).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
       });
+    }else if(this.fecha2 === ''){
+      this.getcomp = true;
+      this.lista =[];
     }else{
       this.ServicioDestino.getdestinos(this.pcia,this.fecha2).subscribe({
         next : rta => this.lista = rta,

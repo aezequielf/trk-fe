@@ -98,11 +98,17 @@ export class NgbdDatepickerI18n implements OnChanges{
   
   logModelValue() {
     // esta es la funcion que emite el valor de fecha2
-    const dateString: Date = new Date(this.model.year, this.model.month - 1, this.model.day);
-    const year = dateString.getFullYear(); // Obtiene el año
-    const month = String(dateString.getMonth() + 1).padStart(2, '0'); // Obtiene el mes (añade +1 porque los meses en JavaScript son base 0)
-    const day = String(dateString.getDate()).padStart(2, '0'); // Obtiene el día
-    this.emitoFecha.emit(`${year}-${month}-${day}`);
+    try {
+      const dateString: Date = new Date(this.model.year, this.model.month - 1, this.model.day);
+      const year = dateString.getFullYear(); // Obtiene el año
+      const month = String(dateString.getMonth() + 1).padStart(2, '0'); // Obtiene el mes (añade +1 porque los meses en JavaScript son base 0)
+      const day = String(dateString.getDate()).padStart(2, '0'); // Obtiene el día
+      if( day != 'NaN' && month != 'NaN' && year > 2020 ){
+        this.emitoFecha.emit(`${year}-${month}-${day}`);
+      }
+    }catch (error) {
+      // solo para manegar el erro
+    }
   }
 
   isSameDate(date1: NgbDateStruct, date2: NgbDateStruct): boolean {

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuiaComponent } from './guia.component';
+import { GuiaPerfilComponent } from './guia.perfil.component';
 
 describe('GuiaComponent', () => {
-  let component: GuiaComponent;
-  let fixture: ComponentFixture<GuiaComponent>;
+  let component: GuiaPerfilComponent;
+  let fixture: ComponentFixture<GuiaPerfilComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GuiaComponent]
+      declarations: [GuiaPerfilComponent]
     });
-    fixture = TestBed.createComponent(GuiaComponent);
+    fixture = TestBed.createComponent(GuiaPerfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

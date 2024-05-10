@@ -7,6 +7,7 @@
 /bazel-out
 
 # Node
+/node_modulesant
 /node_modules
 # no me ignores bootstrap ni ngx-toastr
 !/node_modules/bootstrap
