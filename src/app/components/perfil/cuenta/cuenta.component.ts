@@ -12,6 +12,7 @@ export class CuentaComponent{
   nombre = '';
   apellido = '';
   email = '';
+  edita = false;
   constructor(private servicioUsuario : UsuarioService, private enrutar: Router){
 
   }
@@ -22,7 +23,7 @@ export class CuentaComponent{
                     this.esguia = rta.esguia; this.email= rta.email;
       },
       error: err => this.enrutar.navigate(['/login']),
-      complete:() => {}
+      complete:() => {this.edita = this.esguia}
     })
   }
 

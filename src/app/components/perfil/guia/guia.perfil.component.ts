@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-guia',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./guia.perfil.component.css']
 })
 export class GuiaPerfilComponent {
+
+  @Input() edita = false;
 
   guia = {
     matricula : '',
@@ -15,8 +17,13 @@ export class GuiaPerfilComponent {
     actividad : '',
   }
 
-  procesarGuis(){
+  procesarGuia(){
+    console.log(this.edita);
     console.log(this.guia);
+  }
+
+  editar(){
+    this.edita = false;
   }
 
 }
