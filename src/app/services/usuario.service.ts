@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona, Credenciales } from '../models/usuario';
 import { environment } from 'src/environments/environment';
+import { InterfaceGuia } from '../interface-guia';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,11 @@ export class UsuarioService {
   agregoUsuario( usuairo: Persona): Observable<any>{
     return this.curl.post(`${this.url}/add`, usuairo);
   }
+ 
+  actualizaGuia( guia : InterfaceGuia): Observable<any>{
+    return this.curl.put(`${this.url}/${guia.id}/aguia`, guia);
+  }
+
   validarUsuario( credenciales: Credenciales): Observable<any>{
     return this.curl.post(`${this.url}/login`, credenciales);
   }

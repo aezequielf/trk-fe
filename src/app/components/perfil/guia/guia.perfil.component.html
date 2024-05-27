@@ -7,7 +7,7 @@
                         <form (ngSubmit)="procesarGuia()" #formGuia="ngForm">
                             <div class="form-group text-start">
                                 <label class="ms-1">Matricula</label>
-                                <input type="text" class="form-control" name="matricula" [(ngModel)]="guia.matricula" #matricula='ngModel' placeholder="XXXXXX" required [disabled]="edita">
+                                <input type="text" class="form-control" name="matricula" [(ngModel)]="guia.matricula" #matricula='ngModel' placeholder="XXXXXX" required [disabled]="edita || ineditable">
                             </div>
                             <div class="span-invalid ms-4 me-4" *ngIf="matricula.invalid && matricula.touched">
                                 <span> Debes ingresar una matricula válida </span>
@@ -21,19 +21,19 @@
                             </div>
                             <div class="form-group text-start">
                                 <label class="ms-1">Resolución</label>
-                                <input type="text" class="form-control" name="resolucion" [(ngModel)]="guia.resolucion" #resolucion='ngModel' placeholder="XXX/X" required [disabled]="edita">
+                                <input type="text" class="form-control" name="resolucion" [(ngModel)]="guia.resolucion" #resolucion='ngModel' placeholder="XXX/X" required [disabled]="edita || ineditable">
                             </div>
                             <div class="span-invalid ms-4 me-4" *ngIf="resolucion.invalid && resolucion.touched">
                                 <span> Numero de Resolución que te habilita, será chequeado por el sistema </span>
                             </div>
                             <div class="form-group text-start mb-2">
                                 <label class="ms-1">Cel. Contacto</label>
-                                <input type="text" class="form-control" name="celular" [(ngModel)]="guia.celular" #celular='ngModel' placeholder="XXXXXXXXXX" required [disabled]="edita">
+                                <input type="text" class="form-control" name="celular" [(ngModel)]="guia.cels" #celular='ngModel' placeholder="XXXXXXXXXX" required [disabled]="edita">
                             </div>
                             <div class="span-invalid ms-4 me-4" *ngIf="celular.invalid && celular.touched">
                                 <span> Es importante que puedan contactarte </span>
                             </div>
-                            <div *ngIf="!edita">
+                            <div *ngIf="!edita && !ineditable">
                                 <div class="minus"> Agregar 1 actividad con la que estás legalizado</div>
                                 <div class="form-group text-start">
                                     <label class="ms-1">Actividad/es</label>
@@ -52,4 +52,4 @@
             </div>
         </div>
     </div>
-<!-- {{ formGuia.valid }} -->
+
