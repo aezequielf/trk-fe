@@ -4,6 +4,7 @@ export interface InterfaceGuia {
         matricula : string;
         empresa : string;
         resolucion : string;
-        cels : string;
+        cel : string;
+        celalt : string ;
         actividad : string;
 }

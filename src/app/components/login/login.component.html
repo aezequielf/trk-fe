@@ -8,7 +8,7 @@
                         <div class="form-group text-start">
                             <label class="ms-1">Correo</label>
                             <input type="email" class="form-control" placeholder="email@domain.tld" formControlName="email">
-                            <div class="span-invalid ms-4 me-4" *ngIf="email?.invalid && email?.touched">
+                            <div class="span-invalid ms-4 me-4 mt-1" *ngIf="email?.invalid && email?.touched">
                                 <span> Debes poner un email que sea válido</span>
                             </div>
                         </div>
@@ -16,7 +16,7 @@
                             <label class="ms-1">Clave</label>
                             <input type="password" class="form-control" placeholder="Clave/Password" 
                             formControlName="clave">
-                            <div class="span-invalid ms-4 me-4" *ngIf="clave?.invalid && clave?.touched">
+                            <div class="span-invalid ms-4 me-4 mt-1" *ngIf="clave?.invalid && clave?.touched">
                                 <span> Debes completar la calve</span>
                             </div>
                         </div>

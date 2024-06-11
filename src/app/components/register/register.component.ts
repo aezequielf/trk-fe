@@ -47,6 +47,12 @@ export class RegisterComponent {
     }
   }
 
+  titleCase(str: string) {
+    return str.toLowerCase().split(' ').map(function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+  }
+
   agregarUsuario(){
     const USUARIO : Persona = {
       nombre : this.formUsuario.get('nombre')?.value,
@@ -55,7 +61,7 @@ export class RegisterComponent {
       clave : this.formUsuario.get('clave')?.value,
     }
     this.servicioU.agregoUsuario(USUARIO).subscribe({
-      next: rta => this.msjToast.success(`${rta} ${this.nombre!.value} ya puedes ingresar`,),
+      next: rta => this.msjToast.success(`${this.titleCase(this.nombre!.value)}, te registraste correctamente ya puedes ingresar`),
       error: err => this.msjToast.error(err.error.detail),
       complete: () => {this.enrutar.navigate(['/login']);}
     })

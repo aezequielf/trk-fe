@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body text-center mi-card">
+    <span class="titulo"> Prestador : {{ guia?.empresa }}</span>
+    <div *ngIf="!agregatravesia && !editatravesia" class="form-group text-start">
+      <table class="table table-striped  mt-2">
+        <thead>
+          <tr>
+            <th class="text-center" colspan="3">
+              <button class="btn btn-success" (click)="agregatravesia = true">Carga Nueva
+                Travesia</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>Los Gigantes</td>
+            <td>22/06/2024</td>
+            <td class="text-end"><button class="btn btn-info" (click)="agregatravesia = true">Editar</button></td>
+          </tr>
+          <tr class="text-center">
+            <td>Los Gigantes</td>
+            <td>24/06/2024</td>
+            <td class="text-end"><button class="btn btn-info" (click)="agregatravesia = true">Editar</button></td>
+          </tr>
+          <tr class="text-center">
+            <td>Los Gigantes</td>
+            <td>26/06/2024</td>
+            <td class="text-end"><button class="btn btn-info" (click)="agregatravesia = true">Editar</button></td>
+          </tr>
+          <tr class="text-center">
+            <td colspan="3"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- componente para agregar o editar travesia  -->
+    <div *ngIf="agregatravesia || editatravesia" class="form-group text-center">
+      <span class="titulo"> Nueva Travesía</span>
+      <div class="form-group text-start">
+        <app-addedit-servicios (cancelaCarga)=" agregatravesia = editatravesia = false "></app-addedit-servicios>
+      </div>
+    </div>
+<!-- fin del componente -->
+    <div class="form-group mt-3 text-center">
+      <button class="btn btn-primary" (click)="ocultoServicios()">Volver</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

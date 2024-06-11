@@ -19,6 +19,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.component';
+import { ServiciosGuiaComponent } from './components/perfil/servicios-guia/servicios-guia.component';
+import { AddeditServiciosComponent } from './components/perfil/servicios-guia/addedit-servicios/addedit-servicios.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.compone
     GuiaPerfilComponent,
     DestinosPipe,
     RecorridoComponent,
+    ServiciosGuiaComponent,
+    AddeditServiciosComponent,
   ],
   imports: [
     BrowserModule,

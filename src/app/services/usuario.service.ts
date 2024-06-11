@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona, Credenciales } from '../models/usuario';
 import { environment } from 'src/environments/environment';
-import { InterfaceGuia } from '../interface-guia';
+import { InterfaceGuia } from '../models/interface-guia';
 
 @Injectable({
   providedIn: 'root'

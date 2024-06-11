@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { InterfaceGuia } from 'src/app/interface-guia';
+import { InterfaceGuia } from 'src/app/models/interface-guia';
 
 @Component({
   selector: 'app-cuenta',
@@ -23,7 +23,8 @@ export class CuentaComponent{
     empresa : '',
     matricula : '',
     resolucion : '',
-    cels: '',
+    cel: '',
+    celalt: '',
     actividad: ''
   }
   
@@ -32,8 +33,9 @@ export class CuentaComponent{
       next: rta => {this.nombre= rta.nombre; this.apellido= rta.apellido;
                     this.esguia = this.guia.esguia = rta.esguia; this.email= rta.email;
                     this.guia.empresa = rta.empresa; this.guia.matricula = rta.matricula;
-                    this.guia.resolucion = rta.resolucion; this.guia.cels = rta.cels;
-                    this.guia.actividad = rta.actividad; this.guia.id = rta.id;
+                    this.guia.resolucion = rta.resolucion; this.guia.cel = rta.cel;
+                    this.guia.celalt = rta.celalt; this.guia.actividad = rta.actividad;
+                    this.guia.id = rta.id;
       },
       error: err => this.enrutar.navigate(['/login']),
       complete:() => {this.edita = this.esguia;}
@@ -45,6 +47,9 @@ export class CuentaComponent{
     this.esguia = false;
   }else{
     this.esguia = true;
-  }
+  }  
+ }
+ bajaGuia(){
+  console.log('Baja del guía id : ',this.guia.id);
  }
 }
