@@ -12,20 +12,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="text-center">
-            <td>Los Gigantes</td>
-            <td>22/06/2024</td>
-            <td class="text-end"><button class="btn btn-info" (click)="agregatravesia = true">Editar</button></td>
+          <tr *ngIf="travesias?.length == 0  "   class="text-center">
+            <td colspan="2"> <div class="alert alert-info text-center"> No se encuentras travesias para mostrar </div></td>
           </tr>
-          <tr class="text-center">
-            <td>Los Gigantes</td>
-            <td>24/06/2024</td>
-            <td class="text-end"><button class="btn btn-info" (click)="agregatravesia = true">Editar</button></td>
-          </tr>
-          <tr class="text-center">
-            <td>Los Gigantes</td>
-            <td>26/06/2024</td>
-            <td class="text-end"><button class="btn btn-info" (click)="agregatravesia = true">Editar</button></td>
+          <tr *ngFor="let travesia of travesias; let indice = index"   class="text-center">
+            <td>{{travesia.lugar}}</td>
+            <td>{{travesia.fecha | date: 'dd/MM/yyyy' }}</td>
+            <td class="text-end"><button class="btn btn-info" (click)="editar(indice)">Editar </button></td>
           </tr>
           <tr class="text-center">
             <td colspan="3"></td>
@@ -34,10 +27,16 @@
       </table>
     </div>
 <!-- componente para agregar o editar travesia  -->
-    <div *ngIf="agregatravesia || editatravesia" class="form-group text-center">
-      <span class="titulo"> Nueva Travesía</span>
+    <div *ngIf="agregatravesia" class="form-group text-center">
+      <span *ngIf="agregatravesia" class="titulo"> Nueva Travesía</span>
       <div class="form-group text-start">
-        <app-addedit-servicios (cancelaCarga)=" agregatravesia = editatravesia = false "></app-addedit-servicios>
+        <app-addedit-servicios (cancelaCarga)=" agregatravesia = editatravesia = false " (ActualizaTravesias)="ngOnInit()" [datosguia]="datosanexos" ></app-addedit-servicios>
+      </div>
+    </div>
+    <div *ngIf="editatravesia" class="form-group text-center">
+      <span *ngIf="editatravesia"class="titulo"> Editar Travesía</span>
+      <div class="form-group text-start">
+        <app-addedit-servicios (cancelaCarga)=" agregatravesia = editatravesia = false " (ActualizaTravesias)="ngOnInit()" [in_travesia]="unatravesia" ></app-addedit-servicios>
       </div>
     </div>
 <!-- fin del componente -->

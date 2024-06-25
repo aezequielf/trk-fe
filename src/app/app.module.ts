@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.component';
 import { ServiciosGuiaComponent } from './components/perfil/servicios-guia/servicios-guia.component';
 import { AddeditServiciosComponent } from './components/perfil/servicios-guia/addedit-servicios/addedit-servicios.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { AddeditServiciosComponent } from './components/perfil/servicios-guia/ad
     NgbModule,
     NgbdDatepickerI18n
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
