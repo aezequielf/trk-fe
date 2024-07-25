@@ -22,4 +22,8 @@ export class TravesiaServicioService {
   nueva_travesia_guia( travesia : Travesia): Observable<Travesia>{
     return this.curl.post<Travesia>(`${this.url}/add`, travesia)
   }
+
+  actualiza_travesia( travesia: Travesia): Observable<Travesia>{
+    return this.curl.put<Travesia>(`${this.url}/actualiza`, travesia)
+  }
 }

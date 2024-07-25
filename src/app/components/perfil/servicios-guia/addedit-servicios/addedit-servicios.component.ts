@@ -93,10 +93,14 @@ export class AddeditServiciosComponent implements OnInit{
     }
       
     if (this.datosguia.accion == 'editar'){
-      this.tstmsj.success(`travesía Actualizada para `);
-      this.cancelaCarga.emit();
+      this.srvtravesia.actualiza_travesia(this.travesia).subscribe({
+        next: rta => this.tstmsj.success(`travesía ${rta.lugar} de empresa ${rta.empresa} actualizada correctamente`),
+        error: err => this.tstmsj.error(`No se pudo actualizar la travesia ${err}`),
+        complete: () => this.cancelaCarga.emit()
+       })
       return
     }
+
 
     this.srvtravesia.nueva_travesia_guia(this.travesia).subscribe({
       next: rta => this.tstmsj.success(`travesía ${rta.lugar} guardada para ${rta.empresa} `),
