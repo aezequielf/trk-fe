@@ -27,9 +27,23 @@
           </select>
         </td>
       </tr>
-      <tr class="text-center">
-        <td><label for="fecha" class="ms-1">Fecha</label></td>
-        <td><input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="travesia.fecha"></td>
+      <tr class="text-center align-middle">
+        <td><label for="fecha" class="ms-1">Fechas</label></td>
+        <td>
+          <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="nuevaFecha">
+        </td>
+        <td *ngIf="datosguia.accion != 'editar'">
+          <button class="btn btn-light" (click)="agregaFechas()" ><i class="fa-solid fa-calendar-plus" style="color: #03440e;"></i></button>
+        </td>
+      </tr>
+      <tr class="text-center align-middle" *ngFor="let unafecha of fechas; let indice = index">
+        <td>Fecha</td>
+        <td>
+           {{ unafecha | date: 'dd/MM/yyyy'}}  
+        </td>
+        <td>
+          <button class="btn btn-light" (click)="quitaFechas(indice)"> <i class="fa-solid fa-calendar-minus" style="transform: scale(0.8); color: #770720;"></i> </button>
+        </td>  
       </tr>
       <tr class="text-center">
         <td><label for="hora" class="ms-1">Hora</label></td>
