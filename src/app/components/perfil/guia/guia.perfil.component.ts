@@ -12,6 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class GuiaPerfilComponent {
   ineditable = false;
   muestraServicios  = false;
+  ventanaValidar= false;
   constructor(private servusuario : UsuarioService,  private msjToast: ToastrService){}
   @Output() aGuia = new EventEmitter<boolean>();
   @Input() edita = false;
@@ -52,6 +53,10 @@ export class GuiaPerfilComponent {
 
   misServicios(){
     this.muestraServicios = !this.muestraServicios; 
+  }
+
+  validarGuia(){
+    this.ventanaValidar = true;
   }
 
 }

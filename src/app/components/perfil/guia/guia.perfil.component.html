@@ -1,4 +1,7 @@
 <div class="container mt-5">
+  <div *ngIf="ventanaValidar">
+        <app-validarguia></app-validarguia>
+  </div>
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <div class="card" *ngIf="!muestraServicios">
@@ -6,25 +9,11 @@
                     <span class="titulo"> Mis datos de guía</span>
                         <form (ngSubmit)="procesarGuia()" #formGuia="ngForm">
                             <div class="form-group text-start">
-                                <label class="ms-1">Matricula</label>
-                                <input type="text" class="form-control" name="matricula" [(ngModel)]="guia.matricula" #matricula='ngModel' placeholder="XXXXXX" required [disabled]="edita || ineditable">
-                            </div>
-                            <div class="span-invalid ms-4 me-4 mt-1" *ngIf="matricula.invalid && matricula.touched">
-                                <span> Debes ingresar una matricula válida </span>
-                            </div>
-                            <div class="form-group text-start">
                                 <label class="ms-1">Razón de Emp/Nombre</label>
                                 <input type="text" class="form-control" name="empresa" [(ngModel)]="guia.empresa" #empresa='ngModel' placeholder="Mi Emprendimientos" required [disabled]="edita">
                             </div>
                             <div class="span-invalid ms-4 me-4 mt-1" *ngIf="empresa.invalid && empresa.touched">
                                 <span> Puedes usar simpemente tu nombre aquí</span>
-                            </div>
-                            <div class="form-group text-start">
-                                <label class="ms-1">Resolución</label>
-                                <input type="text" class="form-control" name="resolucion" [(ngModel)]="guia.resolucion" #resolucion='ngModel' placeholder="XXX/X" required [disabled]="edita || ineditable">
-                            </div>
-                            <div class="span-invalid ms-4 me-4 mt-1" *ngIf="resolucion.invalid && resolucion.touched">
-                                <span> Numero de Resolución que te habilita, será chequeado por el sistema </span>
                             </div>
                             <div class="form-group text-start mb-2">
                                 <label class="ms-1">Cel. Contacto</label>
@@ -37,16 +26,13 @@
                                 <label class="ms-1">Cel. Alt.</label>
                                 <input type="text" class="form-control" name="celalt" [(ngModel)]="guia.celalt" #celalt='ngModel' placeholder="XXXXXXXXXX" [disabled]="edita">
                             </div>
-                            <div *ngIf="!edita && !ineditable">
-                                <div class="minus"> Agregar 1 actividad con la que estás legalizado</div>
+                            <div *ngIf="edita || ineditable">
                                 <div class="form-group text-start">
-                                    <label class="ms-1">Actividad/es</label>
-                                    <input type="text" class="form-control" name="actividad" [(ngModel)]="guia.actividad" #actividad='ngModel' placeholder="tirolesa" required [disabled]="edita">
+                                    <div class="text-center">
+                                        <input type="button" class="btn btn-secondary" value="Validar regitro de Guía" (click)="validarGuia()">
+                                    </div>
                                 </div>
-                                <div class="span-invalid ms-4 me-4 mt-1" *ngIf="actividad.invalid && actividad.touched">
-                                    <span> La actividad con la que chequearemos la validez de la resolución </span>
-                                </div>
-                                </div>
+                            </div>
                             <div class="form-group mt-3">
                                 <button class="btn btn-primary me-2" [disabled]="formGuia.invalid || edita" >Gaurdar</button>
                                 <button class="btn btn-secondary me-2" [disabled]="!edita" (click)="editar()" >Editar</button>
@@ -58,5 +44,6 @@
             <app-servicios-guia *ngIf="muestraServicios" [in_guia]="guia" (Ocultar)="muestraServicios = !muestraServicios"></app-servicios-guia>
         </div>
     </div>
+
     <!-- {{ guia | json }} -->
 

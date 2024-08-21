@@ -22,6 +22,7 @@ import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.compone
 import { ServiciosGuiaComponent } from './components/perfil/servicios-guia/servicios-guia.component';
 import { AddeditServiciosComponent } from './components/perfil/servicios-guia/addedit-servicios/addedit-servicios.component';
 import { DatePipe } from '@angular/common';
+import { ValidarguiaComponent } from './components/perfil/guia/validarguia/validarguia.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { DatePipe } from '@angular/common';
     RecorridoComponent,
     ServiciosGuiaComponent,
     AddeditServiciosComponent,
+    ValidarguiaComponent,
   ],
   imports: [
     BrowserModule,
