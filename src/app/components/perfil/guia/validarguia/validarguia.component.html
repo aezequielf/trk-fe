@@ -1,23 +1,50 @@
-<!-- <div class="modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content mi-modal">
-        <div class="modal-header">
-          <h5 class="modal-title">Titulo</h5>
-          
-        </div>
-        <div class="modal-body">
-          Mensaje
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" >Cerrar</button>
-        </div>
-      </div>
+<div class="modal-dialog  modal-dialog-centered">
+  <div class="modal-content mi-modal">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Validación de Guía</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-  </div> -->
-  <div class="modal">
-    
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        
+    <div class="modal-body">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" [(ngModel)]="provincia" id="pcia" name="pcia" (change)="ValidarGuiaProvincia()" >
+        <option selected value="0">Seleccione una provincia</option>
+        <option value="1">Córdoba</option>
+      </select> 
+      <div *ngIf="!formValida || provincia == 0" class="alert alert-danger">
+       <b> Este proceso de validación es importante para que tus clientes sepan lo responsable que eres !!!!</b>
+      </div>
+
+      <div *ngIf="formValida && provincia == 1" >
+        <form #formValida="ngForm">
+          <div class="form-group text-start mb-2">
+            <label class="ms-1">Matricula</label>
+            <input type="text" class="form-control" name="matricula"  placeholder="XXXX" #matric='ngModel' [(ngModel)]="matricula" required="">
+            <div class="alert alert-danger mt-1" *ngIf="matric.invalid && matric.touched" >Ingresa la matrícula</div>
+          </div>
+          <div class="form-group text-start mb-2">
+            <label class="ms-1">Resolución</label>
+            <input type="text" class="form-control" name="resolusion"  placeholder="XXX/XX" #resol='ngModel' [(ngModel)]="resolucion" required="">
+            <div class="alert alert-danger mt-1" *ngIf="resol.invalid && resol.touched" >Ingresa la resolucsión que te habilita</div>
+          </div>
+          
+          <div class="form-group text-start mb-2">
+            <label class="ms-1">Actividades</label>
+            <div class="alert alert-secondary" role="alert">
+              Escribe al menos una actividad con la que te hayan validado como guía
+            </div>
+            <input type="text" class="form-control" name="actividades"  placeholder="Caminatas" #activ='ngModel' [(ngModel)]="actividad" required="">
+            <div class="alert alert-danger mt-1" *ngIf="activ.invalid && activ.touched" >Ingresa una actividad con la que seas un guía válido</div>
+          </div>
+
+          <div class="form-group text-end mb-2">
+            <button type="button" class="btn btn-primary" [disabled]="formValida.invalid">Validar</button>
+          </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetComp()">Close</button>
+
+    </div>
   </div>
+  </div>
+</div>

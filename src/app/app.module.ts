@@ -25,6 +25,7 @@ import { DatePipe } from '@angular/common';
 import { ValidarguiaComponent } from './components/perfil/guia/validarguia/validarguia.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ValidarguiaComponent } from './components/perfil/guia/validarguia/valid
     ServiciosGuiaComponent,
     AddeditServiciosComponent,
     ValidarguiaComponent,
+
   ],
   imports: [
     BrowserModule,

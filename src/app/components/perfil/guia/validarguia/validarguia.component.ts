@@ -7,4 +7,27 @@ import { Component } from '@angular/core';
 })
 export class ValidarguiaComponent {
 
+
+  formValida = false;
+  provincia = 0 ;
+  
+  matricula = '';
+  email = '';
+  resolucion = '';
+  actividad = '';
+
+
+  ValidarGuiaProvincia(){
+    this.formValida = true;
+  }
+
+  resetComp(){
+    this.provincia = 0;
+    this.matricula = '';
+    this.resolucion = '';
+    this.actividad = '';
+  }
+
 }
+
+

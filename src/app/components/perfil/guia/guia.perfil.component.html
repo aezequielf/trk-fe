@@ -29,7 +29,9 @@
                             <div *ngIf="edita || ineditable">
                                 <div class="form-group text-start">
                                     <div class="text-center">
-                                        <input type="button" class="btn btn-secondary" value="Validar regitro de Guía" (click)="validarGuia()">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalValidar">
+                                            Validar Guía
+                                          </button>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +46,11 @@
             <app-servicios-guia *ngIf="muestraServicios" [in_guia]="guia" (Ocultar)="muestraServicios = !muestraServicios"></app-servicios-guia>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalValidar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <app-validarguia></app-validarguia>
+    </div>
 
     <!-- {{ guia | json }} -->
+  
 
