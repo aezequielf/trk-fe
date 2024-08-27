@@ -22,10 +22,26 @@ export class ValidarguiaComponent {
   }
 
   resetComp(){
-    this.provincia = 0;
-    this.matricula = '';
-    this.resolucion = '';
-    this.actividad = '';
+    setTimeout(() => {
+      this.provincia = 0;
+      this.matricula = '';
+      this.resolucion = '';
+      this.actividad = '';
+      this.email = ''      
+    }, 100 );
+    
+  }
+
+  validarDatos(){
+    const DATOS = {
+      email: this.email,
+      matricula :this.matricula,
+      resolucion : this.resolucion,
+      actividad: this.actividad
+    };
+    console.log(DATOS);
+    this.provincia = 26;
+    
   }
 
 }
