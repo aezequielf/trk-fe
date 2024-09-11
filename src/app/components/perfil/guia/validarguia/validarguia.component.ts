@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-validarguia',
@@ -7,14 +7,13 @@ import { Component } from '@angular/core';
 })
 export class ValidarguiaComponent {
 
-
+ @Input() email = '';
   formValida = false;
   provincia = 0 ;
   
-  matricula = '';
-  email = '';
+
+ 
   resolucion = '';
-  actividad = '';
 
 
   ValidarGuiaProvincia(){
@@ -24,9 +23,9 @@ export class ValidarguiaComponent {
   resetComp(){
     setTimeout(() => {
       this.provincia = 0;
-      this.matricula = '';
+
       this.resolucion = '';
-      this.actividad = '';
+
       this.email = ''      
     }, 100 );
     
@@ -35,12 +34,12 @@ export class ValidarguiaComponent {
   validarDatos(){
     const DATOS = {
       email: this.email,
-      matricula :this.matricula,
+
       resolucion : this.resolucion,
-      actividad: this.actividad
+
     };
     console.log(DATOS);
-    this.provincia = 26;
+    this.provincia = 25;
     
   }
 

@@ -12,9 +12,9 @@
       <div *ngIf="!formValida || provincia == 0" class="alert alert-danger">
        <b> Este proceso de validación es importante para que tus clientes sepan lo responsable que eres !!!!</b>
       </div>
-
+      <!-- {{ email }} -->
       <div *ngIf="formValida && provincia == 25" class="alert alert-info">
-        <b> Tus datos se validaron correctamente</b>
+        <b> Para completar el proceso de validacón deberás enviarnos un email a validacionestp@gmail.com desde la casilla {{email}} con el siguiente Token: 645be4d670 </b>
       </div>
 
       <div *ngIf="formValida && provincia == 26" class="alert alert-warning">
@@ -24,28 +24,15 @@
       <div *ngIf="formValida && provincia == 1" >
         <form #formValida="ngForm">
           <div class="form-group text-start mb-2">
-            <label class="ms-1">Correo</label>
-            <input type="text" class="form-control" name="correo"  placeholder="nombre@dominio" #correo='ngModel' [(ngModel)]="email" required="">
-            <div class="alert alert-danger mt-1" *ngIf="correo.invalid && correo.touched" >Debes ingresar el correo electrónico con el que estás registrado en el Ente provinciar</div>
-          </div>
-          <div class="form-group text-start mb-2">
-            <label class="ms-1">Matricula</label>
-            <input type="text" class="form-control" name="matricula"  placeholder="XXXX" #matric='ngModel' [(ngModel)]="matricula" required="">
-            <div class="alert alert-danger mt-1" *ngIf="matric.invalid && matric.touched" >Ingresa la matrícula</div>
-          </div>
-          <div class="form-group text-start mb-2">
             <label class="ms-1">Resolución</label>
             <input type="text" class="form-control" name="resolusion"  placeholder="XXX/XX" #resol='ngModel' [(ngModel)]="resolucion" required="">
             <div class="alert alert-danger mt-1" *ngIf="resol.invalid && resol.touched" >Ingresa la resolucsión que te habilita</div>
           </div>
-          
           <div class="form-group text-start mb-2">
-            <label class="ms-1">Actividades</label>
+            <label class="ms-1">Mensaje</label>
             <div class="alert alert-secondary" role="alert">
-              Escribe al menos una actividad con la que te hayan validado como guía
+              En Córdoba Turismo deberías estar registrado con un email y una resolución que te hailita como prestador de servicios.
             </div>
-            <input type="text" class="form-control" name="actividades"  placeholder="Caminatas" #activ='ngModel' [(ngModel)]="actividad" required="">
-            <div class="alert alert-danger mt-1" *ngIf="activ.invalid && activ.touched" >Ingresa una actividad con la que seas un guía válido</div>
           </div>
 
           <div class="form-group text-end mb-2">

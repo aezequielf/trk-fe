@@ -16,6 +16,7 @@ export class GuiaPerfilComponent {
   constructor(private servusuario : UsuarioService,  private msjToast: ToastrService){}
   @Output() aGuia = new EventEmitter<boolean>();
   @Input() edita = false;
+  @Input() email = ""; 
   @Input() in_guia : InterfaceGuia = {
     id: '',
     esguia: true,
