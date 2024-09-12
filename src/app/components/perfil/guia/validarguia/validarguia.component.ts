@@ -33,9 +33,13 @@ export class ValidarguiaComponent {
   }
 
   validarDatos(){
+    var pcia = '';
+    if(this.provincia == 1){
+      pcia = "Córdoba"
+    }
     const DATOS = {
       email: this.email,
-
+      provincia: pcia,
       resolucion : this.resolucion,
 
     };

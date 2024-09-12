@@ -34,4 +34,8 @@ export class UsuarioService {
     
     return this.curl.get(`${this.url}/yo`,{ headers: HTTPHEAD});
   }
+  
+  validarGuia(id : string): Observable<any>{
+    return this.curl.put(`${this.url}/${id}/valida_guia`, id);
+  }
 }
