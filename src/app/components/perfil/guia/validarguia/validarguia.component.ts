@@ -7,11 +7,12 @@ import { Component, Input } from '@angular/core';
 })
 export class ValidarguiaComponent {
 
+ @Input() usuarioguiaID = '';
  @Input() email = '';
   formValida = false;
   provincia = 0 ;
+  maildestino ='validaciontp@gmail.com';
   
-
  
   resolucion = '';
 

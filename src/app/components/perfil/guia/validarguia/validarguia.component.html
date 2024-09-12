@@ -12,9 +12,9 @@
       <div *ngIf="!formValida || provincia == 0" class="alert alert-danger">
        <b> Este proceso de validación es importante para que tus clientes sepan lo responsable que eres !!!!</b>
       </div>
-      <!-- {{ email }} -->
+      <!-- {{ usuarioguiaID }} -->
       <div *ngIf="formValida && provincia == 25" class="alert alert-info">
-        <b> Para completar el proceso de validacón deberás enviarnos un email a validacionestp@gmail.com desde la casilla {{email}} con el siguiente Token: 645be4d670 </b>
+        <b> Para completar el proceso de validación deberás enviarnos un email a {{maildestino}} desde la casilla {{email}} con el siguiente Token: 645be4d670 </b>
       </div>
 
       <div *ngIf="formValida && provincia == 26" class="alert alert-warning">

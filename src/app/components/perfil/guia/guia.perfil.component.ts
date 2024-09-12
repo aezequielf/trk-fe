@@ -20,12 +20,12 @@ export class GuiaPerfilComponent {
   @Input() in_guia : InterfaceGuia = {
     id: '',
     esguia: true,
-    matricula : '',
+
     empresa : '',
     resolucion : '',
     cel :'',
     celalt : '',
-    actividad : '',
+ 
   };
   
   guia: InterfaceGuia = this.in_guia;
