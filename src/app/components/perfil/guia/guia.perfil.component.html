@@ -26,6 +26,8 @@
                                 <label class="ms-1">Cel. Alt.</label>
                                 <input type="text" class="form-control" name="celalt" [(ngModel)]="guia.celalt" #celalt='ngModel' placeholder="XXXXXXXXXX" [disabled]="edita">
                             </div>
+                            <div *ngIf="guia.validacion.length > 0" class="text-start"><h4>Validado para:</h4> </div>
+                            <div *ngFor="let valor of guia.validacion" class="text-start  mb-3"><h5>{{valor.provincia}}</h5>  <p *ngIf="!valor.validado">Esperando</p> <p *ngIf="valor.validado">Aprobado</p></div>
                             <div *ngIf="edita || ineditable">
                                 <div class="form-group text-start">
                                     <div class="text-center">
@@ -48,9 +50,9 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modalValidar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <app-validarguia [email]="email" [usuarioguiaID]="guia.id" ></app-validarguia>
+      <app-validarguia [email]="email" [usuarioguiaID]="guia.id" [validacion]="guia.validacion" ></app-validarguia>
     </div>
 
-    <!-- {{ guia.id | json }} -->
+    <!-- {{ guia.validacion | json }} -->
   
 

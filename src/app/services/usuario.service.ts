@@ -37,7 +37,7 @@ export class UsuarioService {
     return this.curl.get(`${this.url}/yo`,{ headers: HTTPHEAD});
   }
   
-  validarGuia(id : string, DATOS: DatosValidar): Observable<InterfaceRtaGeneral>{
-    return this.curl.put<InterfaceRtaGeneral>(`${this.url}/${id}/valida_guia`, DATOS);
+  validarGuia(id : string, DATOS: DatosValidar): Observable<string>{
+    return this.curl.put<string>(`${this.url}/${id}/valida_guia`, DATOS);
   }
 }

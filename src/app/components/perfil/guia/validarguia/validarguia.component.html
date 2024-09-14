@@ -7,18 +7,19 @@
     <div class="modal-body">
       <select  *ngIf="provincia < 24"   class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" [(ngModel)]="provincia" id="pcia" name="pcia" (change)="ValidarGuiaProvincia()" >
         <option selected value="0">Seleccione una provincia</option>
-        <option value="1">Córdoba</option>
+        <option value="1" >Córdoba</option>
       </select> 
       <div *ngIf="!formValida || provincia == 0" class="alert alert-danger">
        <b> Este proceso de validación es importante para que tus clientes sepan lo responsable que eres !!!!</b>
       </div>
-      <!-- {{ usuarioguiaID }} -->
+      <!-- {{ validacion | json }} -->
       <div *ngIf="formValida && provincia == 25" class="alert alert-info">
-        <b> Para completar el proceso de validación deberás enviarnos un email a {{maildestino}} desde la casilla {{email}} con el siguiente Token: 645be4d670 </b>
+        <div class="text-center"><h5>{{mensaje}}</h5></div>
+         Para completar el proceso de validación deberás enviarnos un email a <b>{{maildestino}}</b> desde la casilla <b>{{email}}</b>  con el siguiente Token: <b>645be4d670 </b>
       </div>
 
       <div *ngIf="formValida && provincia == 26" class="alert alert-warning">
-        <b> Lo siento, no hemos podido validar tus datos como guía</b>
+        <b> Lo siento, no hemos podido validar tus datos como guía. ERROR: <h5>{{ mensaje}}</h5> </b>
       </div>
 
       <div *ngIf="formValida && provincia == 1" >

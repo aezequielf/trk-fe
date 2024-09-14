@@ -21,17 +21,17 @@ export class CuentaComponent{
     id: '',
     esguia: false,
     empresa : '',
-    resolucion : '',
     cel: '',
-    celalt: ''
-   }
+    celalt: '',
+    validacion: []
+  }
   
   ngOnInit(){
     this.servicioUsuario.usuarioActual().subscribe({
       next: rta => {this.nombre= rta.nombre; this.apellido= rta.apellido;
                     this.esguia = this.guia.esguia = rta.esguia; this.email= rta.email;
                     this.guia.empresa = rta.empresa; 
-                    this.guia.resolucion = rta.resolucion; this.guia.cel = rta.cel;
+                    this.guia.validacion = rta.validacion; this.guia.cel = rta.cel;
                     this.guia.celalt = rta.celalt; 
                     this.guia.id = rta.id;
       },
