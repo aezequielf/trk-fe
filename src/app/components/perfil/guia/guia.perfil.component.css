@@ -23,3 +23,11 @@
     color: red;
     background: #cecf8a;
 }
+.i-espera {
+        color: rgb(161, 118, 54);
+        font-size: 115%;
+    }
+.i-ok {
+    color: rgb(16, 143, 27);
+    font-size: 115%;
+} 

@@ -1,3 +1,11 @@
 .form-check-input{
     border-color: black;
 }
+.i-cal-agrega{
+    color:#03440e;
+}
+
+.i-cal-borra{
+    color: #770720;
+    transform: scale(0.8);
+}

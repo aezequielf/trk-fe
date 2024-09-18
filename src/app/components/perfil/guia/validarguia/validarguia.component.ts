@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { DatosValidar, Validacion } from 'src/app/models/interface-guia';
-import { InterfaceRtaGeneral } from 'src/app/models/interface-rta-general';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -13,8 +12,15 @@ export class ValidarguiaComponent {
   constructor(private usuarioServ: UsuarioService){
   }
  @Input() validacion!: Validacion[] ;
+  nuevaValid: Validacion = {
+    provincia : '',
+    token: '',
+    validado: false,
+    resolucion: ''
+  } ;
  @Input() usuarioguiaID = '';
  @Input() email = '';
+ @Output() InfoValidacion = new EventEmitter<Validacion>;
   formValida = false;
   provincia = 0 ;
   maildestino ='validaciontp@gmail.com';
@@ -26,7 +32,12 @@ export class ValidarguiaComponent {
     this.formValida = true;
     if(this.validacion.length > 0  ){
       if (this.provincia == 1){
-        this.provincia =25;
+        if(this.validacion[0].validado){
+          this.provincia = 27;
+        }else{
+          this.provincia =25;
+          this.mensaje = this.validacion[0].token;
+        }
       } 
     }
   }
@@ -39,7 +50,10 @@ export class ValidarguiaComponent {
       this.mensaje = '';
       
     }, 100 );
-    
+    if (this.nuevaValid.provincia != ''){
+      this.InfoValidacion.emit(this.nuevaValid);
+    }
+  
   }
 
   validarDatos(){
@@ -55,7 +69,7 @@ export class ValidarguiaComponent {
 
     };
     this.usuarioServ.validarGuia( this.usuarioguiaID, DATOS).subscribe({
-      next: rta => { this.mensaje = rta; this.provincia = 25},
+      next: rta => { this.mensaje = rta.token; this.provincia = 25; this.nuevaValid = rta },
       error: err => {this.mensaje = err.error.detail; this.provincia = 26}
     })
   }

@@ -30,19 +30,19 @@
       <tr class="text-center align-middle">
         <td><label for="fecha" class="ms-1">Fechas</label></td>
         <td>
+          <div class="d-flex justify-content-between" *ngIf="datosguia.accion != 'editar'">
           <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="nuevaFecha">
-        </td>
-        <td *ngIf="datosguia.accion != 'editar'">
-          <button class="btn btn-light" (click)="agregaFechas()" ><i class="fa-solid fa-calendar-plus" style="color: #03440e;"></i></button>
+            <button class="btn btn-light" (click)="agregaFechas()" ><i class="fa-solid fa-calendar-plus i-cal-agrega" ></i></button>
+          </div>
         </td>
       </tr>
       <tr class="text-center align-middle" *ngFor="let unafecha of fechas; let indice = index">
         <td>Fecha</td>
         <td>
-           {{ unafecha | date: 'dd/MM/yyyy'}}  
-        </td>
-        <td>
-          <button class="btn btn-light" (click)="quitaFechas(indice)"> <i class="fa-solid fa-calendar-minus" style="transform: scale(0.8); color: #770720;"></i> </button>
+          <div class="d-flex justify-content-evenly align-items-center">
+            {{ unafecha | date: 'dd/MM/yyyy'}}  
+           <button class="btn btn-light" (click)="quitaFechas(indice)"> <i class="fa-solid fa-calendar-minus i-cal-borra"></i> </button>
+          </div>
         </td>  
       </tr>
       <tr class="text-center">

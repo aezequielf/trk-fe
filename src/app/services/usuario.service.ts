@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona, Credenciales } from '../models/usuario';
 import { environment } from 'src/environments/environment';
-import { InterfaceGuia, DatosValidar } from '../models/interface-guia';
+import { InterfaceGuia, DatosValidar, Validacion } from '../models/interface-guia';
 import { InterfaceRtaGeneral } from '../models/interface-rta-general';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class UsuarioService {
     return this.curl.get(`${this.url}/yo`,{ headers: HTTPHEAD});
   }
   
-  validarGuia(id : string, DATOS: DatosValidar): Observable<string>{
-    return this.curl.put<string>(`${this.url}/${id}/valida_guia`, DATOS);
+  validarGuia(id : string, DATOS: DatosValidar): Observable<Validacion>{
+    return this.curl.put<Validacion>(`${this.url}/${id}/valida_guia`, DATOS);
   }
 }

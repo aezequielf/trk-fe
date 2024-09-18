@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { subscribeOn } from 'rxjs';
@@ -57,6 +58,11 @@ export class GuiaPerfilComponent {
 
   validarGuia(){
     this.ventanaValidar = true;
+  }
+  cargoValid(miValid : Validacion){
+    if(this.guia.validacion.find( valor => valor.provincia == miValid.provincia) == undefined){
+      this.guia.validacion.push(miValid);
+    } 
   }
 
 }

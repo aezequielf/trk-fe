@@ -9,17 +9,21 @@
         <option selected value="0">Seleccione una provincia</option>
         <option value="1" >Córdoba</option>
       </select> 
-      <div *ngIf="!formValida || provincia == 0" class="alert alert-danger">
+      <div *ngIf="!formValida || provincia == 0 " class="alert alert-danger">
        <b> Este proceso de validación es importante para que tus clientes sepan lo responsable que eres !!!!</b>
       </div>
       <!-- {{ validacion | json }} -->
       <div *ngIf="formValida && provincia == 25" class="alert alert-info">
-        <div class="text-center"><h5>{{mensaje}}</h5></div>
-         Para completar el proceso de validación deberás enviarnos un email a <b>{{maildestino}}</b> desde la casilla <b>{{email}}</b>  con el siguiente Token: <b>645be4d670 </b>
+        <div class="text-center"><h5>Prestador Válido !</h5></div>
+         Para completar el proceso de validación deberás enviarnos un email a <b>{{maildestino}}</b> desde la casilla <b>{{email}}</b>  con el siguiente Token: <b>{{mensaje}} </b>
       </div>
 
       <div *ngIf="formValida && provincia == 26" class="alert alert-warning">
         <b> Lo siento, no hemos podido validar tus datos como guía. ERROR: <h5>{{ mensaje}}</h5> </b>
+      </div>
+
+      <div *ngIf="formValida && provincia == 27" class="alert alert-success">
+        <b> Validado para esta provincia </b>
       </div>
 
       <div *ngIf="formValida && provincia == 1" >
