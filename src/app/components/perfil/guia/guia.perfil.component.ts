@@ -30,9 +30,13 @@ export class GuiaPerfilComponent {
   
   guia: InterfaceGuia = this.in_guia;
 
-  ngOnInit() {
+  ngOnInit() { 
+    // para que no me de error una variable importada sin inicializar con valor null
+    if (this.in_guia.validacion === null){
+      this.in_guia.validacion = [];
+    }
     this.guia.id = this.in_guia.id;
-    if (this.in_guia.validacion != null){
+    if (this.in_guia.empresa != '' && this.in_guia.cel != ''){
       this.guia = this.in_guia;
     }  
   }
@@ -42,7 +46,8 @@ export class GuiaPerfilComponent {
     this.guia.esguia = true;    
     this.servusuario.actualizaGuia(this.guia).subscribe({
       next: rta => this.msjToast.success(rta),
-      error: err => this.msjToast.error(err),
+      error: err => {this.msjToast.error('Algo salió mal, Disculpe !'); console.log(err.error.detail[0].loc);
+      },
       complete: () => {this.edita = true; this.aGuia.emit();}    
     })
   }

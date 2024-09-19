@@ -16,6 +16,8 @@ export class UsuarioService {
   constructor(private curl: HttpClient) { }
 
   agregoUsuario( usuairo: Persona): Observable<any>{
+    console.log(usuairo);
+    
     return this.curl.post(`${this.url}/add`, usuairo);
   }
  
