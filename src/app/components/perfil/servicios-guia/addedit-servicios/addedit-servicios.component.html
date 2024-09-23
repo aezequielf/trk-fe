@@ -1,228 +1,261 @@
 <div class="form-group text-start">
-  
+
   <div *ngIf="pagina==1">
-  <table class="table table-striped  mt-2">
-    <tbody>
-      <tr class="text-center">
-        <td >
-          <label for="destino" class="ms-1">Destino</label>
-        </td>
-        <td>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino"
-            name="destino">
-            <option selected value="0">Seleccione el destino</option>
-            <option value="1">Los Gigantes</option>
-            <option value="2">Cerro Uritorco</option>
-            <option value="3">Ongamira</option>
-          </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="dificultad" class="ms-1">Dificultad</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="dificultad" name="dificultad">
-            <option selected value="0">Seleccione dificultad</option>
-            <option value="a">Alta</option>
-            <option value="m">Media</option>
-            <option value="b">Baja</option>
-          </select>
-        </td>
-      </tr>
-      <tr class="text-center align-middle">
-        <td><label for="fecha" class="ms-1">Fechas</label></td>
-        <td>
-          <div class="d-flex justify-content-between" *ngIf="datosguia.accion != 'editar'">
-          <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="nuevaFecha">
-            <button class="btn btn-light" (click)="agregaFechas()" ><i class="fa-solid fa-calendar-plus i-cal-agrega" ></i></button>
-          </div>
-        </td>
-      </tr>
-      <tr class="text-center align-middle" *ngFor="let unafecha of fechas; let indice = index">
-        <td>Fecha</td>
-        <td>
-          <div class="d-flex justify-content-evenly align-items-center">
-            {{ unafecha | date: 'dd/MM/yyyy'}}  
-           <button class="btn btn-light" (click)="quitaFechas(indice)"> <i class="fa-solid fa-calendar-minus i-cal-borra"></i> </button>
-          </div>
-        </td>  
-      </tr>
-      <tr class="text-center">
-        <td><label for="hora" class="ms-1">Hora</label></td>
-        <td><input type="time" class="form-control" #hora="ngModel" [(ngModel)]="travesia.hora"></td>
-      </tr>
-      <tr class="text-center">
-        <td><label for="punto" class="ms-1">Punto Enc.</label></td>
-        <td><input type="text" class="form-control" name="punto" #punto="ngModel" [(ngModel)]="travesia.pencuentro" ></td>
-      </tr>
-      <tr class="text-center">
-        <td><label for="coordenadas" class="ms-1">Coordenadas p. enc.</label></td>
-        <td><input type="text" class="form-control" name="coordenadas" #coordenadas="ngModel" [(ngModel)]="travesia.coordenadas"></td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2"><label for="descripcion" class="ms-1">Descripción de la Aventura</label></td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2"><textarea class="form-control" id="descripcion" rows="3" #descn="ngModel" [(ngModel)]="travesia.desc" ></textarea></td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">
-          <input type="button" class="btn btn-secondary me-3" value="Suguiente" (click)="pagina=2">
-          <button class="btn btn-warning" (click)="cancelar()">Cancelar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="pagina==2">
-  <table class="table table-striped  mt-2">
-    <tbody>
-      <tr class="text-center">
-        <td colspan="2"><b>Que incluye el serivicio</b>
-          <hr>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="ingreso" class="ms-1">Ingreso</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="ingreso" name="ingreso" #ingreso="ngModel" [(ngModel)]="travesia.ingreso">
-            <option value=true>SI</option>
-            <option selected value=false>NO</option>
+    <table class="table table-striped  mt-2">
+      <tbody>
+        <tr class="text-center">
+          <td>
+            <label for="destino" class="ms-1">Escribe el destino que vas a agregar</label>
+          </td>
+          <td>
+            <input type="text" class="form-control" name="buscDestino">
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td>
+            <label for="destino" class="ms-1">Destino</label>
+          </td>
+          <td>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino" name="destino">
+              <option selected value="0">Seleccione el destino</option>
+              <option value="1">Los Gigantes</option>
+              <option value="2">Cerro Uritorco</option>
+              <option value="3">Ongamira</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detingreso"  [(ngModel)]="travesia.detingreso"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="traslado" class="ms-1">Traslado</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="traslado" name="traslado" #traslado="ngModel" [(ngModel)]="travesia.traslado" >
-            <option  value="true">SI</option>
-            <option  selected  value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="dificultad" class="ms-1">Dificultad</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="dificultad"
+              name="dificultad">
+              <option selected value="0">Seleccione dificultad</option>
+              <option value="a">Alta</option>
+              <option value="m">Media</option>
+              <option value="b">Baja</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="dettraslado"  [(ngModel)]="travesia.dettraslado"></td>
-      </tr>
-      <tr class="text-center">  
-        <td colspan="2">
-          <input class="form-check-input" type="checkbox" value="" id="desayuno" #desayuno="ngModel" [(ngModel)]="travesia.desayuno">
-          <label class="form-check-label ms-1 me-1" for="desayuno">Desayuno</label>
-          <input class="form-check-input" type="checkbox" value="" id="marcha" #rmarcha="ngModel" [(ngModel)]="travesia.rmarcha">
-          <label class="form-check-label ms-1 me-1" for="marcha">Rac. Marcha</label>
-          <input class="form-check-input" type="checkbox" value="" id="merienda" [(ngModel)]="travesia.merienda">
-          <label class="form-check-label ms-1 me-1" for="merienda">Merienda</label>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detpension"  [(ngModel)]="travesia.detpension"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="pernocte" class="ms-1">Pernocte</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="pernocte" name="pernocte"  [(ngModel)]="travesia.pernocte">
-            <option value="true">SI</option>
-            <option  selected value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center align-middle">
+          <td><label for="fecha" class="ms-1">Fechas</label></td>
+          <td>
+            <div class="d-flex justify-content-between" *ngIf="datosguia.accion != 'editar'">
+              <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="nuevaFecha">
+              <button class="btn btn-light" (click)="agregaFechas()"><i
+                  class="fa-solid fa-calendar-plus i-cal-agrega"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr class="text-center align-middle" *ngFor="let unafecha of fechas; let indice = index">
+          <td>Fecha</td>
+          <td>
+            <div class="d-flex justify-content-evenly align-items-center">
+              {{ unafecha | date: 'dd/MM/yyyy'}}
+              <button class="btn btn-light" (click)="quitaFechas(indice)"> <i
+                  class="fa-solid fa-calendar-minus i-cal-borra"></i> </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td><label for="hora" class="ms-1">Hora</label></td>
+          <td><input type="time" class="form-control" #hora="ngModel" [(ngModel)]="travesia.hora"></td>
+        </tr>
+        <tr class="text-center">
+          <td><label for="punto" class="ms-1">Punto Enc.</label></td>
+          <td><input type="text" class="form-control" name="punto" #punto="ngModel" [(ngModel)]="travesia.pencuentro">
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td><label for="coordenadas" class="ms-1">Coordenadas p. enc.</label></td>
+          <td><input type="text" class="form-control" name="coordenadas" #coordenadas="ngModel"
+              [(ngModel)]="travesia.coordenadas"></td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2"><label for="descripcion" class="ms-1">Descripción de la Aventura</label></td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2"><textarea class="form-control" id="descripcion" rows="3" #descn="ngModel"
+              [(ngModel)]="travesia.desc"></textarea></td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">
+            <input type="button" class="btn btn-secondary me-3" value="Suguiente" (click)="pagina=2">
+            <button class="btn btn-warning" (click)="cancelar()">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="pagina==2">
+    <table class="table table-striped  mt-2">
+      <tbody>
+        <tr class="text-center">
+          <td colspan="2"><b>Que incluye el serivicio</b>
+            <hr>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="ingreso" class="ms-1">Ingreso</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="ingreso"
+              name="ingreso" #ingreso="ngModel" [(ngModel)]="travesia.ingreso">
+              <option value=true>SI</option>
+              <option selected value=false>NO</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detpernocte" #hora="ngModel" [(ngModel)]="travesia.detpernocte"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="botiquin" class="ms-1">Botiquin</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="botiquin" name="botiquin" [(ngModel)]="travesia.botiquin">
-            <option value="true">SI</option>
-            <option selected  value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detingreso"
+              [(ngModel)]="travesia.detingreso"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="traslado" class="ms-1">Traslado</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="traslado"
+              name="traslado" #traslado="ngModel" [(ngModel)]="travesia.traslado">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detbotiquin" [(ngModel)]="travesia.detbotiquin"></td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">
-          <input type="button" class="btn btn-secondary me-3" value="Anterior" (click)="pagina=1">
-          <input type="button" class="btn btn-secondary me-3" value="Suguiente" (click)="pagina=3">
-          <button class="btn btn-warning" (click)="cancelar()">Cancelar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="pagina==3">
-  <table class="table table-striped  mt-2">
-    <tbody>
-      <tr class="text-center">
-        <td colspan="2"><b>Que incluye el serivicio</b>
-          <hr>
-        </td>
-      </tr>
-      <tr class="text-center">  
-        <td colspan="2">
-          <input class="form-check-input" type="checkbox" value="" id="comsat" [(ngModel)]="travesia.csatelital">
-          <label class="form-check-label ms-1 me-1" for="comsat">Comunic. Satelital</label>
-          <input class="form-check-input" type="checkbox" value="" id="comvhf" [(ngModel)]="travesia.cvhf" >
-          <label class="form-check-label ms-1 me-1" for="marcha">Comunic. VHF</label>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detcomunicaciones" [(ngModel)]="travesia.detcomunicaciones"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="registro" class="ms-1">Reg. Foto.</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="registro" name="registro" [(ngModel)]="travesia.rfoto">
-            <option value="true">SI</option>
-            <option  selected value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="dettraslado"
+              [(ngModel)]="travesia.dettraslado"></td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">
+            <input class="form-check-input" type="checkbox" value="" id="desayuno" #desayuno="ngModel"
+              [(ngModel)]="travesia.desayuno">
+            <label class="form-check-label ms-1 me-1" for="desayuno">Desayuno</label>
+            <input class="form-check-input" type="checkbox" value="" id="marcha" #rmarcha="ngModel"
+              [(ngModel)]="travesia.rmarcha">
+            <label class="form-check-label ms-1 me-1" for="marcha">Rac. Marcha</label>
+            <input class="form-check-input" type="checkbox" value="" id="merienda" [(ngModel)]="travesia.merienda">
+            <label class="form-check-label ms-1 me-1" for="merienda">Merienda</label>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detpension"
+              [(ngModel)]="travesia.detpension"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="pernocte" class="ms-1">Pernocte</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="pernocte"
+              name="pernocte" [(ngModel)]="travesia.pernocte">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detregistro"  [(ngModel)]="travesia.detfoto"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="Serv. Carga" class="ms-1">Serv. Carga</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="Serv. Carga" name="Serv. Carga" [(ngModel)]="travesia.scarga" >
-            <option value="true">SI</option>
-            <option  selected  value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detpernocte" #hora="ngModel"
+              [(ngModel)]="travesia.detpernocte"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="botiquin" class="ms-1">Botiquin</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="botiquin"
+              name="botiquin" [(ngModel)]="travesia.botiquin">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detcarga" [(ngModel)]="travesia.detcarga"> </td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="indumentaria" class="ms-1">Indum. Montaña</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="indumentaria" name="indumentaria" [(ngModel)]="travesia.imontania">
-            <option value="true">SI</option>
-            <option  selected value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detbotiquin"
+              [(ngModel)]="travesia.detbotiquin"></td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">
+            <input type="button" class="btn btn-secondary me-3" value="Anterior" (click)="pagina=1">
+            <input type="button" class="btn btn-secondary me-3" value="Suguiente" (click)="pagina=3">
+            <button class="btn btn-warning" (click)="cancelar()">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="pagina==3">
+    <table class="table table-striped  mt-2">
+      <tbody>
+        <tr class="text-center">
+          <td colspan="2"><b>Que incluye el serivicio</b>
+            <hr>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">
+            <input class="form-check-input" type="checkbox" value="" id="comsat" [(ngModel)]="travesia.csatelital">
+            <label class="form-check-label ms-1 me-1" for="comsat">Comunic. Satelital</label>
+            <input class="form-check-input" type="checkbox" value="" id="comvhf" [(ngModel)]="travesia.cvhf">
+            <label class="form-check-label ms-1 me-1" for="marcha">Comunic. VHF</label>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detcomunicaciones"
+              [(ngModel)]="travesia.detcomunicaciones"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="registro" class="ms-1">Reg. Foto.</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="registro"
+              name="registro" [(ngModel)]="travesia.rfoto">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detindoumentaria" [(ngModel)]="travesia.detindumentaria"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="equipaje" class="ms-1">Cuid. Equipaje</label></td>
-        <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="equipaje" name="equipaje" [(ngModel)]="travesia.cequipaje">
-            <option value="true">SI</option>
-            <option selected  value="false">NO</option>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detregistro"
+              [(ngModel)]="travesia.detfoto"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="Serv. Carga" class="ms-1">Serv. Carga</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="Serv. Carga"
+              name="Serv. Carga" [(ngModel)]="travesia.scarga">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
             </select>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detequipaje" [(ngModel)]="travesia.detcuidado"></td>
-      </tr>
-      <tr class="text-center">
-        <td> <label for="precio" class="ms-1">Precio</label></td>
-        <td> <input type="number" class="form-control" [(ngModel)]="travesia.precio">
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="2">
-          <input type="button" class="btn btn-secondary me-3" value="Anterior" (click)="pagina=2">
-          <button class="btn btn-success me-3" (click)="guardar()" >Guardar</button>
-          <button class="btn btn-warning" (click)="cancelar()">Cancelar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detcarga"
+              [(ngModel)]="travesia.detcarga"> </td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="indumentaria" class="ms-1">Indum. Montaña</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="indumentaria"
+              name="indumentaria" [(ngModel)]="travesia.imontania">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detindoumentaria"
+              [(ngModel)]="travesia.detindumentaria"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="equipaje" class="ms-1">Cuid. Equipaje</label></td>
+          <td><select class="form-select form-select-sm" aria-label=".form-select-sm example" id="equipaje"
+              name="equipaje" [(ngModel)]="travesia.cequipaje">
+              <option value="true">SI</option>
+              <option selected value="false">NO</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">Breve Detalle: <input type="text" class="form-control" name="detequipaje"
+              [(ngModel)]="travesia.detcuidado"></td>
+        </tr>
+        <tr class="text-center">
+          <td> <label for="precio" class="ms-1">Precio</label></td>
+          <td> <input type="number" class="form-control" [(ngModel)]="travesia.precio">
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td colspan="2">
+            <input type="button" class="btn btn-secondary me-3" value="Anterior" (click)="pagina=2">
+            <button class="btn btn-success me-3" (click)="guardar()">Guardar</button>
+            <button class="btn btn-warning" (click)="cancelar()">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
