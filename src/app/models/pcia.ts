@@ -1,14 +1,27 @@
 export class Pcia{
     id: string;
     nombre: string;
+    destinos: Destino[] | null | Destino = null;
 
 
-    constructor(id: string, nombre: string){
+    constructor(id: string, nombre: string, ){
         this.id = id;
         this.nombre = nombre;
     }
 
 }
+
+export class Destino{
+    id: string | null = null;
+    lugar: string;
+    area: string;
+
+    constructor(lugar: string, area: string){
+        this.lugar = lugar;
+        this.area = area;
+    }
+}
+
 export class DetalleDetino{
     id: string;
     destino_id : string ;

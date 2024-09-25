@@ -24,6 +24,8 @@ export class AddeditServiciosComponent implements OnInit{
     
   }
   
+  pipedestinos = '';
+  senial = true ;
   nuevaFecha = '';
   fechas : string[] = [];
   
@@ -84,6 +86,18 @@ export class AddeditServiciosComponent implements OnInit{
 
   cancelar(){
     this.cancelaCarga.emit();
+  }
+
+  consutloDestinos(){
+    if (this.pipedestinos.length > 2 && this.senial ){
+      this.senial = false;
+      console.log(this.pipedestinos);
+      
+    }
+    if (this.pipedestinos.length < 2 && !this.senial ){
+      this.senial = true;
+    }
+    
   }
 
   agregaFechas(){

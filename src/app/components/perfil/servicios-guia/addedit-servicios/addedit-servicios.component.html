@@ -5,10 +5,10 @@
       <tbody>
         <tr class="text-center">
           <td>
-            <label for="destino" class="ms-1">Escribe el destino que vas a agregar</label>
+            <label for="destino" class="ms-1">Filtra destino a agregar</label>
           </td>
           <td>
-            <input type="text" class="form-control" name="buscDestino">
+            <input type="text" class="form-control" name="buscDestino" (keyup)="consutloDestinos()"  [(ngModel)]="pipedestinos">
           </td>
         </tr>
         <tr class="text-center">
@@ -18,9 +18,7 @@
           <td>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino" name="destino">
               <option selected value="0">Seleccione el destino</option>
-              <option value="1">Los Gigantes</option>
-              <option value="2">Cerro Uritorco</option>
-              <option value="3">Ongamira</option>
+              <option value="" disabled> Debes escribir en el filtro de arriba</option>
             </select>
           </td>
         </tr>

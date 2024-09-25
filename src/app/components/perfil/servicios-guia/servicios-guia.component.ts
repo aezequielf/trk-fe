@@ -17,6 +17,7 @@ export class ServiciosGuiaComponent implements OnInit {
   agregatravesia = false;
   editatravesia = false;
 
+
   @Input() in_guia? : InterfaceGuia;
 
   guia?: InterfaceGuia;
@@ -35,6 +36,7 @@ export class ServiciosGuiaComponent implements OnInit {
     })
     this.datosanexos.idguia = String(this.guia?.id);
     this.datosanexos.empresa = String(this.guia?.empresa);
+    
   }
 
   @Output() Ocultar = new EventEmitter();
