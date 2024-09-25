@@ -1,5 +1,5 @@
 export class Destino{
-    id: string | null = null;
+    id: string  = '';
     lugar: string;
     area: string;
 

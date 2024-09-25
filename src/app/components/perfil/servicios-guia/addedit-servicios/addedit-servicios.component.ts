@@ -28,6 +28,7 @@ export class AddeditServiciosComponent implements OnInit{
   
   pipedestinos = '';
   senial = true ;
+  indiceDestino = -1;
   nuevaFecha = '';
   fechas : string[] = [];
   lugares : Pcia[] = [];
@@ -129,16 +130,25 @@ export class AddeditServiciosComponent implements OnInit{
     this.fechas.splice(indice,1);
   }
 
+  setearDestinos(){
+    if (this.indiceDestino < 0){
+      return;
+    }
+    this.travesia.pcia_id =this.lugares[this.indiceDestino].id;
+    this.travesia.pcia = this.lugares[this.indiceDestino].nombre;
+    this.travesia.destino_id = this.lugares[this.indiceDestino].destinos!.id;
+    this.travesia.lugar = this.lugares[this.indiceDestino].destinos!.lugar;
+    console.log(this.travesia);
+    console.log(this.fechas);
+    
+  }
+
   guardar(){
     // cargo a mano algunos valores por ahora antes de resolver como los hago coherentes.
+   
     if (this.in_travesia == undefined){
-      this.travesia.pcia_id = '656e59c935a4cd190c93b4b7';
-      this.travesia.pcia = 'Cordoba';
       this.travesia.guia_id = this.datosguia.idguia;
       this.travesia.empresa = this.datosguia.empresa;
-      this.travesia.dificultad = 'alta';
-      this.travesia.destino_id = '65a1b14c53c32f486c6409af';
-      this.travesia.lugar = 'Los Gigantes';
     }
       
     if (this.datosguia.accion == 'editar'){
@@ -147,6 +157,35 @@ export class AddeditServiciosComponent implements OnInit{
         error: err => this.tstmsj.error(`No se pudo actualizar la travesia ${err}`),
         complete: () => this.cancelaCarga.emit()
        })
+      return
+    }
+
+    if(this.travesia.dificultad == ''){
+      this.tstmsj.warning('Debería especificar la dificultad');
+      this.pagina = 1;
+      return
+    }
+
+    if (this.fechas.length < 1){
+      this.tstmsj.warning('Debería cargar al menos una fecha para prestar el servicio !');
+      this.pagina = 1;
+      return
+    }
+    
+    if(this.travesia.hora == ''){
+      this.tstmsj.warning('Debería especificar el horario de encuentro !');
+      this.pagina = 1;
+      return
+    }
+
+    if(this.travesia.pencuentro == ''){
+      this.tstmsj.warning('Debería especificar el un punto donde encontrarse');
+      this.pagina = 1;
+      return
+    }
+
+    if(this.travesia.precio == 0){
+      this.tstmsj.warning('Tenés que ponerle un precio a tus servicios');
       return
     }
 
