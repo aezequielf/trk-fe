@@ -18,7 +18,8 @@
           <td>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino" name="destino">
               <option selected value="0">Seleccione el destino</option>
-              <option value="" disabled> Debes escribir en el filtro de arriba</option>
+              <option *ngIf="lugares.length < 1" value="" disabled> Debes escribir en el filtro de arriba</option>
+              <option *ngFor="let lugar of lugares" value="{{lugar.destinos?.id}}">{{ lugar.destinos?.lugar }} - {{lugar.nombre}}</option>
             </select>
           </td>
         </tr>

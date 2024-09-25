@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Pcia } from '../models/pcia';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +21,9 @@ export class ServicioDestinosService {
   }
   getdetallesdestino(id_destino: string): Observable<any>{
     return this.geturl.get(`${this.url}/${id_destino}`);
+  }
+
+  getDestinos(busqueda: string): Observable<Pcia[]>{
+    return this.geturl.get<Pcia[]>(`${this.url}/${busqueda}`);
   }
 }

@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Travesia} from 'src/app/models/interfaces-travesia';
+import { Pcia } from 'src/app/models/pcia';
+import { ServicioDestinosService } from 'src/app/services/servicio-destinos.service';
 import { TravesiaServicioService } from 'src/app/services/travesia-servicio.service';
 
 @Component({
@@ -14,7 +16,7 @@ import { TravesiaServicioService } from 'src/app/services/travesia-servicio.serv
 
 export class AddeditServiciosComponent implements OnInit{
 
-  constructor(private tstmsj: ToastrService, private srvtravesia : TravesiaServicioService, private tuboFecha: DatePipe){}
+  constructor(private tstmsj: ToastrService, private srvtravesia : TravesiaServicioService, private tuboFecha: DatePipe, private servDestin: ServicioDestinosService){}
   
   ngOnInit(): void {
     if (this.in_travesia != undefined){
@@ -28,6 +30,7 @@ export class AddeditServiciosComponent implements OnInit{
   senial = true ;
   nuevaFecha = '';
   fechas : string[] = [];
+  lugares : Pcia[] = [];
   
 
   @Output() cancelaCarga= new EventEmitter();
@@ -91,7 +94,12 @@ export class AddeditServiciosComponent implements OnInit{
   consutloDestinos(){
     if (this.pipedestinos.length > 2 && this.senial ){
       this.senial = false;
-      console.log(this.pipedestinos);
+      this.servDestin.getDestinos(this.pipedestinos).subscribe({
+        next: rta => this.lugares = rta,
+        error: err => console.log(err),
+        complete: () => {}
+        ,       
+      })
       
     }
     if (this.pipedestinos.length < 2 && !this.senial ){
