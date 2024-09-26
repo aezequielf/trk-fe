@@ -8,7 +8,8 @@ export class DestinosPipe implements PipeTransform {
   transform(value: any[], ...args: string[]): any {
     const [lugarfiltro, fecha] = args
     const [anio, mes, dia] = fecha.split('-')
-    const resultado = [];  
+    const resultado = [];
+    if (value == null) return value;  
     if (fecha == ''){
       if (lugarfiltro === '' || lugarfiltro.length < 3) return value;
       for (const destino of value){

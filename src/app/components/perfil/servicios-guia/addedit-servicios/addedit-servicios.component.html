@@ -19,7 +19,7 @@
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino" name="destino" (change)="setearDestinos()" [(ngModel)]="indiceDestino">
               <option selected value="-1">Seleccione el destino</option>
               <option *ngIf="lugares.length < 1" value="" disabled> Debes escribir en el filtro de arriba</option>
-              <option *ngFor="let lugar of lugares; let indice = index" value="{{indice}}">{{ lugar.destinos?.lugar }} - {{lugar.nombre}}</option>
+              <option *ngFor="let lugar of lugares | lugaresPipe:pipedestinos" value="{{lugar.destinos!.id}}">{{ lugar.destinos?.lugar }} - {{lugar.nombre}}</option>
             </select>
           </td>
         </tr>

@@ -28,7 +28,7 @@ export class AddeditServiciosComponent implements OnInit{
   
   pipedestinos = '';
   senial = true ;
-  indiceDestino = -1;
+  indiceDestino = "-1";
   nuevaFecha = '';
   fechas : string[] = [];
   lugares : Pcia[] = [];
@@ -131,14 +131,18 @@ export class AddeditServiciosComponent implements OnInit{
   }
 
   setearDestinos(){
-    if (this.indiceDestino < 0){
+    if (Number(this.indiceDestino)< 0){
       return;
     }
-    this.travesia.pcia_id =this.lugares[this.indiceDestino].id;
-    this.travesia.pcia = this.lugares[this.indiceDestino].nombre;
-    this.travesia.destino_id = this.lugares[this.indiceDestino].destinos!.id;
-    this.travesia.lugar = this.lugares[this.indiceDestino].destinos!.lugar;
+    let lugar = this.lugares.find(objeto => objeto.destinos!.id == this.indiceDestino);
+    this.travesia.pcia_id = lugar!.id;
+    this.travesia.pcia = lugar!.nombre;
+    this.travesia.destino_id = lugar!.destinos!.id;
+    this.travesia.lugar = lugar!.destinos!.lugar;
+    
     console.log(this.travesia);
+
+    
     console.log(this.fechas);
     
   }

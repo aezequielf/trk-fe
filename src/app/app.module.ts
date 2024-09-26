@@ -23,6 +23,7 @@ import { ServiciosGuiaComponent } from './components/perfil/servicios-guia/servi
 import { AddeditServiciosComponent } from './components/perfil/servicios-guia/addedit-servicios/addedit-servicios.component';
 import { DatePipe } from '@angular/common';
 import { ValidarguiaComponent } from './components/perfil/guia/validarguia/validarguia.component';
+import { LugaresPipePipe } from './pipes/lugares-pipe.pipe';
 
 
 
@@ -40,6 +41,7 @@ import { ValidarguiaComponent } from './components/perfil/guia/validarguia/valid
     ServiciosGuiaComponent,
     AddeditServiciosComponent,
     ValidarguiaComponent,
+    LugaresPipePipe,
 
   ],
   imports: [
