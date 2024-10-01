@@ -29,6 +29,9 @@
                                   <tr *ngFor="let desino of destinos | lugaresPipe: pipelugares" >     
                                     <td>{{ desino.destinos?.lugar}}</td>
                                   </tr>
+                                  <tr >
+                                    <td>{{ (destinos | lugaresPipe:pipelugares).length }} elementos localizados</td>
+                                  </tr>
                                 </tbody>
                               </table>
                         </div>
@@ -44,7 +47,7 @@
                                 <tbody>
                                   <tr class="text-center">     
                                     <td><input type="text" class="form-control" placeholder="Nuevo destino"></td>
-                                    <td class="text-end"><button class="btn btn-info" >Agregar</button></td>
+                                    <td class="text-end"><button class="btn btn-info" [disabled]="(destinos | lugaresPipe:pipelugares).length > 0" (click)="agregarDetino()">Agregar</button></td>
                                   <tr class="text-center">     
                                     <td colspan="3"><button class="btn btn-secondary" >Volver</button></td>
                                   </tr>

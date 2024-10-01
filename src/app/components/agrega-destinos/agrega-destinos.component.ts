@@ -44,9 +44,32 @@ export class AgregaDestinosComponent {
         "lugar": "Quebrada del Condorito",
         "area": "quebrada del condor"
       }
+    },
+    {
+      "id": "656e59c935a4cd190c93b4b7",
+      "nombre": "Córdoba",
+      "destinos": {
+        "id": "66edf32c45445b32dc8eb3e2",
+        "lugar": "Santuario del Yuspe",
+        "area": "yuspe"
+      }
+    },
+    {
+      "id": "656e59c935a4cd190c93b4b7",
+      "nombre": "Córdoba",
+      "destinos": {
+        "id": "66edf32c45445b32dc8eb3e4",
+        "lugar": "Salinas Grandes",
+        "area": "salinas"
+      }
     }
   ];
 
   pipelugares = '';
+
+  agregarDetino(){
+    console.log('hola');
+    
+  }
 
 }
