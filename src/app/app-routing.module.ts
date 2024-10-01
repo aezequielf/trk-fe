@@ -7,6 +7,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CuentaComponent } from './components/perfil/cuenta/cuenta.component';
 import { GuiaComponent } from './components/guia/guia.component';
 import { RecorridoComponent } from './components/recorrido/recorrido.component';
+import { AgregaDestinosComponent } from './components/agrega-destinos/agrega-destinos.component';
 
 const routes: Routes = [
   {path : '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path : 'perfil', component: CuentaComponent},
   {path : 'guia', component: GuiaComponent},
   {path : 'recorrido', component: RecorridoComponent},
+  {path : 'agdestinos', component: AgregaDestinosComponent},
   {path : '**', redirectTo: '',  pathMatch: 'full'}
 ];
 
