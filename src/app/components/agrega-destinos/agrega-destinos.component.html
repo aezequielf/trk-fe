@@ -7,14 +7,14 @@
                             <span class="titulo" id="titulo"> Agregar un nuevo destino</span>
                             <div class="form-group text-start">
                                 <label for="pcia" class="ms-1">Provincias</label>
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia"  >
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" (change)="cargaDestinos()" >
                                     <option selected value="0">Seleccione una provincia</option>
-                                    <option>Córdoba</option>
+                                    <option value="1">Córdoba</option>
                                 </select>    
                             </div>
                             <div class="alert alert-warning">
                                 Es importante que no se carguen destinos duplicados para que las búsquedas que hagan futuros clientes te encuentren.
-                                 Asgurate de que lo que vas a cargar no de resultados en la búsqueda de abajo. Comprubea que el destino no esté cargado con otro nombre.
+                                 Asgurate que lo que vas a cargar no de resultados en la búsqueda de abajo. Comprubea que el destino no esté listado de otra manera.
                             </div>
          
                             <div class="d-flex justify-content-evenly align-items-center text-start">
@@ -27,13 +27,11 @@
                             <table class="table table-striped mt-2" >
                                 <tbody>
                                   <tr *ngFor="let desino of destinos | lugaresPipe: pipelugares" >     
-                                    <td>{{ desino.destinos?.lugar}}</td>
-                                  </tr>
-                                  <tr >
-                                    <td>{{ (destinos | lugaresPipe:pipelugares).length }} elementos localizados</td>
+                                    <td> <i class="fa-solid fa-location-dot fa-miloc"></i> <span class="item">{{ desino.destinos?.lugar}}</span></td>
                                   </tr>
                                 </tbody>
                               </table>
+                              <div class="alert alert-primary"  *ngIf="destinos.length > 0"> {{ (destinos | lugaresPipe:pipelugares).length }} sitio/s encontrado/s</div>
                         </div>
                         <div class="form-group text-start" >
                             <table class="table table-striped  mt-2">

@@ -8,67 +8,72 @@ import { Pcia } from 'src/app/models/pcia';
 })
 export class AgregaDestinosComponent {
 
-  destinos : Pcia[] = [
-    {
-      "id":  "656e59c935a4cd190c93b4b7",
-      "nombre": "Córdoba",
-      "destinos": {
-        "id": "66edf32c45445b32dc8eb3dc",
-        "lugar": "Los Gigantes",
-        "area": "los gigantes"
-      }
-    },
-    {
-      "id": "656e59c935a4cd190c93b4b7",
-      "nombre": "Córdoba",
-      "destinos": {
-        "id": "66edf32c45445b32dc8eb3e2",
-        "lugar": "Santuario del Yuspe",
-        "area": "yuspe"
-      }
-    },
-    {
-      "id": "656e59c935a4cd190c93b4b7",
-      "nombre": "Córdoba",
-      "destinos": {
-        "id": "66edf32c45445b32dc8eb3e4",
-        "lugar": "Salinas Grandes",
-        "area": "salinas"
-      }
-    },
-    {
-      "id": "656e59c935a4cd190c93b4b7" ,
-      "nombre": "Córdoba",
-      "destinos": {
-        "id": "66edf32c45445b32dc8eb3dd",
-        "lugar": "Quebrada del Condorito",
-        "area": "quebrada del condor"
-      }
-    },
-    {
-      "id": "656e59c935a4cd190c93b4b7",
-      "nombre": "Córdoba",
-      "destinos": {
-        "id": "66edf32c45445b32dc8eb3e2",
-        "lugar": "Santuario del Yuspe",
-        "area": "yuspe"
-      }
-    },
-    {
-      "id": "656e59c935a4cd190c93b4b7",
-      "nombre": "Córdoba",
-      "destinos": {
-        "id": "66edf32c45445b32dc8eb3e4",
-        "lugar": "Salinas Grandes",
-        "area": "salinas"
-      }
-    }
-  ];
+  destinos : Pcia[] = [];
 
   pipelugares = '';
 
+  cargaDestinos(){    
+    this.destinos.push(
+      {
+        "id":  "656e59c935a4cd190c93b4b7",
+        "nombre": "Córdoba",
+        "destinos": {
+          "id": "66edf32c45445b32dc8eb3dc",
+          "lugar": "Los Gigantes",
+          "area": "los gigantes"
+        }
+      },
+      {
+        "id": "656e59c935a4cd190c93b4b7",
+        "nombre": "Córdoba",
+        "destinos": {
+          "id": "66edf32c45445b32dc8eb3e2",
+          "lugar": "Santuario del Yuspe",
+          "area": "yuspe"
+        }
+      },
+      {
+        "id": "656e59c935a4cd190c93b4b7",
+        "nombre": "Córdoba",
+        "destinos": {
+          "id": "66edf32c45445b32dc8eb3e4",
+          "lugar": "Salinas Grandes",
+          "area": "salinas"
+        }
+      },
+      {
+        "id": "656e59c935a4cd190c93b4b7" ,
+        "nombre": "Córdoba",
+        "destinos": {
+          "id": "66edf32c45445b32dc8eb3dd",
+          "lugar": "Quebrada del Condorito",
+          "area": "quebrada del condor"
+        }
+      },
+      {
+        "id": "656e59c935a4cd190c93b4b7",
+        "nombre": "Córdoba",
+        "destinos": {
+          "id": "66edf32c45445b32dc8eb3e2",
+          "lugar": "Santuario del Yuspe",
+          "area": "yuspe"
+        }
+      },
+      {
+        "id": "656e59c935a4cd190c93b4b7",
+        "nombre": "Córdoba",
+        "destinos": {
+          "id": "66edf32c45445b32dc8eb3e4",
+          "lugar": "Salinas Grandes",
+          "area": "salinas"
+        }
+      }
+    ) ;
+  
+  }
+
   agregarDetino(){
-    console.log('hola');
+    console.log('consulto area y la cargo');
     
   }
 

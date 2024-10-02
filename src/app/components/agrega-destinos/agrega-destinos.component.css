@@ -6,6 +6,14 @@
     padding-right: 42px;
     border-radius: 5px;
 }
+
+.item {
+    font-family: 'Dosis', sans-serif;
+    font-size: 18px;
+    border-radius: 5px;
+    font-weight: 900;
+}
+
 .mi-label{
     margin-inline-start: -1px, !important;
 }
@@ -22,4 +30,9 @@
 .span-invalid{
     color: red;
     background: #cecf8a;
+}
+
+.fa-miloc{
+    color: #33e61c;
+    margin-right: 2%;
 }
