@@ -12,6 +12,8 @@ export class AgregaDestinosComponent {
 
   pipelugares = '';
 
+  nuevoLugar = '';
+
   cargaDestinos(){    
     this.destinos.push(
       {
@@ -72,9 +74,29 @@ export class AgregaDestinosComponent {
   
   }
 
+  Titulo(frase: string): string {
+    return frase
+      .split(' ') // Divide la frase en palabras
+      .map(palabra => 
+        palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()
+      ) // Capitaliza la primera letra de cada palabra
+      .join(' '); // Une las palabras de nuevo en una frase
+  }
+
   agregarDetino(){
-    console.log('consulto area y la cargo');
+    this.destinos.push({
+      id : "656e59c935a4cd190c93b4b7",
+      nombre : "Córdoba",
+      destinos : {
+        id : "fffffffffff",
+        lugar: this.Titulo(this.nuevoLugar),
+        area: "Area nueva"
+      }
+    })
+
+    this.destinos.sort((a,b) => a.destinos!.lugar.localeCompare(b.destinos!.lugar))
     
+    this.pipelugares = this.nuevoLugar;
   }
 
 }
