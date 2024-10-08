@@ -7,7 +7,7 @@
                             <span class="titulo" id="titulo"> Agregar un nuevo destino</span>
                             <div class="form-group text-start">
                                 <label for="pcia" class="ms-1">Provincias</label>
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" (change)="cargaDestinos()" >
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" (change)="cargaDestinos()" [(ngModel)]="provincia" >
                                     <option selected value="0">Seleccione una provincia</option>
                                     <option value="1">Córdoba</option>
                                 </select>    
@@ -19,7 +19,7 @@
          
                             <div class="d-flex justify-content-evenly align-items-center text-start">
                                 <label for="travesia" class="ms-1 me-2">Búsqueda</label>
-                                <input type="text" class="form-control" placeholder="Ingrese palabra clave" id="travesia" name="travesia" [(ngModel)]="pipelugares">
+                                <input type="text" class="form-control" placeholder="Ingrese palabra clave" id="travesia" name="travesia" [(ngModel)]="pipelugares" >
                              </div>
                             <div class="alert alert-info text-center mt-2" *ngIf="destinos.length < 1">
                               No se encontraron resultados
@@ -49,10 +49,11 @@
                                   </tr>
                                   <tr class="text-center">
                                     <td class="align-middle"> Coord. Geograf.</td>
-                                    <td><input type="text" class="form-control" placeholder="-32.1817182,-64.0835989" [(ngModel)]="nuevaArea"  ></td>
+                                    <td class="align-middle"><input type="text" class="form-control" placeholder="-32.1817,-64.0835" [(ngModel)]="nuevaArea" >
+                                    </td>
                                   </tr>
                                   <tr class="text-center">     
-                                    <td class="text-center" colspan="2" ><button class="btn btn-info" [disabled]="(destinos | lugaresPipe:pipelugares).length > 0" (click)="agregarDetino()">Agregar</button></td>
+                                    <td class="text-center" colspan="2" ><button class="btn btn-info" [disabled]="(destinos | lugaresPipe:pipelugares).length > 0 || provincia == '0'" (click)="agregarDetino()">Agregar</button></td>
                                   <tr class="text-center">     
                                     <td colspan="3"><button class="btn btn-secondary" >Volver</button></td>
                                   </tr>

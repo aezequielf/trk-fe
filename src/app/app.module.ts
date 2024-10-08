@@ -51,7 +51,9 @@ import { AgregaDestinosComponent } from './components/agrega-destinos/agrega-des
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
     RouterModule,
     HttpClientModule,
     NgbModule,

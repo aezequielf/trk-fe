@@ -10,7 +10,7 @@ import { Pcia } from 'src/app/models/pcia';
 export class AgregaDestinosComponent {
   constructor(private srvtoast : ToastrService){}
   destinos : Pcia[] = [];
-
+  provincia = '0';
   pipelugares = '';
 
   nuevoLugar = '';
@@ -87,19 +87,24 @@ export class AgregaDestinosComponent {
 
   agregarDetino(){
     if (!this.nuevoLugar.trim()){
-      this.srvtoast.show('No ingresaste ningún lugar');
+      this.srvtoast.show('No ingresaste ningún lugar','Atención !!!',{ positionClass: 'toast-top-full-width'});
       return;
     }
     if (!this.nuevaArea.trim()){
-      this.srvtoast.show('No ingresaste coordenadas gegráficas');
+      this.srvtoast.show('No ingresaste coordenadas gegráficas, se usan para pronósticos de tiempo','Ingrese coordenadas',{ positionClass: 'toast-top-full-width'});
       return;
     }
     let [lat, long] = this.nuevaArea.trim().split(',');
-    lat = lat.trim();
-    long = long.trim();
-    let patron = /-?\d{2}\.\d{7}/
+    try{
+      lat = lat.trim();
+      long = long.trim();
+    }catch{
+      this.srvtoast.show('Revise las corrdenadas geográficas', 'Datos inválidos',{ positionClass: 'toast-top-full-width'});
+      return;
+    }
+    let patron = /-?\d{2}\.\d{4,7}/
     if( !patron.test(lat) || !patron.test(long)){
-      this.srvtoast.show('El formato de las cordenadas no parece ser el correcto')
+      this.srvtoast.show('El formato de las cordenadas no parece ser el correcto. Nota: se necesitan al menos 4 digitos luego del punto','Ingreso inválido',{ positionClass: 'toast-top-full-width'})
       return;
     }
     this.destinos.push({
@@ -115,6 +120,8 @@ export class AgregaDestinosComponent {
     this.destinos.sort((a,b) => a.destinos!.lugar.localeCompare(b.destinos!.lugar))
     
     this.pipelugares = this.nuevoLugar;
+    this.nuevoLugar = '';
+    this.nuevaArea = '';
   }
 
 }
