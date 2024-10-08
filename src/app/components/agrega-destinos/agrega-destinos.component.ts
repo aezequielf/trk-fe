@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Pcia } from 'src/app/models/pcia';
 
 @Component({
@@ -7,12 +8,13 @@ import { Pcia } from 'src/app/models/pcia';
   styleUrls: ['./agrega-destinos.component.css']
 })
 export class AgregaDestinosComponent {
-
+  constructor(private srvtoast : ToastrService){}
   destinos : Pcia[] = [];
 
   pipelugares = '';
 
   nuevoLugar = '';
+  nuevaArea = '';
 
   cargaDestinos(){    
     this.destinos.push(
@@ -84,12 +86,28 @@ export class AgregaDestinosComponent {
   }
 
   agregarDetino(){
+    if (!this.nuevoLugar.trim()){
+      this.srvtoast.show('No ingresaste ningún lugar');
+      return;
+    }
+    if (!this.nuevaArea.trim()){
+      this.srvtoast.show('No ingresaste coordenadas gegráficas');
+      return;
+    }
+    let [lat, long] = this.nuevaArea.trim().split(',');
+    lat = lat.trim();
+    long = long.trim();
+    let patron = /-?\d{2}\.\d{7}/
+    if( !patron.test(lat) || !patron.test(long)){
+      this.srvtoast.show('El formato de las cordenadas no parece ser el correcto')
+      return;
+    }
     this.destinos.push({
       id : "656e59c935a4cd190c93b4b7",
       nombre : "Córdoba",
       destinos : {
         id : "fffffffffff",
-        lugar: this.Titulo(this.nuevoLugar),
+        lugar: this.Titulo(this.nuevoLugar.trim()),
         area: "Area nueva"
       }
     })
