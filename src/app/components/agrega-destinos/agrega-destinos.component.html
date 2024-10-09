@@ -9,7 +9,7 @@
                                 <label for="pcia" class="ms-1">Provincias</label>
                                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" (change)="cargaDestinos()" [(ngModel)]="provincia" >
                                     <option selected value="0">Seleccione una provincia</option>
-                                    <option value="1">Córdoba</option>
+                                    <option *ngFor="let pcia of provincias" value="{{pcia.id}}">{{pcia.nombre}}</option>
                                 </select>    
                             </div>
                             <div class="alert alert-warning">

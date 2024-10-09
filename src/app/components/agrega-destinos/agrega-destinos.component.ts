@@ -1,14 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Pcia } from 'src/app/models/pcia';
+import { Destino, Pcia } from 'src/app/models/pcia';
+import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
+import { ServicioDestinosService } from 'src/app/services/servicio-destinos.service';
 
 @Component({
   selector: 'app-agrega-destinos',
   templateUrl: './agrega-destinos.component.html',
   styleUrls: ['./agrega-destinos.component.css']
 })
-export class AgregaDestinosComponent {
-  constructor(private srvtoast : ToastrService){}
+export class AgregaDestinosComponent implements OnInit {
+  constructor(private srvtoast : ToastrService, private srvcpcias: PciaServicioService, private srvcdetinos : ServicioDestinosService){}
+
+  provincias : Pcia[] = [];
+  
+  ngOnInit(): void {
+      this.srvcpcias.getPcias().subscribe({
+        next: rta => this.provincias = rta,
+        error: err =>this.srvtoast.error(`Problemas de conexión ${err}, intente más tarde`, 'Error Fatal'),
+        complete: () => {}
+        
+      });
+   
+    //console.log(`Se ejecuto ngoninit`);
+    this.provincia = '0';
+       
+  }
+
   destinos : Pcia[] = [];
   provincia = '0';
   pipelugares = '';
@@ -17,63 +35,11 @@ export class AgregaDestinosComponent {
   nuevaArea = '';
 
   cargaDestinos(){    
-    this.destinos.push(
-      {
-        "id":  "656e59c935a4cd190c93b4b7",
-        "nombre": "Córdoba",
-        "destinos": {
-          "id": "66edf32c45445b32dc8eb3dc",
-          "lugar": "Los Gigantes",
-          "area": "los gigantes"
-        }
-      },
-      {
-        "id": "656e59c935a4cd190c93b4b7",
-        "nombre": "Córdoba",
-        "destinos": {
-          "id": "66edf32c45445b32dc8eb3e2",
-          "lugar": "Santuario del Yuspe",
-          "area": "yuspe"
-        }
-      },
-      {
-        "id": "656e59c935a4cd190c93b4b7",
-        "nombre": "Córdoba",
-        "destinos": {
-          "id": "66edf32c45445b32dc8eb3e4",
-          "lugar": "Salinas Grandes",
-          "area": "salinas"
-        }
-      },
-      {
-        "id": "656e59c935a4cd190c93b4b7" ,
-        "nombre": "Córdoba",
-        "destinos": {
-          "id": "66edf32c45445b32dc8eb3dd",
-          "lugar": "Quebrada del Condorito",
-          "area": "quebrada del condor"
-        }
-      },
-      {
-        "id": "656e59c935a4cd190c93b4b7",
-        "nombre": "Córdoba",
-        "destinos": {
-          "id": "66edf32c45445b32dc8eb3e2",
-          "lugar": "Santuario del Yuspe",
-          "area": "yuspe"
-        }
-      },
-      {
-        "id": "656e59c935a4cd190c93b4b7",
-        "nombre": "Córdoba",
-        "destinos": {
-          "id": "66edf32c45445b32dc8eb3e4",
-          "lugar": "Salinas Grandes",
-          "area": "salinas"
-        }
-      }
-    ) ;
-  
+    this.srvcdetinos.getDestinosPcia(this.provincia).subscribe({
+      next : rta => this.destinos = rta,
+      error: err => this.srvtoast.error(`Error de conexión, intente más tarde: ${err}`, 'Erro Fatal')
+    })
+    
   }
 
   Titulo(frase: string): string {
@@ -107,18 +73,31 @@ export class AgregaDestinosComponent {
       this.srvtoast.show('El formato de las cordenadas no parece ser el correcto. Nota: se necesitan al menos 4 digitos luego del punto','Ingreso inválido',{ positionClass: 'toast-top-full-width'})
       return;
     }
-    this.destinos.push({
-      id : "656e59c935a4cd190c93b4b7",
-      nombre : "Córdoba",
+    const nuevoDestino: Pcia = {
+      id : this.provincia,
+      nombre : this.destinos[0].nombre,
       destinos : {
-        id : "fffffffffff",
+        id : "",
         lugar: this.Titulo(this.nuevoLugar.trim()),
-        area: "Area nueva"
+        area: this.nuevaArea
+      }
+    }
+    // cargo en db el destino
+    this.srvcdetinos.addDestinoPcia(nuevoDestino).subscribe({
+      next: rta => this.srvtoast.success(rta, 'Agregado Exitoso'),
+      error: err => this.srvtoast.error(err, 'Error crítico'),
+      complete: () => {
+        //lo agrego en el array actual si la paticion a la api se realizó correctamente
+        this.destinos.push(nuevoDestino)
+        this.destinos.sort((a,b) => a.destinos!.lugar.localeCompare(b.destinos!.lugar))
+
       }
     })
 
-    this.destinos.sort((a,b) => a.destinos!.lugar.localeCompare(b.destinos!.lugar))
+
     
+    //console.log(nuevoDestino);
+    // reinicio variables   
     this.pipelugares = this.nuevoLugar;
     this.nuevoLugar = '';
     this.nuevaArea = '';
