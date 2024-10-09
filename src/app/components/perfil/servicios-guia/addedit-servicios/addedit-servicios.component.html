@@ -1,11 +1,14 @@
+<!-- modal -->
+<div class="modal fade" id="modalDestinos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <app-agrega-destinos></app-agrega-destinos>
+</div>
 <div class="form-group text-start">
-
   <div *ngIf="pagina==1">
     <table class="table table-striped  mt-2">
       <tbody>
         <tr class="text-center">
           <td>
-            <label for="destino" class="ms-1">Filtra destino a agregar</label>
+            <label for="destino" class="ms-1">Filtra destinos</label>
           </td>
           <td>
             <input type="text" class="form-control" name="buscDestino" (keyup)="consutloDestinos()"  [(ngModel)]="pipedestinos">
@@ -21,6 +24,10 @@
               <option *ngIf="lugares.length < 1" value="" disabled> Debes escribir en el filtro de arriba</option>
               <option *ngFor="let lugar of lugares | lugaresPipe:pipedestinos" value="{{lugar.destinos!.id}}">{{ lugar.destinos?.lugar }} - {{lugar.nombre}}</option>
             </select>
+            <div class="mt-2">
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalDestinos" (click)="pipedestinos=''; lugares = [] ">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </button></div>
           </td>
         </tr>
         <tr class="text-center">

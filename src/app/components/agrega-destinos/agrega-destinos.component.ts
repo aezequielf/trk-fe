@@ -17,16 +17,14 @@ export class AgregaDestinosComponent implements OnInit {
   ngOnInit(): void {
       this.srvcpcias.getPcias().subscribe({
         next: rta => this.provincias = rta,
-        error: err =>this.srvtoast.error(`Problemas de conexión ${err}, intente más tarde`, 'Error Fatal'),
+        error: err => this.srvtoast.error(`Problemas de conexión ${err.statusText}, intente más tarde`, 'Error Fatal'),
         complete: () => {}
         
       });
-   
     //console.log(`Se ejecuto ngoninit`);
-    this.provincia = '0';
-       
+   
   }
-
+  cierra = true;
   destinos : Pcia[] = [];
   provincia = '0';
   pipelugares = '';
@@ -34,10 +32,27 @@ export class AgregaDestinosComponent implements OnInit {
   nuevoLugar = '';
   nuevaArea = '';
 
-  cargaDestinos(){    
+  resetVariables(){
+
+    setTimeout(() => {
+      this.provincia = '0';
+      this.cierra = true;
+      this.destinos = [];
+      this.pipelugares = '';
+      this.nuevoLugar = '';
+      this.nuevaArea = '';
+    }, 100 );
+
+  }
+
+  cargaDestinos(){   
+    if (this.provincia == '0'){
+      this.destinos = [];
+      return;
+    } 
     this.srvcdetinos.getDestinosPcia(this.provincia).subscribe({
       next : rta => this.destinos = rta,
-      error: err => this.srvtoast.error(`Error de conexión, intente más tarde: ${err}`, 'Erro Fatal')
+      error: err => this.srvtoast.error(`Error de conexión, intente más tarde: ${err.statusText}`, 'Error Fatal')
     })
     
   }
@@ -85,22 +100,19 @@ export class AgregaDestinosComponent implements OnInit {
     // cargo en db el destino
     this.srvcdetinos.addDestinoPcia(nuevoDestino).subscribe({
       next: rta => this.srvtoast.success(rta, 'Agregado Exitoso'),
-      error: err => this.srvtoast.error(err, 'Error crítico'),
+      error: err => this.srvtoast.error(`Error de conexión: ${err.statusText}. Intente más tarde.`, 'Error crítico'),
       complete: () => {
         //lo agrego en el array actual si la paticion a la api se realizó correctamente
         this.destinos.push(nuevoDestino)
         this.destinos.sort((a,b) => a.destinos!.lugar.localeCompare(b.destinos!.lugar))
-
+        this.pipelugares = this.nuevoLugar;
+        // reinicio variables 
+        this.nuevoLugar = '';
+        this.nuevaArea = '';
       }
     })
-
-
-    
-    //console.log(nuevoDestino);
-    // reinicio variables   
-    this.pipelugares = this.nuevoLugar;
-    this.nuevoLugar = '';
-    this.nuevaArea = '';
   }
 
 }
+
+

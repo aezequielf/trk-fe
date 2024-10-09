@@ -1,4 +1,7 @@
-<div class="container mt-5">
+<div class="modal-dialog  modal-dialog-centered">
+  <div class="modal-content mi-modal">
+    <div class="modal-body">
+<div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="card">
@@ -7,19 +10,19 @@
                             <span class="titulo" id="titulo"> Agregar un nuevo destino</span>
                             <div class="form-group text-start">
                                 <label for="pcia" class="ms-1">Provincias</label>
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" (change)="cargaDestinos()" [(ngModel)]="provincia" >
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" (change)="cargaDestinos()" [(ngModel)]="provincia" [disabled]="provincia != '0' && pipelugares.length > 0" >
                                     <option selected value="0">Seleccione una provincia</option>
                                     <option *ngFor="let pcia of provincias" value="{{pcia.id}}">{{pcia.nombre}}</option>
                                 </select>    
                             </div>
-                            <div class="alert alert-warning">
+                            <div class="alert alert-warning" *ngIf="cierra" (click)="cierra=false">
                                 Es importante que no se carguen destinos duplicados para que las búsquedas que hagan futuros clientes te encuentren.
-                                 Asgurate que lo que vas a cargar no de resultados en la búsqueda de abajo. Comprubea que el destino no esté listado de otra manera.
+                                Asgurate que lo que vas a cargar no de resultados en la búsqueda de abajo. Comprubea que el destino no esté listado de otra manera.
+                                <div class="text-end"><button class="btn btn-secondary">Cerrar</button></div>
                             </div>
-         
                             <div class="d-flex justify-content-evenly align-items-center text-start">
                                 <label for="travesia" class="ms-1 me-2">Búsqueda</label>
-                                <input type="text" class="form-control" placeholder="Ingrese palabra clave" id="travesia" name="travesia" [(ngModel)]="pipelugares" >
+                                <input type="text" class="form-control" placeholder="Ingrese palabra clave" id="travesia" name="travesia" [(ngModel)]="pipelugares" [disabled]="provincia=='0'">
                              </div>
                             <div class="alert alert-info text-center mt-2" *ngIf="destinos.length < 1">
                               No se encontraron resultados
@@ -55,7 +58,9 @@
                                   <tr class="text-center">     
                                     <td class="text-center" colspan="2" ><button class="btn btn-info" [disabled]="(destinos | lugaresPipe:pipelugares).length > 0 || provincia == '0'" (click)="agregarDetino()">Agregar</button></td>
                                   <tr class="text-center">     
-                                    <td colspan="3"><button class="btn btn-secondary" >Volver</button></td>
+                                    <td colspan="3">
+                                      <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" (click)="resetVariables()">Cerrar</button>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -66,4 +71,6 @@
             </div>
         </div>
     </div>
-    
+  </div>
+</div>
+</div>  
