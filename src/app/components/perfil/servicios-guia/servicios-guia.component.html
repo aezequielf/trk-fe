@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-body text-center mi-card">
     <span class="titulo"> Prestador : {{ guia?.empresa }}</span>
-    <div *ngIf="!agregatravesia && !editatravesia" class="form-group text-start">
-      <table class="table table-striped  mt-2">
+    <div *ngIf="!agregatravesia && !editatravesia && !copiatravesia" class="form-group text-start">
+      <table class="table table-striped  mt-2"> 
         <thead>
           <tr>
             <th class="text-center" colspan="3">
@@ -16,9 +16,11 @@
             <td colspan="2"> <div class="alert alert-info text-center"> No se encuentras travesias para mostrar </div></td>
           </tr>
           <tr *ngFor="let travesia of travesias; let indice = index"   class="text-center">
-            <td>{{travesia.lugar}}</td>
-            <td>{{travesia.fecha | date: 'dd/MM/yyyy' }}</td>
-            <td class="text-end"><button class="btn btn-info" (click)="editar(indice)">Editar </button></td>
+            <td class="align-middle">{{travesia.lugar}}</td>
+            <td class="align-middle">{{travesia.fecha | date: 'dd/MM/yyyy' }}</td>
+            <td class="text-center"><button class="btn btn-info btn-xs" (click)="editar(indice)">Editar </button>
+              <button class="btn btn-secondary btn-xs mt-1" (click)="copiar(indice)" >Copiar </button>
+              <button class="btn btn-danger btn-xs mt-1" (click)="borrar(indice)" > Borrar </button></td>
           </tr>
           <tr class="text-center">
             <td colspan="3"></td>
@@ -28,15 +30,21 @@
     </div>
 <!-- componente para agregar o editar travesia  -->
     <div *ngIf="agregatravesia" class="form-group text-center">
-      <span *ngIf="agregatravesia" class="titulo"> Nueva Travesía</span>
+      <span class="titulo"> Nueva Travesía</span>
       <div class="form-group text-start">
         <app-addedit-servicios (cancelaCarga)=" agregatravesia = editatravesia = false " (ActualizaTravesias)="ngOnInit()" [datosguia]="datosanexos" ></app-addedit-servicios>
       </div>
     </div>
     <div *ngIf="editatravesia" class="form-group text-center">
-      <span *ngIf="editatravesia"class="titulo"> Editar Travesía</span>
+      <span class="titulo"> Editar Travesía</span>
       <div class="form-group text-start">
         <app-addedit-servicios (cancelaCarga)=" agregatravesia = editatravesia = false " (ActualizaTravesias)="ngOnInit()" [in_travesia]="unatravesia" ></app-addedit-servicios>
+      </div>
+    </div>
+    <div *ngIf="copiatravesia" class="form-group text-center">
+      <span class="titulo"> Copiar-Reeditar Travesía</span>
+      <div class="form-group text-start">
+        <app-addedit-servicios (cancelaCarga)=" copiatravesia = false " (ActualizaTravesias)="ngOnInit()" [in_travesia]="unatravesia" [datosguia]="datosanexos"></app-addedit-servicios>
       </div>
     </div>
 <!-- fin del componente -->

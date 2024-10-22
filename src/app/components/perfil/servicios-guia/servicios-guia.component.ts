@@ -16,7 +16,7 @@ export class ServiciosGuiaComponent implements OnInit {
   unatravesia! : Travesia;
   agregatravesia = false;
   editatravesia = false;
-
+  copiatravesia = false;
 
   @Input() in_guia? : InterfaceGuia;
 
@@ -53,8 +53,18 @@ export class ServiciosGuiaComponent implements OnInit {
   editar(indice: number){
     this.editatravesia = true;
     this.unatravesia =this.travesias![indice];
-    
   }
+
+  copiar( indice: number){
+    this.copiatravesia = true;
+    this.unatravesia =this.travesias![indice];
+    this.datosanexos.accion = 'nuevo' 
+  }
+
+  borrar( indice: number){
+    alert(`Borro la numero ${indice}`)
+  }
+
   ocultoServicios(){
     this.Ocultar.emit();
   }

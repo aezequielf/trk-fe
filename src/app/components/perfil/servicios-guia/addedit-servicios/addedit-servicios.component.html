@@ -6,7 +6,7 @@
   <div *ngIf="pagina==1">
     <table class="table table-striped  mt-2">
       <tbody>
-        <tr class="text-center">
+        <tr *ngIf="datosguia.accion != 'editar'" class="text-center">
           <td>
             <label for="destino" class="ms-1">Filtra destinos</label>
           </td>
@@ -18,13 +18,14 @@
           <td>
             <label for="destino" class="ms-1">Destino</label>
           </td>
+          <td *ngIf="datosguia.accion == 'editar'">{{travesia.lugar}}</td>
           <td>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino" name="destino" (change)="setearDestinos()" [(ngModel)]="indiceDestino">
+            <select *ngIf="datosguia.accion != 'editar'" class="form-select form-select-sm" aria-label=".form-select-sm example" id="destino" name="destino" (change)="setearDestinos()" [(ngModel)]="indiceDestino">
               <option selected value="-1">Seleccione el destino</option>
               <option *ngIf="lugares.length < 1" value="" disabled> Debes escribir en el filtro de arriba</option>
               <option *ngFor="let lugar of lugares | lugaresPipe:pipedestinos" value="{{lugar.destinos!.id}}">{{ lugar.destinos?.lugar }} - {{lugar.nombre}}</option>
             </select>
-            <div class="mt-2">
+            <div *ngIf="datosguia.accion != 'editar'" class="mt-2">
               <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalDestinos" (click)="pipedestinos=''; lugares = [] ">
                 <i class="fa-solid fa-map-location-dot"></i>
               </button></div>
@@ -41,10 +42,10 @@
             </select>
           </td>
         </tr>
-        <tr class="text-center align-middle">
+        <tr *ngIf="datosguia.accion != 'editar'" class="text-center align-middle" >
           <td><label for="fecha" class="ms-1">Fechas</label></td>
           <td>
-            <div class="d-flex justify-content-between" *ngIf="datosguia.accion != 'editar'">
+            <div class="d-flex justify-content-between" >
               <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="nuevaFecha">
               <button class="btn btn-light" (click)="agregaFechas()"><i
                   class="fa-solid fa-calendar-plus i-cal-agrega"></i></button>
@@ -54,9 +55,9 @@
         <tr class="text-center align-middle" *ngFor="let unafecha of fechas; let indice = index">
           <td>Fecha</td>
           <td>
-            <div class="d-flex justify-content-evenly align-items-center">
+            <div  class="d-flex justify-content-evenly align-items-center">
               {{ unafecha | date: 'dd/MM/yyyy'}}
-              <button class="btn btn-light" (click)="quitaFechas(indice)"> <i
+              <button *ngIf="datosguia.accion != 'editar'" class="btn btn-light" (click)="quitaFechas(indice)"> <i
                   class="fa-solid fa-calendar-minus i-cal-borra"></i> </button>
             </div>
           </td>

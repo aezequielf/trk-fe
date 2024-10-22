@@ -22,7 +22,9 @@ export class AddeditServiciosComponent implements OnInit{
     if (this.in_travesia != undefined){
       this.travesia = this.in_travesia;
       this.nuevaFecha = this.tuboFecha.transform(this.travesia.fecha ,'yyyy-MM-dd')!;
+      this.fechas.push(this.nuevaFecha);
     }
+    // console.log(this.travesia);
     
   }
   
