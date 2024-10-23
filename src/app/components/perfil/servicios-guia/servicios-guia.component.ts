@@ -18,6 +18,10 @@ export class ServiciosGuiaComponent implements OnInit {
   editatravesia = false;
   copiatravesia = false;
 
+  titulo = '';
+  mensaje = '';
+  confirma = false;
+
   @Input() in_guia? : InterfaceGuia;
 
   guia?: InterfaceGuia;
@@ -62,7 +66,10 @@ export class ServiciosGuiaComponent implements OnInit {
   }
 
   borrar( indice: number){
-    alert(`Borro la numero ${indice}`)
+    this.mensaje = `Está por eliminar la travesía de ${this.travesias![indice].lugar}`;
+    this.titulo = 'Confirme eliminación';
+    console.log(this.mensaje, this.titulo);
+    
   }
 
   ocultoServicios(){

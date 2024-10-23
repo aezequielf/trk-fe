@@ -25,6 +25,7 @@ import { DatePipe } from '@angular/common';
 import { ValidarguiaComponent } from './components/perfil/guia/validarguia/validarguia.component';
 import { LugaresPipePipe } from './pipes/lugares-pipe.pipe';
 import { AgregaDestinosComponent } from './components/agrega-destinos/agrega-destinos.component';
+import { ConfirmComponentComponent } from './components/modal/confirm-component/confirm-component.component';
 
 
 
@@ -43,7 +44,8 @@ import { AgregaDestinosComponent } from './components/agrega-destinos/agrega-des
     AddeditServiciosComponent,
     ValidarguiaComponent,
     LugaresPipePipe,
-    AgregaDestinosComponent
+    AgregaDestinosComponent,
+    ConfirmComponentComponent
   ],
   imports: [
     BrowserModule,

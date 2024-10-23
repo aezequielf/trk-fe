@@ -18,9 +18,15 @@
           <tr *ngFor="let travesia of travesias; let indice = index"   class="text-center">
             <td class="align-middle">{{travesia.lugar}}</td>
             <td class="align-middle">{{travesia.fecha | date: 'dd/MM/yyyy' }}</td>
-            <td class="text-center"><button class="btn btn-info btn-xs" (click)="editar(indice)">Editar </button>
-              <button class="btn btn-secondary btn-xs mt-1" (click)="copiar(indice)" >Copiar </button>
-              <button class="btn btn-danger btn-xs mt-1" (click)="borrar(indice)" > Borrar </button></td>
+            <td class="align-middle">
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-info btn-xs me-1" (click)="editar(indice)"><i class="fa-regular fa-pen-to-square"></i> </button>
+                <button class="btn btn-secondary btn-xs me-1" (click)="copiar(indice)"><i class="fa-regular fa-copy"></i> </button>
+                <button type="button" class="btn btn-danger btn-xs" data-bs-toggle="modal" data-bs-target="#modalConfirm" (click)="borrar(indice)" >
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
           </tr>
           <tr class="text-center">
             <td colspan="3"></td>
@@ -52,6 +58,10 @@
       <button class="btn btn-primary" (click)="ocultoServicios()">Volver</button>
     </div>
   </div>
+</div>
+<!-- modal confirm elimina -->
+<div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-confirm-component></app-confirm-component>
 </div>
 
 
