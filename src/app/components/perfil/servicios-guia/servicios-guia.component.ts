@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { InterfaceGuia } from 'src/app/models/interface-guia';
 import { Travesia } from 'src/app/models/interfaces-travesia';
 import { TravesiaServicioService } from 'src/app/services/travesia-servicio.service';
@@ -10,7 +11,7 @@ import { TravesiaServicioService } from 'src/app/services/travesia-servicio.serv
 })
 export class ServiciosGuiaComponent implements OnInit {
 
-  constructor (private traveserv : TravesiaServicioService){}
+  constructor (private traveserv : TravesiaServicioService, private toastmsj : ToastrService){}
 
   travesias? : Travesia []
   unatravesia! : Travesia;
@@ -65,13 +66,18 @@ export class ServiciosGuiaComponent implements OnInit {
     this.datosanexos.accion = 'nuevo' 
   }
 
-  borrar( indice: number){
+  borrar(indice: number){
+    this.unatravesia = this.travesias![indice];
     this.mensaje = `Está por eliminar la travesía de ${this.travesias![indice].lugar}`;
-    this.titulo = 'Confirme eliminación';
-    console.log(this.mensaje, this.titulo);
-    
+    this.titulo = '¿ Confirme eliminación ?';
   }
 
+  confirmaBorrado(){
+    this.traveserv.borra_travesia(this.unatravesia.id).subscribe({
+      next: rta => this.toastmsj.warning(rta,'Eliminacion Confirmada'),
+      error: err => console.log(err),
+      complete: () => this.ngOnInit()     })
+  }
   ocultoServicios(){
     this.Ocultar.emit();
   }

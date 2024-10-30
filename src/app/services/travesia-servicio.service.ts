@@ -26,4 +26,8 @@ export class TravesiaServicioService {
   actualiza_travesia( travesia: Travesia): Observable<Travesia>{
     return this.curl.put<Travesia>(`${this.url}/actualiza`, travesia)
   }
+
+  borra_travesia(id: string): Observable<string>{
+    return this.curl.delete<string>(`${this.url}/del/${id}`)
+  }
 }

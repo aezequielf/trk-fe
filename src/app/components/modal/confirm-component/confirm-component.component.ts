@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-confirm-component',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class ConfirmComponentComponent {
 
+  @Input() mensaje = "titulo predeterminado";
+  @Input() titulo = "mensaje predeterminado !!!";
+  @Output() confirma = new EventEmitter<boolean>();
+
+  confirmacion(){
+    this.confirma.emit(true);
+  }
 }
