@@ -15,13 +15,13 @@
           <tr *ngIf="travesias?.length == 0  "   class="text-center">
             <td colspan="2"> <div class="alert alert-info text-center"> No se encuentras travesias para mostrar </div></td>
           </tr>
-          <tr *ngFor="let travesia of travesias; let indice = index"   class="text-center">
+          <tr *ngFor="let travesia of travesias! | paginate: { itemsPerPage: 6, currentPage: p } ; let indice = index"   class="text-center">
             <td class="align-middle">{{travesia.lugar}}</td>
             <td class="align-middle">{{travesia.fecha | date: 'dd/MM/yyyy' }}</td>
             <td class="align-middle">
               <div class="d-flex justify-content-between">
-                <button class="btn btn-info btn-xs me-1" (click)="editar(indice)"><i class="fa-regular fa-pen-to-square"></i> </button>
-                <button class="btn btn-secondary btn-xs me-1" (click)="copiar(indice)"><i class="fa-regular fa-copy"></i> </button>
+                <button class="btn btn-info btn-xs" (click)="editar(indice)"><i class="fa-regular fa-pen-to-square"></i> </button>
+                <button class="btn btn-secondary btn-xs ms-1 me-1" (click)="copiar(indice)"><i class="fa-regular fa-copy"></i> </button>
                 <button type="button" class="btn btn-danger btn-xs" data-bs-toggle="modal" data-bs-target="#modalConfirm" (click)="borrar(indice)" >
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
@@ -29,7 +29,9 @@
             </td>
           </tr>
           <tr class="text-center">
-            <td colspan="3"></td>
+            <td colspan="3">
+              <pagination-controls (pageChange)="p = $event" previousLabel="Ant" nextLabel="Sig"></pagination-controls>
+            </td>
           </tr>
         </tbody>
       </table>

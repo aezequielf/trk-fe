@@ -13,6 +13,8 @@ export class ServiciosGuiaComponent implements OnInit {
 
   constructor (private traveserv : TravesiaServicioService, private toastmsj : ToastrService){}
 
+  p!: number;
+
   travesias? : Travesia []
   unatravesia! : Travesia;
   agregatravesia = false;
