@@ -26,13 +26,15 @@
                         <span class="titulo" id="titulo"> Encuentra</span>
                         <div class="form-group text-start">
                             <label for="pcia" class="ms-1">Provincias</label>
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" [(ngModel)]="pcia" (change)="resetLista()" >
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="pcia" name="pcia" [(ngModel)]="pcia" (change)="resetLista()">
                                 <option selected value="0">Seleccione una provincia</option>
                                 <option *ngFor="let unapcia of listaPcia " value={{unapcia.id}}>{{unapcia.nombre}}</option>
                             </select>    
                         </div>
                         <div class="form-group text-start mt-3">
-                            <label for="fecha" class="ms-1">Fecha</label>
+                            <div class="row text-center">
+                              <label for="fecha" class="mb-2">Fecha</label>
+                            </div>
                             <div class="row">
                               <div class="col col-sm-3 col-lg-5 text-center">Todas 
                                 <input type="checkbox" name="todas" id="todas" [checked]="fechasTodas" (click)="todasFechas()">
@@ -55,9 +57,9 @@
                         <table class="table table-striped mt-2" *ngIf="lista.length > 0" >
                             <tbody>
                               <tr *ngFor="let traves of lista | destinos:travesia :fecha">     
-                                <td>{{traves._id}}</td>
+                                <td>{{traves.lugar}}</td>
                                 
-                                <td><button class="btn btn-info" (click)="toggle_form_lista(traves.destino_id,traves._id)">Detalle</button></td>
+                                <td><button class="btn btn-info" (click)="toggle_form_lista(traves.destino_id,traves.lugar)">Detalle</button></td>
                               </tr>
                               <tr>
 

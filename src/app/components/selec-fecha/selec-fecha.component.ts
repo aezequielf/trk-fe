@@ -2,7 +2,8 @@ import { Component, Injectable, Input, OnChanges, SimpleChanges, EventEmitter, O
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct, NgbDatepickerI18n, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { ServicioDestinosService } from 'src/app/services/servicio-destinos.service';
+import { TravesiaServicioService } from 'src/app/services/travesia-servicio.service';
+
 
 const I18N_VALUES = {
   es: {
@@ -48,7 +49,7 @@ export class NgbdDatepickerI18n implements OnChanges{
   @Output() emitoFecha = new EventEmitter<string>();
   fechas: misFechas[] = [];
 
-  constructor(private calendario: NgbCalendar, private servicioFechas: ServicioDestinosService){
+  constructor(private calendario: NgbCalendar,  private ServTravFech : TravesiaServicioService){
     this.desde = calendario.getToday();
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,7 +58,7 @@ export class NgbdDatepickerI18n implements OnChanges{
       this.inicial= true;
     }else if (changes['pcia_id'] ){
       this.inicial= false;
-      this.servicioFechas.getdestinosfechas(this.pcia_id).subscribe({
+      this.ServTravFech.listaTravesiasFecha(this.pcia_id).subscribe({
         next: rta => this.fechas = rta,
         error: err => console.log(err),
         complete: () => {

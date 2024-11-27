@@ -30,13 +30,13 @@ export class UsuarioService {
   }
   usuarioActual(): Observable<any>{
     if (localStorage.getItem('tpointT') === null)
-      return this.curl.get(`${this.url}/yo`);
+      return this.curl.get<any>(`${this.url}/yo`);
  // const TOKEN = localStorage.getItem('tpointT');
     const HTTPHEAD = new HttpHeaders({
         'Authorization' : `Bearer ${localStorage.getItem('tpointT')}`
       })
     
-    return this.curl.get(`${this.url}/yo`,{ headers: HTTPHEAD});
+    return this.curl.get<any>(`${this.url}/yo`,{ headers: HTTPHEAD});
   }
   
   validarGuia(id : string, DATOS: DatosValidar): Observable<Validacion>{

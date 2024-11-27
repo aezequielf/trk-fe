@@ -25,3 +25,16 @@ export class Credenciales{
     }
 
 }
+
+export interface Usuario{
+    id: string,
+    nombre: string,
+    apellido: string,
+    email: string,
+    esguia: boolean,
+    creado: string,
+    empresa: string | null,
+    cel: string | null,
+    celalt: string | null,
+    validacion: string | null
+}

@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Travesia } from '../models/interfaces-travesia';
 
 @Pipe({
   name: 'destinos'
 })
 export class DestinosPipe implements PipeTransform {
 
-  transform(value: any[], ...args: string[]): any {
+  transform(value: Travesia[], ...args: string[]): any {
     const [lugarfiltro, fecha] = args
     const [anio, mes, dia] = fecha.split('-')
     const resultado = [];
@@ -13,7 +14,7 @@ export class DestinosPipe implements PipeTransform {
     if (fecha == ''){
       if (lugarfiltro === '' || lugarfiltro.length < 3) return value;
       for (const destino of value){
-        if (destino._id.toLocaleLowerCase().indexOf(lugarfiltro.toLocaleLowerCase()) > -1 ){
+        if (destino.lugar.toLocaleLowerCase().indexOf(lugarfiltro.toLocaleLowerCase()) > -1 ){
           resultado.push(destino);
         }
       }

@@ -30,4 +30,25 @@ export class TravesiaServicioService {
   borra_travesia(id: string): Observable<string>{
     return this.curl.delete<string>(`${this.url}/del/${id}`)
   }
+
+  listarTravesiasPciaFecha(id: string, fecha: string): Observable<any>{
+    return this.curl.get(`${this.url}/pcia/${id}/${fecha}`);
+  }
+
+  listarTravesiasPciaTodas(id: string): Observable<any>{
+    return this.curl.get(`${this.url}/pcia/${id}/todas`);
+  }
+  
+  listarTRavesiaxDestino(id : string): Observable<Array<Travesia>>{
+    return this.curl.get<Array<Travesia>>(`${this.url}/lista/${id}`);
+  }
+
+  listaUnaTravesia(id_destino: string): Observable<any>{
+    return this.curl.get(`${this.url}/${id_destino}`);
+  }
+
+  listaTravesiasFecha(id: string): Observable<any>{
+    return this.curl.get(`${this.url}/pcia/${id}/fechas`);
+  }
+
 }

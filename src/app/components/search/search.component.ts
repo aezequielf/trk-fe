@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Pcia, DetalleDetino } from 'src/app/models/pcia';
+import { Pcia } from 'src/app/models/pcia';
 import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
-import { ServicioDestinosService } from 'src/app/services/servicio-destinos.service';
+import { TravesiaServicioService } from 'src/app/services/travesia-servicio.service';
 import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
+import { Travesia } from 'src/app/models/interfaces-travesia';
 
 export interface Lugar{
   lugar : string[],
@@ -25,9 +26,9 @@ export class SearchComponent implements OnInit {
     tituloModal = '';
     pcia: string = '0';
     travesia: string = '';
-    lista: object[] = [];
-    listaDetalles: DetalleDetino[] = [];
-    muestraDetalle!: DetalleDetino;
+    lista: Travesia[] = [];
+    listaDetalles: Travesia[] = [];
+    muestraDetalle!: Travesia;
     fechafull: Date = new Date()
     //fecha: string = this.fechafull.getFullYear()+'-'+(this.fechafull.getMonth()+1)+'-'+this.fechafull.getDate()
     fecha: string = '';
@@ -36,7 +37,7 @@ export class SearchComponent implements OnInit {
     fechasTodas = false;
     nom_dest = '';
     
-  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioDestino : ServicioDestinosService){
+  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioTRavesia : TravesiaServicioService){
   }
   ngOnInit(): void {
     this.obtenerPcias();
@@ -73,7 +74,7 @@ export class SearchComponent implements OnInit {
       this.fechasTodas = false;
     }
     if (this.fechasTodas ){
-      this.ServicioDestino.getdestinostodos(this.pcia).subscribe({
+      this.ServicioTRavesia.listarTravesiasPciaTodas(this.pcia).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
@@ -82,7 +83,7 @@ export class SearchComponent implements OnInit {
       this.getcomp = true;
       this.lista =[];
     }else{
-      this.ServicioDestino.getdestinos(this.pcia,this.fecha2).subscribe({
+      this.ServicioTRavesia.listarTravesiasPciaFecha(this.pcia,this.fecha2).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
@@ -95,18 +96,19 @@ export class SearchComponent implements OnInit {
     this.getcomp = false;
     this.lista = [];
     if (this.fecha2 != ''){
-      this.ServicioDestino.getdestinos(this.pcia, this.fecha2).subscribe({
+      this.ServicioTRavesia.listarTravesiasPciaFecha(this.pcia, this.fecha2).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
       });
     }else if(this.fechasTodas){
-      this.ServicioDestino.getdestinostodos(this.pcia).subscribe({
+      this.ServicioTRavesia.listarTravesiasPciaTodas(this.pcia).subscribe({
         next : rta => this.lista = rta,
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
       });
     }
+    this.travesia='';
   }
 
   // travesias = {
@@ -154,7 +156,7 @@ export class SearchComponent implements OnInit {
     this.verform = !this.verform
     this.verlista = !this.verlista
     if (destino_id != ''){
-      this.ServicioDestino.getdetallesdestino(destino_id).subscribe({
+      this.ServicioTRavesia.listarTRavesiaxDestino(destino_id).subscribe({
         next : rta => {this.listaDetalles = rta; this.listaDetalles.forEach((elemento)=> {elemento.fecha = new Date(elemento.fecha).toLocaleDateString()})},
         error: err => console.log(err),
         complete: () => {this.getcomp = true;}
