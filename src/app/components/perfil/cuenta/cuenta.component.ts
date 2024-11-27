@@ -20,7 +20,7 @@ export class CuentaComponent{
   guia : InterfaceGuia = {
     id: '',
     esguia: false,
-    empresa : '',
+    empresa : '' ,
     cel: '',
     celalt: '',
     validacion: []
