@@ -6,10 +6,10 @@
                     <span class="titulo"> Mi perfil</span>
                     
                         <div class="form-group text-start">
-                            {{nombre}} {{apellido}}
+                            {{usuario.nombre}} {{usuario.apellido}}
                         </div>
                         <div class="form-group text-start">
-                            {{email}}
+                            {{usuario.email}}
                         </div>
                         <span class="titulo mt-2 mb-2"> Teavesías</span>
                         <div class="form-group text-start">
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-   <app-guia *ngIf="esguia" [edita]="edita" [in_guia]="guia" [email]="email" (aGuia)="edita = true"></app-guia>
+   <app-guia *ngIf="esguia" [edita]="edita" [in_guia]="guia" [email]="usuario.email" (aGuia)="edita = true"></app-guia>
 </div>
    
    

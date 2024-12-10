@@ -1,3 +1,5 @@
+import { Validacion } from "./interface-guia";
+
 export class Persona{
     id?: string;
     nombre: string;
@@ -14,7 +16,6 @@ export class Persona{
     }
 
 }
-
 
 export class Credenciales{
     email: string;
@@ -36,5 +37,10 @@ export interface Usuario{
     empresa: string | null,
     cel: string | null,
     celalt: string | null,
-    validacion: string | null
+    validacion: Validacion [] | null
 }
+
+export interface SessionID{
+    token : string,
+    type: string
+  }

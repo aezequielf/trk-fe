@@ -21,7 +21,6 @@ export class GuiaPerfilComponent {
   @Input() in_guia : InterfaceGuia = {
     id: '',
     esguia: true,
-
     empresa : '',
     cel :'',
     celalt : '',
