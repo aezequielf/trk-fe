@@ -36,10 +36,14 @@ export class SearchComponent implements OnInit {
     fechaTmp = '';
     fechasTodas = false;
     nom_dest = '';
+    tempo? : string | null;
     
   constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioTRavesia : TravesiaServicioService){
   }
   ngOnInit(): void {
+    this.tempo = localStorage.getItem('tpointT');
+    console.log(this.tempo);
+    
     this.obtenerPcias();
   }
   
