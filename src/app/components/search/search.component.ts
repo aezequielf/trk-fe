@@ -4,6 +4,7 @@ import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
 import { TravesiaServicioService } from 'src/app/services/travesia-servicio.service';
 import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
 import { Travesia } from 'src/app/models/interfaces-travesia';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 export interface Lugar{
   lugar : string[],
@@ -37,16 +38,25 @@ export class SearchComponent implements OnInit {
     fechasTodas = false;
     nom_dest = '';
     tempo? : string | null;
+    nombre: string = '';
     
-  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioTRavesia : TravesiaServicioService){
+  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioTRavesia : TravesiaServicioService, private servUsuario: UsuarioService){
   }
   ngOnInit(): void {
-    this.tempo = localStorage.getItem('tpointT');
-    console.log(this.tempo);
+
+    // this.servUsuario.usuarioActual().subscribe({
+    //   next: rta => this.nombre = rta.nombre,
+    //   error : () => this.servUsuario.estadoUsuarioActual.set(null)
+    //  })
+    console.log(this.servUsuario.estadoUsuarioActual(),'dentro del search component');
     
+    if (this.servUsuario.estadoUsuarioActual())
+      this.nombre = this.servUsuario.estadoUsuarioActual()!.nombre
     this.obtenerPcias();
+
   }
   
+
   obtenerPcias(){
     this.servicioPcia.getPcias().subscribe({
       next: rta => { this.listaPcia = rta},

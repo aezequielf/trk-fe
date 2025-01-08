@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul *ngIf="srvUs.estadoUsuarioActual() === null" class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-current="page" routerLink="/">Home</a>
           </li>
@@ -15,6 +15,14 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarNav" routerLink="/register">Registrarse</a>
+          </li>
+        </ul>
+        <ul *ngIf="srvUs.estadoUsuarioActual()" class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-current="page" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarNav"  routerLink="/perfil">Mi perfil</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarNav"  (click)="logout()" routerLink="/login">Salir</a>

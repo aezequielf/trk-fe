@@ -42,13 +42,14 @@ export class LoginComponent {
                     localStorage.setItem('tpointT', rta.token);
                     },
       error: err => {this.msjtoast.error(err.error.detail);},
-      complete: () => {this.next = this.ServicioLoginNext.siguiente;
-                      if (this.next != null){
-                        this.ServicioLoginNext.enviarSiguienteLogin(null);
-                        this.enrutar.navigate(['/'+this.next]);
-                      } else {
-                        this.enrutar.navigate(['/perfil']);
-                      }}
+      complete: () => {
+      this.next = this.ServicioLoginNext.siguiente;
+      if (this.next != null){
+        this.ServicioLoginNext.enviarSiguienteLogin(null);
+        this.enrutar.navigate(['/'+this.next]);
+      } else {
+        this.enrutar.navigate(['/perfil']);
+      }}
     })
   }
 }

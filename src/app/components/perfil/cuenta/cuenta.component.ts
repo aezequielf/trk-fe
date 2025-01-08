@@ -24,7 +24,7 @@ export class CuentaComponent{
     validacion:  null
   } ;
   edita = false;
-  constructor(private servicioUsuario : UsuarioService, private enrutar: Router){
+  constructor(private servicioUsuario : UsuarioService, private enrutar: Router, private servicioU: UsuarioService){
 
   }
   guia : InterfaceGuia = {
@@ -38,7 +38,7 @@ export class CuentaComponent{
   
   ngOnInit(){
     this.servicioUsuario.usuarioActual().subscribe({
-      next: rta => {this.usuario = rta;
+      next: rta => {this.usuario = rta; this.servicioU.estadoUsuarioActual.set(rta);
                     if (this.usuario.esguia != null){
                       this.esguia = this.guia.esguia = rta.esguia;
                       this.guia.empresa = rta.empresa!; this.guia.validacion = rta.validacion!;

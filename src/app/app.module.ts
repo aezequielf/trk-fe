@@ -16,7 +16,7 @@ import { GuiaPerfilComponent } from './components/perfil/guia/guia.perfil.compon
 import { DestinosPipe } from './pipes/destinos.pipe';
 import { RecorridoComponent } from './components/recorrido/recorrido.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDatepickerI18n } from './components/selec-fecha/selec-fecha.component';
 import { ServiciosGuiaComponent } from './components/perfil/servicios-guia/servicios-guia.component';
@@ -26,6 +26,7 @@ import { ValidarguiaComponent } from './components/perfil/guia/validarguia/valid
 import { LugaresPipePipe } from './pipes/lugares-pipe.pipe';
 import { AgregaDestinosComponent } from './components/agrega-destinos/agrega-destinos.component';
 import { ConfirmComponentComponent } from './components/modal/confirm-component/confirm-component.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -62,7 +63,11 @@ import { ConfirmComponentComponent } from './components/modal/confirm-component/
     NgbdDatepickerI18n,
     NgxPaginationModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

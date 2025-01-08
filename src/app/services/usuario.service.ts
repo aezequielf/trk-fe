@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona, Credenciales, Usuario, SessionID } from '../models/usuario';
@@ -13,6 +13,8 @@ export class UsuarioService {
 
   url =  `${environment.apiUrl}usuarios`;
 
+  estadoUsuarioActual = signal<Usuario | null | undefined>(undefined);
+
   constructor(private curl: HttpClient) { }
 
   agregoUsuario( usuairo: Persona): Observable<string>{
@@ -26,18 +28,12 @@ export class UsuarioService {
   validarUsuario( credenciales: Credenciales): Observable<SessionID>{
     return this.curl.post<SessionID>(`${this.url}/login`, credenciales);
   }
+
   usuarioActual(): Observable<Usuario>{
-    if (localStorage.getItem('tpointT') === null)
       return this.curl.get<Usuario>(`${this.url}/yo`);
- // const TOKEN = localStorage.getItem('tpointT');
-    const HTTPHEAD = new HttpHeaders({
-        'Authorization' : `Bearer ${localStorage.getItem('tpointT')}`
-      })
-    
-    return this.curl.get<Usuario>(`${this.url}/yo`,{ headers: HTTPHEAD});
   }
 
-    
+     
   validarGuia(id : string, DATOS: DatosValidar): Observable<Validacion>{
     return this.curl.put<Validacion>(`${this.url}/${id}/valida_guia`, DATOS);
   }
