@@ -1,4 +1,5 @@
 <div class="container mt-5">
+  <div class="d-flex justify-content-center titulo mb-1" *ngIf="miusuario.nombre != ''"><h2>{{miusuario.nombre}}</h2></div>
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <div class="card">
@@ -17,18 +18,38 @@
                             <tr class="text-justify">     
                               <td colspan="2">
                                 <ul class="list-group">
-                                    <li class="list-group-item">Guía:  Senderos del mundo</li>
-                                    <li class="list-group-item">Fecha: 17-11-2023</li>
-                                    <li class="list-group-item">Hora: 08:00 AM</li>
-                                    <li class="list-group-item">Duración: 1 día</li>
-                                    <li class="list-group-item">Vuelta: 20:00 hs. aprox</li>
+                                  <li class="list-group-item">Destino: {{ travesia.lugar }}</li>
+                                  <li class="list-group-item">Dificultad: {{ travesia.dificultad }}</li>
+                                    <li class="list-group-item">Guía:  {{travesia.empresa}}</li>
+                                    <li class="list-group-item">Fecha: {{travesia.fecha | date: 'dd/MM/yyyy' }}</li>
+                                    <li class="list-group-item">Hora: {{ travesia.hora }}</li>
+                                    <li class="list-group-item">Punto de Enc: {{ travesia.pencuentro }} {{travesia.coordenadas}}</li>
+                                    <li class="list-group-item"><b> Que incluye el Pack</b></li>
+                                    <li *ngIf="travesia.ingreso" class="list-group-item">Ingreso : Si {{ travesia.detingreso }}</li>
+                                    <li *ngIf="travesia.pernocte" class="list-group-item">Pernocte : Si {{travesia.detpernocte}}</li>
+                                    <li class="list-group-item">Desay.<i *ngIf="travesia.desayuno"   class="fa fa-check mi-check" aria-hidden="true"></i> <i *ngIf="!travesia.desayuno" class="fa fa-times mi-nocheck" aria-hidden="true"></i>
+                                                                Ración marcha <i *ngIf="travesia.rmarcha" class="fa fa-check mi-check" aria-hidden="true"></i><i *ngIf="!travesia.rmarcha" class="fa fa-times mi-nocheck" aria-hidden="true"></i>
+                                                                Merienda<i *ngIf="travesia.merienda" class="fa fa-check mi-check" aria-hidden="true"></i><i *ngIf="!travesia.merienda" class="fa fa-times mi-nocheck" aria-hidden="true"></i></li>
+                                    <li class="list-group">Detalles: {{travesia.detpension}}</li>
+                                    <li *ngIf="travesia.botiquin" class="list-group-item">Botiquín : Si {{travesia.detbotiquin}}</li>
+                                    <li *ngIf="travesia.scarga" class="list-group-item">Servicio de carga : Si {{travesia.detcarga }}</li>
+                                    <li *ngIf="travesia.cequipaje" class="list-group-item">Cuidado de equip. : Si {{travesia.detcuidado}}</li>
+                                    <li *ngIf="travesia.imontania" class="list-group-item">Ind. Montaña : Si {{travesia.detindumentaria}}</li>
+                                    <li *ngIf="travesia.traslado" class="list-group-item">Traslado : Si {{travesia.dettraslado}}</li>
+                                    <li *ngIf="travesia.rfoto" class="list-group-item">Reg. Foto : Si {{travesia.detfoto}}</li>
+                                    <li class="list-group-item">Comunicaciones:  Satelital <i *ngIf="travesia.csatelital"   class="fa fa-check mi-check" aria-hidden="true"></i> <i *ngIf="!travesia.csatelital" class="fa fa-times mi-nocheck" aria-hidden="true"></i>
+                                      VHF <i *ngIf="travesia.cvhf" class="fa fa-check mi-check" aria-hidden="true"></i><i *ngIf="!travesia.cvhf" class="fa fa-times mi-nocheck" aria-hidden="true"></i>
+                                    <li class="list-group">Detalles: {{travesia.detcomunicaciones}}</li>
+
+                                    <li class="list-group-item">Tarifa: {{travesia.precio}}</li>
+                                    
                                 </ul>
                               </td>
                             </tr>
                             <tr class="text-center">     
                               <td colspan="2">
-                                <button class="btn btn-secondary ms-1 mt-1" onclick="javascript:history.go(-2)">Cancelar</button>
-                                <button class="btn btn-primary ms-1 mt-1">Confirmar Registro</button>
+                                <button class="btn btn-secondary ms-1 mt-1" routerLink="/search">Cancelar</button>
+                                <button class="btn btn-primary ms-1 mt-1" (click)="registrarse()">Unirme</button>
                               </td>
                             </tr>
                           </tbody>
@@ -40,7 +61,6 @@
         </div>
     </div>
 </div>
-
 
 
 

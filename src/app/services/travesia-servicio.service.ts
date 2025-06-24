@@ -43,8 +43,8 @@ export class TravesiaServicioService {
     return this.curl.get<Array<Travesia>>(`${this.url}/lista/${id}`);
   }
 
-  listaUnaTravesia(id_destino: string): Observable<any>{
-    return this.curl.get(`${this.url}/${id_destino}`);
+  listaUnaTravesia(id_destino: string): Observable<Travesia>{
+    return this.curl.get<Travesia>(`${this.url}/${id_destino}`);
   }
 
   listaTravesiasFecha(id: string): Observable<any>{

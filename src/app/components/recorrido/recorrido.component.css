@@ -24,3 +24,10 @@
 .mi-modal{
     background: #abcfbd;
 }
+
+.mi-check{
+    color: green;
+}
+.mi-nocheck{
+    color: red;
+}

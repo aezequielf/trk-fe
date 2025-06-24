@@ -13,6 +13,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class LoginComponent {
   next: string | null = null;
+  idsiguiente: string | null = null;
   credenciales : FormGroup;
 
   constructor(private fb: FormBuilder, private enrutar: Router, private msjtoast: ToastrService, private ServicioLoginNext: ServicioLoginNextService, private servicioU : UsuarioService){
@@ -44,9 +45,10 @@ export class LoginComponent {
       error: err => {this.msjtoast.error(err.error.detail);},
       complete: () => {
       this.next = this.ServicioLoginNext.siguiente;
+      this.idsiguiente = this.ServicioLoginNext.idsiguiente;
       if (this.next != null){
-        this.ServicioLoginNext.enviarSiguienteLogin(null);
-        this.enrutar.navigate(['/'+this.next]);
+        this.ServicioLoginNext.enviarSiguienteLogin(null, null);
+        this.enrutar.navigate(['/'+this.next, this.idsiguiente]);
       } else {
         this.enrutar.navigate(['/perfil']);
       }}

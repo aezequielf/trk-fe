@@ -31,3 +31,10 @@
 .mi-link:visited{
     text-decoration: underline;
 }
+
+.mi-check{
+    color: green;
+}
+.mi-nocheck{
+    color: red;
+}

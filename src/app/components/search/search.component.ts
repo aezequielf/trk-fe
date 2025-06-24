@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { Pcia } from 'src/app/models/pcia';
 import { PciaServicioService } from 'src/app/services/pcia-servicio.service';
 import { TravesiaServicioService } from 'src/app/services/travesia-servicio.service';
 import { ServicioLoginNextService } from 'src/app/services/servicio-login-next.service';
 import { Travesia } from 'src/app/models/interfaces-travesia';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router, RouterLink } from '@angular/router';
 
 export interface Lugar{
   lugar : string[],
@@ -40,20 +41,82 @@ export class SearchComponent implements OnInit {
     tempo? : string | null;
     nombre: string = '';
     
-  constructor ( private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioTRavesia : TravesiaServicioService, private servUsuario: UsuarioService){
+    constructor (private router: Router, private ServicioLoginNext : ServicioLoginNextService, private servicioPcia : PciaServicioService, private ServicioTRavesia : TravesiaServicioService, private servUsuario: UsuarioService){
+    }
+    ngOnInit(): void {
+        let estado: any;
+        estado = this.ServicioLoginNext.getData();
+        
+        if (estado) {
+          this.deserializeState(estado);
+          this.ServicioLoginNext.clearData();
+        }
+        
+        
+        // if (this.servUsuario.estadoUsuarioActual())
+        //   this.nombre = this.servUsuario.estadoUsuarioActual()!.nombre
+        this.obtenerPcias();
+      }
+    // funcion effect para observar cambios en singal estadoUsuarioActual
+     efecto = effect( ()=>
+      {
+        const nuevoValor = this.servUsuario.estadoUsuarioActual();
+        this.nombre = nuevoValor?.nombre || '';
+      }
+      
+    )
+
+  serializeState(): any {
+    return {
+      listaPcia: this.listaPcia,
+      verform: this.verform,
+      verlista: this.verlista,
+      verdeta: this.verdeta,
+      getcomp: this.getcomp,
+      mensajeModal: this.mensajeModal,
+      tituloModal: this.tituloModal,
+      pcia: this.pcia,
+      travesia: this.travesia,
+      lista: this.lista,
+      listaDetalles: this.listaDetalles,
+      muestraDetalle: this.muestraDetalle,
+      fechafull: this.fechafull,
+      fecha: this.fecha,
+      fecha2: this.fecha2,
+      fechaTmp: this.fechaTmp,
+      fechasTodas: this.fechasTodas,
+      nom_dest: this.nom_dest,
+      tempo: this.tempo
+    };
   }
-  ngOnInit(): void {
+  
+  // Método para deserializar el estado de un objeto y restaurar el estado de la clase
+  deserializeState(state: any): void {
+    this.listaPcia = state.listaPcia;
+    this.verform = state.verform;
+    this.verlista = state.verlista;
+    this.verdeta = state.verdeta;
+    this.getcomp = state.getcomp;
+    this.mensajeModal = state.mensajeModal;
+    this.tituloModal = state.tituloModal;
+    this.pcia = state.pcia;
+    this.travesia = state.travesia;
+    this.lista = state.lista;
+    this.listaDetalles = state.listaDetalles;
+    this.muestraDetalle = state.muestraDetalle;
+    this.fechafull = new Date(state.fechafull);
+    this.fecha = state.fecha;
+    this.fecha2 = state.fecha2;
+    this.fechaTmp = state.fechaTmp;
+    this.fechasTodas = state.fechasTodas;
+    this.nom_dest = state.nom_dest;
+    this.tempo = state.tempo;
+  }
 
-    // this.servUsuario.usuarioActual().subscribe({
-    //   next: rta => this.nombre = rta.nombre,
-    //   error : () => this.servUsuario.estadoUsuarioActual.set(null)
-    //  })
-    console.log(this.servUsuario.estadoUsuarioActual(),'dentro del search component');
-    
-    if (this.servUsuario.estadoUsuarioActual())
-      this.nombre = this.servUsuario.estadoUsuarioActual()!.nombre
-    this.obtenerPcias();
-
+  muestra(){
+ // Guardar el estado
+  const savedState = this.serializeState();
+  console.log(savedState);
   }
   
 
@@ -125,47 +188,7 @@ export class SearchComponent implements OnInit {
     this.travesia='';
   }
 
-  // travesias = {
-  //   cordoba: [
-  //     { lugar: "Valle de los lisos, Los Gigantes", fecha: "17-11-2023" },
-  //     { lugar: "Los Gigantes", fecha: "19-11-2023" },
-  //     { lugar: "Quebrada del Condorito", fecha: "19-11-2023" },
-  //     { lugar: "Cerro Uritorco", fecha: "19-11-2023" },
-  //     { lugar: "Cerro Champaqui", fecha: "19-11-2023" },
-  //     { lugar: "Pueblo Escondido", fecha: "17-11-2023" },
-  //     { lugar: "Dique de los Alazanes", fecha: "15-11-2023" },
-  //     { lugar: "Quebrada de Yatan", fecha: "15-11-2023" },
-  //     { lugar: "Santuario del Yuspe", fecha: "15-11-2023" },
-  //     { lugar: "Colorados de Copacabana", fecha: "17-11-2023" },
-  //     { lugar: "Salinas GRandes", fecha: "17-11-2023" },
-  //     { lugar: "Ongamira", fecha: "22-11-2023" },
-  //     { lugar: "Volcanes de Pocho", fecha: "22-11-2023" },
-  //     { lugar: "La cumbrecita, Cerro Wonk", fecha: "17-11-2023" },
-  //     { lugar: "La cumbrecita, Rio Subterraneo", fecha: "17-11-2023" },
-  //   ],
-  //   neuquen: [{ lugar: "bariloche", fecha: "17-11-2023" }, { lugar: "cerro catedral", fecha: "17-11-2023" }, { lugar: "lago Nauhel Huapi", fecha: "17-11-2023" }],
-  //   mendoza: [{lugar: "Cerro Aconcagua",  fecha: "17-11-2023"}, {lugar: "laguna de valle hermoso", fecha: "17-11-2023"}]
-  // }
 
-
-  // selectProv() {
-    
-  //   this.travesia = ''
-  //   this.fecha = ''
-  //   if (this.pcia == "cordoba") {
-  //     this.lista = this.travesias[this.pcia]
-  //     return
-  //   }
-  //   if (this.pcia == "neuquen") {
-  //     this.lista = this.travesias[this.pcia]
-  //     return
-  //   }
-  //   if (this.pcia == "mendoza") {
-  //     this.lista = this.travesias[this.pcia]
-  //     return
-  //   }
-    
-  // }
   toggle_form_lista(destino_id : string, nombre_des : string){
     this.verform = !this.verform
     this.verlista = !this.verlista
@@ -191,17 +214,35 @@ export class SearchComponent implements OnInit {
   }
 
   ir_guia(){
-    this.mensajeModal = 'Para poder ver los datos del guía, debes estar registrado como usuario válido ...';
+    if (this.servUsuario.estadoUsuarioActual()){
+     this.router.navigate(['/guia', this.muestraDetalle?.guia_id]);
+    }
+
+     this.mensajeModal = 'Para poder ver los datos del guía, debes estar registrado como usuario válido ...';
     this.tituloModal = 'Debes ingresar al Sistema !';
-    this.ServicioLoginNext.enviarSiguienteLogin('guia');
+    this.ServicioLoginNext.enviarSiguienteLogin('guia', this.muestraDetalle?.guia_id);
+    const savedState = this.serializeState();
+    this.ServicioLoginNext.setData(savedState);
+    
   }
 
   apuntar(){
-    this.mensajeModal = 'Para poder apuntarte, debes estar registrado como usuario válido ...'
-    this.tituloModal = 'Debes ser autorizado !'
-    this.ServicioLoginNext.enviarSiguienteLogin('recorrido');
+    this.ServicioLoginNext.enviarSiguienteLogin('recorrido', this.muestraDetalle?.id);
+    const savedState = this.serializeState();
+    this.ServicioLoginNext.setData(savedState);
+    this.router.navigate(['/recorrido', this.muestraDetalle?.id]);
   }
   
+  cancelarSiguiente(){
+    this.ServicioLoginNext.enviarSiguienteLogin(null, null);
+    this.ServicioLoginNext.clearData();
+
+  }
+
+
+// Restaurar el estado
+//  this.deserializeState(savedState);
+
   // buscar_travesia() {
   //   if (this.travesia.length > 3 && this.travesia.length < 9) {
   //     console.log(this.travesia.length + ' ' + this.pcia)

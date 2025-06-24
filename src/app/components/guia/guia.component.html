@@ -8,30 +8,40 @@
                               <thead>
                                   <tr>
                                       <th class="text-center" colspan="3">
-                                          <span class="titulo" id="titulo"> Detalle Servicio </span>
+                                          <span class="titulo" id="titulo"> Detalles del Guía </span>
                                       </th>
                                   </tr>                          
                               </thead>
                               <tbody>
                                 <tr>     
-                                  <td>Nombre</td>
-                                  <td>Senderos del mundo</td>
-                                </tr>
-                                <tr class="text-center">     
-                                  <td colspan="2">Servicios del Guia</td>
+                                  <td>Empresa / Nombre:</td>
+                                  <td>{{ unGuia.empresa}}</td>
                                 </tr>
                                 <tr class="text-justify">     
                                   <td colspan="2">
                                     <ul class="list-group">
-                                        <li class="list-group-item"><a routerLink="/recorrido" component="RecorridoComponent" routerLinkActive="active" class="mi-link">Cerro algo</a> </li>
-                                        <li class="list-group-item"><a routerLink="/recorrido" component="RecorridoComponent"  routerLinkActive="active" class="mi-link">Cascada algo</a></li>
-                                        <li class="list-group-item"><a routerLink="/recorrido"  component="RecorridoComponent" routerLinkActive="active" class="mi-link">Salto del tigre algo</a></li>
+                                        <li class="list-group-item"> Cel. contacto {{unGuia.cel}} </li>
+                                        <li *ngIf="unGuia.celalt !=''"  class="list-group-item"> {{unGuia.celalt}}</li>
+                                        <li class="list-group-item"> </li>
                                     </ul>
                                   </td>
                                 </tr>
                                 <tr class="text-center">     
+                                  <td colspan="2">Guia Validado en pcia</td>
+                                </tr>
+                                <tr *ngIf="unGuia.validacion.length == 0" class="text-center">     
+                                  <td colspan="2"> <i class="fa fa-times mi-nocheck" aria-hidden="true"></i> Sin respaldado por regulador</td>
+                                </tr>
+                                <tr class="text-justify">
                                   <td colspan="2">
-                                    <button class="btn btn-secondary ms-1 mt-1"  onclick="javascript:history.go(-2)" >Volver</button>
+                                    <ul class="list-group">
+                                      <li *ngFor="let lapcia of unGuia.validacion" class="list-group-item"> {{lapcia}} </li>
+                                  </ul>
+                                  </td>
+                                </tr>
+                                <tr class="text-center">     
+                                  <td colspan="2">
+                                    <button class="btn btn-secondary ms-1 mt-1" routerLink="/search" >Volver</button>
                                     <button class="btn btn-secondary ms-1 mt-1">Inicio</button>
                                   </td>
                                 </tr>

@@ -142,10 +142,10 @@ export class AddeditServiciosComponent implements OnInit{
     this.travesia.destino_id = lugar!.destinos!.id;
     this.travesia.lugar = lugar!.destinos!.lugar;
     
-    console.log(this.travesia);
+//    console.log(this.travesia);
 
     
-    console.log(this.fechas);
+//    console.log(this.fechas);
     
   }
 
